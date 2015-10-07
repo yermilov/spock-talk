@@ -21,7 +21,7 @@ class N03_Fixture extends Specification {
         arrayList = null
     }
 
-    def arrayListWorks() {
+    def 'ArrayList works :|'() {
         when:
             arrayList.add("junit")
             arrayList.add("spock")
@@ -30,7 +30,7 @@ class N03_Fixture extends Specification {
             arrayList == [ "junit", "spock" ]
     }
 
-    def "empty ArrayList works as well!"() {
+    def 'empty ArrayList works as well!'() {
         expect:
             arrayList.size() == 0
     }

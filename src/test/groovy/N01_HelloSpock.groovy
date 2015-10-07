@@ -23,7 +23,7 @@ class N01_HelloSpock extends Specification {
     }
 
     def 'Groovy assertion originates from Spock'() {
-        given:
+        setup:
             def arrayList = new ArrayList<String>()
 
         when:
