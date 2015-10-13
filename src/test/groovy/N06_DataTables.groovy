@@ -2,7 +2,8 @@ import spock.lang.*
 
 class N06_DataTables extends Specification {
 
-    def "String.length() works O_O"() {
+    @Unroll
+    def "String.length() works for (#text1 #text2) O_O"() {
         when:
             def actual = (text1 + ' ' + text2).length()
 
