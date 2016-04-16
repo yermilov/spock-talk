@@ -32,7 +32,7 @@ class N03S_IdiomaticStart extends Specification {
 
         when: 'add two more values into list'
         list.add 'love'
-        list.add 'junit'
+        list.add 'spock'
 
         then: 'array list size should be 4'
         list.size() == 4
