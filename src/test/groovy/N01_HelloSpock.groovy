@@ -1,5 +1,6 @@
 import spock.lang.*
 
+@Title("Let's start")
 class N01_HelloSpock extends Specification {
 
     def arrayListWorks() {
@@ -22,8 +23,9 @@ class N01_HelloSpock extends Specification {
             arrayList.size() == 0
     }
 
+    @Issue('https://jira/SPOCK-1')
     def 'Groovy assertion originates from Spock'() {
-        given:
+        setup:
             def arrayList = new ArrayList<String>()
 
         when:
