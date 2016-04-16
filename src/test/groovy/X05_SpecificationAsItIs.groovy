@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N05_SpecificationAsItIs extends Specification {
+class X05_SpecificationAsItIs extends Specification {
 
     def 'ArrayList works :()'() {
         given: 'empty list'

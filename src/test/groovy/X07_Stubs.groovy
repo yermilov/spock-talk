@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N07_Stubs extends Specification {
+class X07_Stubs extends Specification {
 
     def 'stubbing random int'() {
         setup:

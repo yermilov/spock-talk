@@ -2,7 +2,7 @@ import spock.lang.*
 
 import java.util.concurrent.TimeUnit
 
-class N12_Timeout extends Specification {
+class X12_Timeout extends Specification {
 
     @IgnoreRest
     @Timeout(value = 100, unit = TimeUnit.MILLISECONDS)

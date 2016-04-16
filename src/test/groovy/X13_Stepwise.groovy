@@ -1,7 +1,7 @@
 import spock.lang.*
 
 @Stepwise
-class N13_Stepwise extends Specification {
+class X13_Stepwise extends Specification {
 
     @Shared
     def arrayList = new ArrayList<String>()

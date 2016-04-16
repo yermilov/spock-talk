@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N02_SharedList extends Specification {
+class X02_SharedList extends Specification {
 
     @Shared
     def arrayList = new ArrayList<String>()

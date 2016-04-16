@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N14_AutoCleanup extends Specification {
+class X14_AutoCleanup extends Specification {
 
     @AutoCleanup('clear')
     def cleanMeUp = new Expando(clear: { println 'CLEANED!' })

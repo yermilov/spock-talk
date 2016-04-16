@@ -3,7 +3,7 @@ import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.TimeUnit
 
-class N16_Sometimes extends Specification {
+class X16_Sometimes extends Specification {
 
     def 'once it will find answer'() {
         setup:

@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N08_Mocks extends Specification {
+class X08_Mocks extends Specification {
 
     def 'mocking random calls'() {
         setup:

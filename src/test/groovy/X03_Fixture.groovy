@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N03_Fixture extends Specification {
+class X03_Fixture extends Specification {
 
     @Shared
     def arrayList

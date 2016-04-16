@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N10_WhoLovesJ extends Specification {
+class X10_WhoLovesJ extends Specification {
 
     def 'anybody loves J?'() {
         setup:

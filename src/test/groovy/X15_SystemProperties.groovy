@@ -1,7 +1,7 @@
 import spock.lang.*
 import spock.util.environment.RestoreSystemProperties
 
-class N15_SystemProperties extends Specification {
+class X15_SystemProperties extends Specification {
 
     @RestoreSystemProperties
     def 'be careful with system properties'() {

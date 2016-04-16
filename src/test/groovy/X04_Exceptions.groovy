@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N04_Exceptions extends Specification {
+class X04_Exceptions extends Specification {
 
     def 'empty ArrayList has no 17th element'() {
         given:

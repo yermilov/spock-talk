@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N11_ConditionalRuns extends Specification {
+class X11_ConditionalRuns extends Specification {
 
     @Ignore
     def 'this test is ignored'() {

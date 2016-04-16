@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N09_Spies extends Specification {
+class X09_Spies extends Specification {
 
     def 'sping on password generator'() {
         setup:

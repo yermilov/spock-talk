@@ -1,6 +1,6 @@
 import spock.lang.*
 
-class N06_DataTables extends Specification {
+class X06_DataTables extends Specification {
 
     @Unroll
     def "String.length() works for (#text1 #text2) O_O"() {

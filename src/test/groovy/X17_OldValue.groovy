@@ -3,7 +3,7 @@ import spock.util.concurrent.PollingConditions
 
 import java.util.concurrent.TimeUnit
 
-class N17_OldValue extends Specification {
+class X17_OldValue extends Specification {
 
     def 'plus works!'() {
         setup:
