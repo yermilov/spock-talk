@@ -1,7 +1,7 @@
 import spock.lang.*
 
 @Title("Let's start")
-class N01_HelloSpock extends Specification {
+class X01_HelloSpock extends Specification {
 
     def arrayListWorks() {
         given:
