@@ -1,11 +1,13 @@
 import spock.lang.Shared
 import spock.lang.Specification
+import spock.lang.Stepwise
 
 class N09S_SharedExplained_BasicShared extends Specification {
 
     @Shared arrayList = new ArrayList<String>()
 }
 
+@Stepwise
 class N09S_SharedExplained_Shared_1 extends N09S_SharedExplained_BasicShared {
 
     def 'shared ArrayList and junit'() {
@@ -13,8 +15,7 @@ class N09S_SharedExplained_Shared_1 extends N09S_SharedExplained_BasicShared {
         arrayList.add('junit')
 
         then:
-        arrayList.size() >= 1
-        arrayList.size() <= 2
+        arrayList.size() == 1
     }
 
     def 'shared ArrayList and spock'() {
@@ -22,8 +23,7 @@ class N09S_SharedExplained_Shared_1 extends N09S_SharedExplained_BasicShared {
         arrayList.add('spock')
 
         then:
-        arrayList.size() >= 1
-        arrayList.size() <= 2
+        arrayList.size() == 2
     }
 }
 
@@ -44,6 +44,7 @@ class N09S_SharedExplained_BasicStatic extends Specification {
     static List arrayList = new ArrayList<String>()
 }
 
+@Stepwise
 class N09S_SharedExplained_Static_1 extends N09S_SharedExplained_BasicStatic {
 
     def 'static ArrayList and junit'() {
@@ -51,8 +52,7 @@ class N09S_SharedExplained_Static_1 extends N09S_SharedExplained_BasicStatic {
         arrayList.add('junit')
 
         then:
-        arrayList.size() >= 1
-        arrayList.size() <= 2
+        arrayList.size() == 1
     }
 
     def 'static ArrayList and spock'() {
@@ -60,8 +60,7 @@ class N09S_SharedExplained_Static_1 extends N09S_SharedExplained_BasicStatic {
         arrayList.add('spock')
 
         then:
-        arrayList.size() >= 1
-        arrayList.size() <= 2
+        arrayList.size() == 2
     }
 }
 

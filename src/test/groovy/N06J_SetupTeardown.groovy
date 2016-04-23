@@ -21,6 +21,7 @@ class N06J_SetupTeardown {
     @AfterClass
     public static void dropTable() {
         sql.execute("drop table testing_tool")
+        sql.close()
     }
 
     @Before

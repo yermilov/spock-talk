@@ -1,8 +1,5 @@
 import groovy.sql.Sql
 import spock.lang.*
-import spock.util.concurrent.PollingConditions
-
-import java.util.concurrent.TimeUnit
 
 @Title('Spock record old values')
 @Narrative('''

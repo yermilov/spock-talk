@@ -20,6 +20,7 @@ class N07S_SetupTeardown_AsYouLike extends Specification {
 
     def cleanupSpec() {
         sql.execute("drop table testing_tool")
+        sql.close()
     }
 
     def setup() {

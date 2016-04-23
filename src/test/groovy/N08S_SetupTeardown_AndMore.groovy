@@ -1,4 +1,5 @@
 import groovy.sql.Sql
+import spock.lang.AutoCleanup
 import spock.lang.Narrative
 import spock.lang.Shared
 import spock.lang.Specification
@@ -12,16 +13,12 @@ When we talk about setup/cleanup
 ''')
 class N08S_SetupTeardown_AndMore extends Specification {
 
-    @Shared sql
+    @Shared @AutoCleanup sql
 
     def setupSpec() {
         sql = Sql.newInstance("jdbc:h2:mem:", "org.h2.Driver")
         sql.execute("create table testing_tool (id int primary key, name varchar(100), version varchar(100))")
         sql.execute("insert into testing_tool values (1, 'junit', '4.12'), (2, 'spock', '1.0'), (3, 'testng', '6.9.10')")
-    }
-
-    def cleanupSpec() {
-        sql.execute("drop table testing_tool")
     }
 
     def 'tool count'() {

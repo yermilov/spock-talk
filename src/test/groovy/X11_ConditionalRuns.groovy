@@ -2,6 +2,9 @@ import spock.lang.*
 
 class X11_ConditionalRuns extends Specification {
 
+    @IgnoreRest
+
+
     @Ignore
     def 'this test is ignored'() {
         setup:
@@ -15,7 +18,7 @@ class X11_ConditionalRuns extends Specification {
             arrayList == [ 'spock', 'only', '!' ]
     }
 
-    @IgnoreIf({ new Random().nextBoolean()})
+    @IgnoreIf({ new Random().nextBoolean() })
     def 'this test is SOMETIMES ignored'() {
         setup:
             def arrayList = new ArrayList<String>()
