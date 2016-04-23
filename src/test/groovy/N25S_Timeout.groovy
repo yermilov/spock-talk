@@ -12,9 +12,9 @@ class N25S_Timeout extends Specification {
     @Timeout(value = 2, unit = TimeUnit.SECONDS)
     def 'infinite loop'() {
         setup: 'array list'
-            def arrayList = new ArrayList<String>()
+        def arrayList = new ArrayList<String>()
 
         expect: 'we will add to it values forever'
-            while (true) { arrayList.add('spock forever!') }
+        while (true) { arrayList.add('spock forever!') }
     }
 }
