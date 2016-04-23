@@ -13,8 +13,10 @@ class N10S_DataTables extends Specification {
 
     @Unroll
     def 'calculate runner speed and location after some time for #description'() {
-        expect: 'that runner speed and location is equal to expected'
+        expect: 'that runner speed is equal to expected'
         initialSpeed + acceleration * time == expectedSpeed
+
+        and: 'runner location is equal to expected'
         initialLocation + time * (initialSpeed + acceleration / 2 * time) == expectedLocation
 
         where: 'there are set of precalculated data for different situations'
@@ -32,6 +34,6 @@ class N10S_DataTables extends Specification {
         coinFlip == Primes.isPrime(number)
 
         where: 'data is random'
-        number << (1..28).collect({ new Random().nextInt(1000) }).sort()
+        number << (1..28).collect({ new Random().nextInt(1000) }).findAll({ it >= 2 }).sort()
     }
 }
