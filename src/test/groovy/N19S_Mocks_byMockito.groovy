@@ -26,7 +26,7 @@ class N19S_Mocks_byMockito extends Specification {
         passwordGenerator.generate(5)
 
         then: 'random generator is invoked 5 times'
-        verify(random, times(5)).nextInt(anyInt()) || true
+        mockito verify(random, times(5)).nextInt(anyInt())
     }
 
     def 'generating random password of random length'() {
@@ -39,12 +39,16 @@ class N19S_Mocks_byMockito extends Specification {
 
         then: 'first random generator is invoked once to generate password length'
         InOrder inOrder = inOrder(random)
-        inOrder.verify(random, times(1)).nextInt(10) || true
+        mockito inOrder.verify(random, times(1)).nextInt(10)
 
         and: 'then random generator is invoked at least 8 times more'
-        inOrder.verify(random, atLeast(8)).nextInt(26) || true
+        mockito inOrder.verify(random, atLeast(8)).nextInt(26)
 
         and: 'random generator is never invoked for anything else'
-        inOrder.verifyNoMoreInteractions() || true
+        mockito inOrder.verifyNoMoreInteractions()
+    }
+
+    static def mockito(def verify) {
+        true
     }
 }
