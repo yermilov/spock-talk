@@ -19,6 +19,6 @@ class N05J_PowerAsserts {
         list.add 'spock'
 
         // verify
-        assert list.findAll({ it.length() < 5 }).groupBy({ it[0] }).find({ k, v -> v.size() > 1 }).value.join('#').toUpperCase() == 'WAT?? CAN_WE_GUESS_IT???'
+        assert list.findAll({ it.length() < 5 }).groupBy({ it[0] }).find({ k, v -> v.size() > 1 }).value == list.findAll({ it.length() < 5 }).drop(1)
     }
 }

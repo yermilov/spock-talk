@@ -23,8 +23,10 @@ class N03S_IdiomaticStart extends Specification {
         expect: 'that newly created ArrayList instance is empty'
         list.empty
 
-        when: 'add two values into list'
+        when: 'add value to list'
         list.add 'we'
+
+        and: 'add one more value to list'
         list.add 'will'
 
         then: 'array list size should be 2'
@@ -36,5 +38,8 @@ class N03S_IdiomaticStart extends Specification {
 
         then: 'array list size should be 4'
         list.size() == 4
+
+        and: 'list contains all needed values'
+        list == [ 'we', 'will', 'love', 'spock' ]
     }
 }
