@@ -5,7 +5,7 @@ import spock.lang.*
 As JEEConf speaker
 I want to show you something terrifying
 ''')
-class N21S_WhoLovesJ extends Specification {
+class N22S_WhoLovesJ extends Specification {
 
     def 'something terrifying'() {
         when: 'mocking goes to far'
