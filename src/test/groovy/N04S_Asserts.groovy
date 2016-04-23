@@ -22,7 +22,7 @@ class N04S_Asserts extends Specification {
         list.add 'love'
         list.add 'spock'
 
-        then: 'array list size should be 4'
-        list.findAll({ it.length() < 5 }).groupBy({ it[0] }).find({ k, v -> v.size() > 1 }).value.join('#').toUpperCase() == 'WAT?? CAN_WE_GUESS_IT???'
+        then: "we'll be ok"
+        list.findAll({ it.length() < 5 }).groupBy({ it[0] }).find({ k, v -> v.size() > 1 }).value == list.findAll({ it.length() < 5 }).drop(1)
     }
 }
