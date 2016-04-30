@@ -57,19 +57,19 @@ class N05S_Asserts extends Specification {
     }
 
     def 'complex assertion'() {
-        setup: 'new ArrayList instance'
+        setup:
         ArrayList<String> list = new ArrayList<>()
 
-        expect: 'that newly created ArrayList instance is empty'
+        expect:
         list.empty
 
-        when: 'add two values into list'
+        when:
         list.add 'we'
         list.add 'will'
         list.add 'love'
         list.add 'spock'
 
-        then: "we'll be ok"
+        then:
         list.findAll({ it.length() < 5 }).groupBy({ it[0] }).find({ k, v -> v.size() > 1 }).value == list.findAll({ it.length() < 5 }).drop(1)
     }
 }

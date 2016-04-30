@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsEmptyCollection.empty
 import static org.junit.Assume.assumeThat
 
-class X05J_PowerAsserts {
+class N06J_PowerAsserts {
 
     @Test
     void 'ArrayList.size()'() {
@@ -19,6 +19,6 @@ class X05J_PowerAsserts {
         list.add 'spock'
 
         // verify
-        assert list.findAll({ it.length() < 5 }).groupBy({ it[0] }).find({ k, v -> v.size() > 1 }).value == list.findAll({ it.length() < 5 }).drop(1)
+        assert list.findAll({ it.length() < 5 }) == list.drop(2)
     }
 }
