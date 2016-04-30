@@ -1,6 +1,4 @@
 import groovyx.net.http.HTTPBuilder
-import spock.lang.Ignore
-import spock.lang.IgnoreIf
 import spock.lang.IgnoreRest
 import spock.lang.Narrative
 import spock.lang.Requires
@@ -21,14 +19,14 @@ class N30S_ConditionalRuns_Part2 extends Specification {
     }
 
     @Requires({ N30S_ConditionalRuns_Part2.isGoogleSearchAvaiable() })
-    def 'this test requires Java 8'() {
-        setup:
+    def 'this test runs only if Google Search is avaiable'() {
+        setup: 'http connection service'
         def http = new HTTPBuilder('https://google.com')
 
-        when:
+        when: 'we search for the best java unit testing framework'
         def response = http.get(path : '/search', query : [q:'best java unit testing framework'])
 
-        then:
+        then: 'answer mentions spock'
         response.toString().toLowerCase().contains 'spock'
     }
 
