@@ -12,7 +12,7 @@ import static org.mockito.Mockito.mock
 As JEEConf speaker
 I want to show that Mockito still works inside Spock
 ''')
-class N16S_Stubs_byMockito extends Specification {
+class X16S_Stubs_byMockito extends Specification {
 
     def 'generating password when random generator return constant value'() {
         given: 'random generator that always return 0'

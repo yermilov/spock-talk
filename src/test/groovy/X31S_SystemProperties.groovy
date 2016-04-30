@@ -7,7 +7,7 @@ As JEEConf speaker
 I want to show that Spock is careful with system properties
 ''')
 @Stepwise
-class N31S_SystemProperties extends Specification {
+class X31S_SystemProperties extends Specification {
 
     @RestoreSystemProperties
     def 'set spock version'() {

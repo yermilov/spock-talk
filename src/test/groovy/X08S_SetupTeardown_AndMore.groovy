@@ -11,7 +11,7 @@ As JEEConf speaker
 I want to show that Spock can be even better than JUnit have
 When we talk about setup/cleanup
 ''')
-class N08S_SetupTeardown_AndMore extends Specification {
+class X08S_SetupTeardown_AndMore extends Specification {
 
     @Shared @AutoCleanup sql
 

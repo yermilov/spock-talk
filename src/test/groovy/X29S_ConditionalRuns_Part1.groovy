@@ -5,7 +5,7 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock conditional runs are
 ''')
-class N29S_ConditionalRuns_Part1 extends Specification {
+class X29S_ConditionalRuns_Part1 extends Specification {
 
     @Ignore('will fix it before commit')
     def 'this test is always ignored'() {

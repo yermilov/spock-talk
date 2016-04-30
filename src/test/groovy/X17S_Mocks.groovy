@@ -5,7 +5,7 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock mocks are
 ''')
-class N17S_Mocks extends Specification {
+class X17S_Mocks extends Specification {
 
     def 'generating random password of length 5'() {
         given: 'random generator and password generator that uses it'

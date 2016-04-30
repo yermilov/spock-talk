@@ -8,7 +8,7 @@ import org.junit.Test
 import static org.junit.Assert.assertThat
 import static org.hamcrest.Matchers.is;
 
-class N06J_SetupTeardown {
+class X06J_SetupTeardown {
 
     static Sql sql
 

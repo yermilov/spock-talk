@@ -5,7 +5,7 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock spies are
 ''')
-class N20S_Spies extends Specification {
+class X20S_Spies extends Specification {
 
     def 'when generating random password of random length then something should be generated'() {
         setup: 'spy on password generator'

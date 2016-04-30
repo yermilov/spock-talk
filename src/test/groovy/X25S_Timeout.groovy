@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 As JEEConf speaker
 I want to show that Spock is slightly better at time limitations
 ''')
-class N25S_Timeout extends Specification {
+class X25S_Timeout extends Specification {
 
     @Timeout(value = 2, unit = TimeUnit.SECONDS)
     def 'infinite loop'() {

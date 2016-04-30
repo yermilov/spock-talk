@@ -11,7 +11,7 @@ import static org.junit.Assert.assertThat;
 /**
  * Created by yermi on 23.04.2016.
  */
-public class N28J_Sometimes {
+public class X28J_Sometimes {
 
     @Test(timeout = 10000)
     public void findNextPrimeEventually() throws ExecutionException, InterruptedException {

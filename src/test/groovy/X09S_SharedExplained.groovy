@@ -2,13 +2,13 @@ import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
 
-class N09S_SharedExplained_BasicShared extends Specification {
+class X09S_SharedExplained_BasicShared extends Specification {
 
     @Shared arrayList = new ArrayList<String>()
 }
 
 @Stepwise
-class N09S_SharedExplained_Shared_1 extends N09S_SharedExplained_BasicShared {
+class X09S_SharedExplained_Shared_1 extends X09S_SharedExplained_BasicShared {
 
     def 'shared ArrayList and junit'() {
         when:
@@ -27,7 +27,7 @@ class N09S_SharedExplained_Shared_1 extends N09S_SharedExplained_BasicShared {
     }
 }
 
-class N09S_SharedExplained_Shared_2 extends N09S_SharedExplained_BasicShared {
+class X09S_SharedExplained_Shared_2 extends X09S_SharedExplained_BasicShared {
 
     def 'shared ArrayList and testng'() {
         when:
@@ -39,13 +39,13 @@ class N09S_SharedExplained_Shared_2 extends N09S_SharedExplained_BasicShared {
 }
 
 
-class N09S_SharedExplained_BasicStatic extends Specification {
+class X09S_SharedExplained_BasicStatic extends Specification {
 
     static List arrayList = new ArrayList<String>()
 }
 
 @Stepwise
-class N09S_SharedExplained_Static_1 extends N09S_SharedExplained_BasicStatic {
+class X09S_SharedExplained_Static_1 extends X09S_SharedExplained_BasicStatic {
 
     def 'static ArrayList and junit'() {
         when:
@@ -64,7 +64,7 @@ class N09S_SharedExplained_Static_1 extends N09S_SharedExplained_BasicStatic {
     }
 }
 
-class N09S_SharedExplained_Static_2 extends N09S_SharedExplained_BasicStatic {
+class X09S_SharedExplained_Static_2 extends X09S_SharedExplained_BasicStatic {
 
     def 'static ArrayList and testng'() {
         when:

@@ -9,7 +9,7 @@ import spock.lang.Unroll
 As JEEConf speaker
 I want to show how great Spock data tables are
 ''')
-class N10S_DataTables extends Specification {
+class X10S_DataTables extends Specification {
 
     @Unroll
     def 'calculate runner speed and location after some time for #description'() {

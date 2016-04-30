@@ -5,7 +5,7 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock stubs are
 ''')
-class N14S_Stubs extends Specification {
+class X14S_Stubs extends Specification {
 
     def 'generating password when random generator return constant value'() {
         given: 'random generator that always return 0'

@@ -10,7 +10,7 @@ As Java developer
 (that trust nothing)
 I want to be sure ArrayList works
 ''')
-class N03S_IdiomaticStart extends Specification {
+class X03S_IdiomaticStart extends Specification {
 
     @Subject
     ArrayList<String> list

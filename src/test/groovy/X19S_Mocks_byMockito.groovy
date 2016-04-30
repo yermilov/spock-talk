@@ -15,7 +15,7 @@ import static org.mockito.Mockito.verify
 As JEEConf speaker
 I want to show that Mockito still works inside Spock
 ''')
-class N19S_Mocks_byMockito extends Specification {
+class X19S_Mocks_byMockito extends Specification {
 
     def 'generating random password of length 5'() {
         given: 'random generator and password generator that uses it'

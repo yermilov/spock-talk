@@ -5,7 +5,7 @@ import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-public class N21J_Spies {
+public class X21J_Spies {
 
     @Test
     public void passwordOfRandomLength() {

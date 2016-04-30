@@ -9,7 +9,7 @@ import java.util.concurrent.TimeUnit
 As JEEConf speaker
 I want to show that Spock is way much better at eventual assertions
 ''')
-class N27S_Sometimes extends Specification {
+class X27S_Sometimes extends Specification {
 
     def conditions = new PollingConditions(timeout: 30)
 

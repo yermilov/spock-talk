@@ -4,7 +4,7 @@ import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsEmptyCollection.empty
 import static org.junit.Assume.assumeThat
 
-class N05J_PowerAsserts {
+class X05J_PowerAsserts {
 
     @Test
     void 'ArrayList.size()'() {

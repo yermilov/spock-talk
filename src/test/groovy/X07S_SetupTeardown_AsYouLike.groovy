@@ -9,7 +9,7 @@ As JEEConf speaker
 I want to show that Spock can be very similar to JUnit
 When we talk about setup/cleanup
 ''')
-class N07S_SetupTeardown_AsYouLike extends Specification {
+class X07S_SetupTeardown_AsYouLike extends Specification {
 
     static Sql sql
 

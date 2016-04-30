@@ -10,7 +10,7 @@ import spock.lang.Title
 As JEEConf speaker
 I want to show how great Spock conditional runs are
 ''')
-class N30S_ConditionalRuns_Part2 extends Specification {
+class X30S_ConditionalRuns_Part2 extends Specification {
 
     @IgnoreRest
     def 'this test makes all other test ignored'() {

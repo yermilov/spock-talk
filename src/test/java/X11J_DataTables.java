@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
 @RunWith(Parameterized.class)
-public class N11J_DataTables {
+public class X11J_DataTables {
 
     @Parameterized.Parameters(name = "calculate runner speed and location after some time for {6}")
     public static Collection<Object[]> data() {

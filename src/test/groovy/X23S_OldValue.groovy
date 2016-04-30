@@ -6,7 +6,7 @@ import spock.lang.*
 As JEEConf speaker
 I want to show that Spock can record old values
 ''')
-class N23S_OldValue extends Specification {
+class X23S_OldValue extends Specification {
 
     @Shared sql
 

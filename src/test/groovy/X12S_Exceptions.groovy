@@ -6,7 +6,7 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock exceptions catching is
 ''')
-class N12S_Exceptions extends Specification {
+class X12S_Exceptions extends Specification {
 
     def 'empty ArrayList has no 17th element'() {
         given: 'empty array list'

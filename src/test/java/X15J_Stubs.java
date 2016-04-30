@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
-public class N15J_Stubs {
+public class X15J_Stubs {
 
     @Test
     public void constantValue() {

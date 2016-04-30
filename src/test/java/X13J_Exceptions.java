@@ -11,7 +11,7 @@ import static org.junit.Assert.fail;
 /**
  * Created by yermi on 23.04.2016.
  */
-public class N13J_Exceptions {
+public class X13J_Exceptions {
 
     @Rule
     public ExpectedException thrown = ExpectedException.none();
