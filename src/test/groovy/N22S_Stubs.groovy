@@ -1,23 +1,16 @@
-import spock.lang.Narrative
-import spock.lang.Specification
-import spock.lang.Title
-
-import static org.mockito.Mockito.doAnswer
-import static org.mockito.Mockito.doReturn
-import static org.mockito.Mockito.doThrow
-import static org.mockito.Mockito.mock
+import spock.lang.*
 
 @Title('Spock stubbing')
 @Narrative('''
 As JEEConf speaker
-I want to show that Mockito still works inside Spock
+I want to show how great Spock stubs are
 ''')
-class X16S_Stubs_byMockito extends Specification {
+class N22S_Stubs extends Specification {
 
     def 'generating password when random generator return constant value'() {
         given: 'random generator that always return 0'
-        Random random = mock(Random)
-        doReturn(0).when(random).nextInt(26)
+        Random random = Stub()
+        random.nextInt(26) >> 0
 
         and: 'password generator based on this random generator'
         PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
@@ -28,8 +21,8 @@ class X16S_Stubs_byMockito extends Specification {
 
     def 'generating password when random generator return predefined values'() {
         given: 'random generator that always return predefined values'
-        Random random = mock(Random)
-        doReturn(0).doReturn(1).doReturn(2).doReturn(3).doReturn(4).when(random).nextInt(26)
+        Random random = Stub()
+        random.nextInt(_) >>> [ 0, 1, 2, 3, 4 ]
 
         and: 'password generator based on this random generator'
         PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
@@ -40,8 +33,8 @@ class X16S_Stubs_byMockito extends Specification {
 
     def 'generating password when random generator fails'() {
         given: 'random generator that always throw exception'
-        Random random = mock(Random)
-        doThrow(new RuntimeException()).when(random).nextInt(26)
+        Random random = Stub()
+        random.nextInt(_) >> { throw new RuntimeException() }
 
         and: 'password generator based on this random generator'
         PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
@@ -55,8 +48,8 @@ class X16S_Stubs_byMockito extends Specification {
 
     def 'generating password when random generator return biggest possible value'() {
         given: 'random generator that always return biggest possible value'
-        Random random = mock(Random)
-        doAnswer({ inv -> (int) inv.getArguments()[0] - 1}).when(random).nextInt(26)
+        Random random = Stub()
+        random.nextInt(_) >> { int max -> max - 1 }
 
         and: 'password generator based on this random generator'
         PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)

@@ -5,7 +5,7 @@ import java.util.Random;
 
 import static org.mockito.Mockito.*;
 
-public class X18J_Mocks {
+public class N26J_Mocks {
 
     @Test
     public void passwordOfLength5() {
