@@ -3,7 +3,7 @@ apply plugin: 'groovy'
 repositories {
     jcenter()
     maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
+        url 'https://oss.sonatype.org/content/repositories/snapshots'
     }
 }
 
@@ -26,13 +26,16 @@ dependencies {
     testCompile 'org.mockito:mockito-all:1.10.19'
 
     testCompile 'org.testng:testng:6.9.10'
+
     testCompile 'org.assertj:assertj-core:3.4.1'
+
+    testCompile 'com.google.truth:truth:0.28'
 
     testCompile 'org.junit:junit5-api:5.0.0-SNAPSHOT'
     testCompile 'org.junit:junit4-runner:5.0.0-SNAPSHOT'
     testCompile 'org.junit:junit5-engine:5.0.0-SNAPSHOT'
 
-    testCompile( 'com.athaydes:spock-reports:1.2.10' ) {
+    testCompile('com.athaydes:spock-reports:1.2.10') {
         transitive = false // this avoids affecting your version of Groovy/Spock
     }
     testCompile 'org.slf4j:slf4j-api:1.7.13'

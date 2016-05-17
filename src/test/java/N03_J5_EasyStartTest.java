@@ -11,16 +11,11 @@ public class N03_J5_EasyStartTest {
 
     @Test
     public void arrayList_length_idm() {
-        // setup
         ArrayList<String> list = new ArrayList<>();
-
-        // run
         list.add("we");
         list.add("all");
         list.add("love");
         list.add("junit");
-
-        // verify
         assertEquals(4, list.size());
     }
 }

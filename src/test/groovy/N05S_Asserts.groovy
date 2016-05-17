@@ -1,11 +1,13 @@
+import com.google.common.truth.Truth
+import org.assertj.core.api.Assertions
 import spock.lang.Narrative
 import spock.lang.Specification
 import spock.lang.Title
 
 import static org.hamcrest.Matchers.hasSize
+import static org.junit.Assert.assertThat
 import static org.junit.Assert.assertTrue
 import static org.junit.Assert.assertEquals
-import static org.junit.Assert.assertThat
 import static spock.util.matcher.HamcrestSupport.expect
 
 @Title('Spock assert')
@@ -83,6 +85,34 @@ class N05S_Asserts extends Specification {
 
         then:
         expect list, hasSize(3)
+    }
+
+    def 'verifying array list size using Assertions.assertThat.hasSize'() {
+        setup:
+        ArrayList<String> list = new ArrayList<>();
+
+        when:
+        list.add("we");
+        list.add("will");
+        list.add("love");
+        list.add("spock");
+
+        then:
+        Assertions.assertThat(list).hasSize(3);
+    }
+
+    def 'verifying array list size using Truth.assertThat.hasSize'() {
+        setup:
+        ArrayList<String> list = new ArrayList<>();
+
+        when:
+        list.add("we");
+        list.add("will");
+        list.add("love");
+        list.add("spock");
+
+        then:
+        Truth.assertThat(list).hasSize(3);
     }
 
     def 'complex assertion'() {
