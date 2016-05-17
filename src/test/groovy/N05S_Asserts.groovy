@@ -3,7 +3,8 @@ import spock.lang.Specification
 import spock.lang.Title
 
 import static org.hamcrest.Matchers.hasSize
-import static org.hamcrest.Matchers.hasSize
+import static org.junit.Assert.assertTrue
+import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertThat
 import static spock.util.matcher.HamcrestSupport.expect
 
@@ -14,7 +15,35 @@ I want to show how great Spock assertions are
 ''')
 class N05S_Asserts extends Specification {
 
-    def arrayList_length() {
+    def 'verifying array list size using assertEquals'() {
+        setup:
+        ArrayList<String> list = new ArrayList<>();
+
+        when:
+        list.add("we");
+        list.add("will");
+        list.add("love");
+        list.add("spock");
+
+        then:
+        assertEquals(list.size(), 3);
+    }
+
+    def 'verifying array list size using assertTrue'() {
+        setup:
+        ArrayList<String> list = new ArrayList<>();
+
+        when:
+        list.add("we");
+        list.add("will");
+        list.add("love");
+        list.add("spock");
+
+        then:
+        assertTrue(list.size() == 3);
+    }
+
+    def 'verifying array list size using assertThat.hasSize'() {
         setup:
         ArrayList<String> list = new ArrayList<>();
 
@@ -28,7 +57,7 @@ class N05S_Asserts extends Specification {
         assertThat(list, hasSize(3));
     }
 
-    def 'ArrayList.size() test, but much spockier'() {
+    def 'verifying array list size using Spock Asserions'() {
         setup:
         ArrayList<String> list = new ArrayList<>()
 
@@ -42,7 +71,7 @@ class N05S_Asserts extends Specification {
         list.size() == 3
     }
 
-    def 'ArrayList.size() test, spock-way, but for hamcrest fans'() {
+    def 'verifying array list size using expect.hasSize'() {
         setup:
         ArrayList<String> list = new ArrayList<>()
 
