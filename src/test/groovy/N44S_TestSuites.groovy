@@ -13,7 +13,7 @@ class N44S_TestSuites extends Specification {
 
     @Fast
     def passedFast() {
-        expect: 'that everything is ok in this universe'
+        expect: 'that everything is ok'
         2 + 2 == 4
     }
 
@@ -22,7 +22,7 @@ class N44S_TestSuites extends Specification {
         setup: 'some resource'
         Thread.sleep(TimeUnit.SECONDS.toMillis(20))
 
-        expect: 'that everything is not ok in this universe'
+        expect: 'that everything is not ok'
         2 + 2 == 5
     }
 
