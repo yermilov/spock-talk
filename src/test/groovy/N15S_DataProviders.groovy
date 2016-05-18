@@ -31,9 +31,10 @@ class N15S_DataProviders extends Specification {
         boolean coinFlip = new Random().nextBoolean()
 
         then: 'it will be great if coin flip predict if number is prime'
-        coinFlip == Primes.isPrime(number)
+        (number % 2 == 0 ? false : coinFlip) == expectedAnswer
 
         where: 'data is random'
         number << (1..5).collect({ new Random().nextInt(1000) }).findAll({ it >= 2 }).sort()
+        expectedAnswer = Primes.isPrime(number)
     }
 }
