@@ -1,4 +1,8 @@
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Random;
 
@@ -6,7 +10,12 @@ import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Mockito.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(Config.class)
 public class N23J_Stubs {
+
+    @Autowired
+    PasswordGenerator passwordGenerator;
 
     @Test
     public void constantValue() {
@@ -14,7 +23,6 @@ public class N23J_Stubs {
         Random random = mock(Random.class);
         doReturn(0).when(random).nextInt(26);
 
-        PasswordGenerator passwordGenerator = new PasswordGenerator();
         passwordGenerator.setRandom(random);
 
         // verify
@@ -27,7 +35,6 @@ public class N23J_Stubs {
         Random random = mock(Random.class);
         doReturn(0).doReturn(1).doReturn(2).doReturn(3).doReturn(4).when(random).nextInt(26);
 
-        PasswordGenerator passwordGenerator = new PasswordGenerator();
         passwordGenerator.setRandom(random);
 
         // verify
@@ -40,7 +47,6 @@ public class N23J_Stubs {
         Random random = mock(Random.class);
         doThrow(new RuntimeException()).when(random).nextInt(26);
 
-        PasswordGenerator passwordGenerator = new PasswordGenerator();
         passwordGenerator.setRandom(random);
 
         // run
@@ -53,7 +59,6 @@ public class N23J_Stubs {
         Random random = mock(Random.class);
         doAnswer(inv -> (int) inv.getArguments()[0] - 1).when(random).nextInt(26);
 
-        PasswordGenerator passwordGenerator = new PasswordGenerator();
         passwordGenerator.setRandom(random);
 
         // verify

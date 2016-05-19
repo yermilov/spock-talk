@@ -1,3 +1,5 @@
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.*
 
 @Title('Spock mocking')
@@ -5,12 +7,16 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock mocks are
 ''')
+@ContextConfiguration(classes = Config)
 class N25S_Mocks extends Specification {
+
+    @Autowired
+    PasswordGenerator passwordGenerator
 
     def 'generating random password of length 5'() {
         given: 'random generator and password generator that uses it'
         Random random = Mock()
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         when: 'we ask password generator to generate password of length 5'
         passwordGenerator.generate(5)
@@ -22,7 +28,7 @@ class N25S_Mocks extends Specification {
     def 'generating random password of random length'() {
         given: 'random generator and password generator that uses it'
         Random random = Mock()
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         when: 'we ask password generator to generate password of random length'
         passwordGenerator.generate()

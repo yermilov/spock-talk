@@ -1,3 +1,5 @@
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.*
 
 @Title('Spock spies')
@@ -5,11 +7,20 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock spies are
 ''')
+@ContextConfiguration(classes = Config)
 class N28S_Spies extends Specification {
+
+    @Autowired
+    String alphabet
+
+    @Autowired
+    Random random
 
     def 'when generating random password of random length then something should be generated'() {
         setup: 'spy on password generator'
         PasswordGenerator passwordGenerator = Spy(PasswordGenerator)
+        passwordGenerator.alphabet = alphabet
+        passwordGenerator.random = random
 
         when: 'we ask password generator to generate password of random length'
         passwordGenerator.generate()
@@ -21,6 +32,8 @@ class N28S_Spies extends Specification {
     def 'when generating random password of random length then something with non-null length should be generated'() {
         setup: 'spy on password generator'
         PasswordGenerator passwordGenerator = Spy(PasswordGenerator)
+        passwordGenerator.alphabet = alphabet
+        passwordGenerator.random = random
 
         when: 'we ask password generator to generate password of random length'
         passwordGenerator.generate()
@@ -32,6 +45,8 @@ class N28S_Spies extends Specification {
     def 'when generating random password of random length then something with integer length should be generated'() {
         setup: 'spy on password generator'
         PasswordGenerator passwordGenerator = Spy(PasswordGenerator)
+        passwordGenerator.alphabet = alphabet
+        passwordGenerator.random = random
 
         when: 'we ask password generator to generate password of random length'
         passwordGenerator.generate()
@@ -43,6 +58,8 @@ class N28S_Spies extends Specification {
     def 'when generating random password of random length then password of length from 8 to 17 should be generated'() {
         setup: 'spy on password generator'
         PasswordGenerator passwordGenerator = Spy(PasswordGenerator)
+        passwordGenerator.alphabet = alphabet
+        passwordGenerator.random = random
 
         when: 'we ask password generator to generate password of random length'
         passwordGenerator.generate()

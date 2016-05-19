@@ -10,6 +10,7 @@ As Java developer
 (that trust nothing)
 I want to be sure ArrayList works
 ''')
+@Report
 class N07S_IdiomaticSpock extends Specification {
 
     @Subject

@@ -1,3 +1,5 @@
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.*
 
 @Title('Spock stubbing')
@@ -5,7 +7,11 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock stubs are
 ''')
+@ContextConfiguration(classes = Config)
 class N22S_Stubs extends Specification {
+
+    @Autowired
+    PasswordGenerator passwordGenerator
 
     def 'generating password when random generator return constant value'() {
         given: 'random generator that always return 0'
@@ -13,7 +19,7 @@ class N22S_Stubs extends Specification {
         random.nextInt(26) >> 0
 
         and: 'password generator based on this random generator'
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         expect: 'certain generated password'
         passwordGenerator.generate(5) == 'aaaaa'
@@ -25,7 +31,7 @@ class N22S_Stubs extends Specification {
         random.nextInt(_) >>> [ 0, 1, 2, 3, 4 ]
 
         and: 'password generator based on this random generator'
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         expect: 'certain generated password'
         passwordGenerator.generate(5) == 'abcde'
@@ -37,7 +43,7 @@ class N22S_Stubs extends Specification {
         random.nextInt(_) >> { throw new RuntimeException() }
 
         and: 'password generator based on this random generator'
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         when: 'we try to generate password'
         passwordGenerator.generate(5)
@@ -52,7 +58,7 @@ class N22S_Stubs extends Specification {
         random.nextInt(_) >> { int max -> max - 1 }
 
         and: 'password generator based on this random generator'
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         expect: 'certain generated password'
         passwordGenerator.generate(5) == 'zzzzz'

@@ -9,27 +9,7 @@ As JEEConf speaker
 I want to show that Spock can be very similar to JUnit
 When we talk about setup/cleanup
 ''')
-class N11S_SetupTeardown_AsYouLike extends Specification {
-
-    static Sql sql
-
-    def setupSpec() {
-        sql = Sql.newInstance("jdbc:h2:mem:", "org.h2.Driver")
-        sql.execute("create table testing_tool (id int primary key, name varchar(100), version varchar(100))")
-    }
-
-    def cleanupSpec() {
-        sql.execute("drop table testing_tool")
-        sql.close()
-    }
-
-    def setup() {
-        sql.execute("insert into testing_tool values (1, 'junit', '4.12'), (2, 'spock', '1.0'), (3, 'testng', '6.9.10')")
-    }
-
-    def cleanup() {
-        sql.execute("delete from testing_tool")
-    }
+class N11S_SetupTeardown_AsYouLike extends Specification implements DatabaseSpec {
 
     def 'tool count'() {
         when: 'we count number of unit testing tools'

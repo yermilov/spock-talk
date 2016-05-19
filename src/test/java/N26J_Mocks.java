@@ -1,18 +1,26 @@
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InOrder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Random;
 
 import static org.mockito.Mockito.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(Config.class)
 public class N26J_Mocks {
+
+    @Autowired
+    PasswordGenerator passwordGenerator;
 
     @Test
     public void passwordOfLength5() {
         // setup
         Random random = mock(Random.class);
 
-        PasswordGenerator passwordGenerator = new PasswordGenerator();
         passwordGenerator.setRandom(random);
 
         // run
@@ -27,7 +35,6 @@ public class N26J_Mocks {
         // setup
         Random random = mock(Random.class);
 
-        PasswordGenerator passwordGenerator = new PasswordGenerator();
         passwordGenerator.setRandom(random);
 
         // run

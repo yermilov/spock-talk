@@ -1,3 +1,5 @@
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Narrative
 import spock.lang.Specification
 import spock.lang.Title
@@ -12,7 +14,11 @@ import static org.mockito.Mockito.mock
 As JEEConf speaker
 I want to show that Mockito still works inside Spock
 ''')
+@ContextConfiguration(classes = Config)
 class N24S_Stubs_byMockito extends Specification {
+
+    @Autowired
+    PasswordGenerator passwordGenerator
 
     def 'generating password when random generator return constant value'() {
         given: 'random generator that always return 0'
@@ -20,7 +26,7 @@ class N24S_Stubs_byMockito extends Specification {
         doReturn(0).when(random).nextInt(26)
 
         and: 'password generator based on this random generator'
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         expect: 'certain generated password'
         passwordGenerator.generate(5) == 'aaaaa'
@@ -32,7 +38,7 @@ class N24S_Stubs_byMockito extends Specification {
         doReturn(0).doReturn(1).doReturn(2).doReturn(3).doReturn(4).when(random).nextInt(26)
 
         and: 'password generator based on this random generator'
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         expect: 'certain generated password'
         passwordGenerator.generate(5) == 'abcde'
@@ -44,7 +50,7 @@ class N24S_Stubs_byMockito extends Specification {
         doThrow(new RuntimeException()).when(random).nextInt(26)
 
         and: 'password generator based on this random generator'
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         when: 'we try to generate password'
         passwordGenerator.generate(5)
@@ -59,7 +65,7 @@ class N24S_Stubs_byMockito extends Specification {
         doAnswer({ inv -> (int) inv.getArguments()[0] - 1}).when(random).nextInt(26)
 
         and: 'password generator based on this random generator'
-        PasswordGenerator passwordGenerator = new PasswordGenerator(random: random)
+        passwordGenerator.random = random
 
         expect: 'certain generated password'
         passwordGenerator.generate(5) == 'zzzzz'
