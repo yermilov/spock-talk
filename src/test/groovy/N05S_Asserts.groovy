@@ -59,7 +59,7 @@ class N05S_Asserts extends Specification {
         assertThat(list, hasSize(3));
     }
 
-    def 'verifying array list size using Spock Asserions'() {
+    def 'verifying array list size using Spock Assertions'() {
         setup:
         ArrayList<String> list = new ArrayList<>()
 
