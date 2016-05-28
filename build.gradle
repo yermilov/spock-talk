@@ -65,3 +65,13 @@ dependencies {
 }
 
 apply plugin: 'org.asciidoctor.convert'
+
+asciidoctor {
+    backends = ['html5']
+
+    attributes  toc                 : 'left',
+                'source-highlighter': 'coderay',
+                icons               : 'font',
+                numbered            : '',
+                idprefix            : ''
+}

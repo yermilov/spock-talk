@@ -1,0 +1,16 @@
+= What Mr. Spock would possibly say about modern unit testing: pragmatic and emotional overview
+Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov] https://twitter.com/yermilov17[icon:twitter[] @yermilov17] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov]>
+2016 May 20
+:linkattrs:
+
+== Original Talk
+
+This is a textual version of link:http://jeeconf.com/program/what-mr-spock-would-possibly-say-about-modern-unit-testing-pragmatic-and-emotional-overview/[the talk given at JEEConf 2016, window="_blank"].
+
+Slides from the talk:
+
+pass:[<iframe src="//www.slideshare.net/slideshow/embed_code/key/ehE5vzQ7yu5map" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>]
+
+== Code Examples
+
+All code examples can be found link:https://github.com/yermilov/spock-talk[at GitHub, window="_blank"].
