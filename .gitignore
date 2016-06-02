@@ -16,14 +16,4 @@ out/
 
 # Gradle
 build/
-gradle/
 .gradle/
-
-# Java
-*.class
-*.jar
-*.war
-*.ear
-
-# Grails
-buildPlugins/
