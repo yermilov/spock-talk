@@ -9,7 +9,7 @@ This is a textual version of link:http://jeeconf.com/program/what-mr-spock-would
 
 Slides from the talk:
 
-pass:[<iframe src="//www.slideshare.net/slideshow/embed_code/key/ehE5vzQ7yu5map" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>]
+pass:[<iframe src="http://www.slideshare.net/slideshow/embed_code/key/ehE5vzQ7yu5map" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>]
 
 == Code Examples
 
