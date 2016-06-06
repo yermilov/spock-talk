@@ -1,6 +1,8 @@
 = What Mr. Spock would possibly say about modern unit testing: pragmatic and emotional overview
 Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov] https://twitter.com/yermilov17[icon:twitter[] @yermilov17] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov]>
 2016 May 20
+:toc:
+:icons: font
 :linkattrs:
 
 == Original Talk
@@ -14,3 +16,22 @@ pass:[<iframe src="http://www.slideshare.net/slideshow/embed_code/key/ehE5vzQ7yu
 == Code Examples
 
 All code examples can be found link:https://github.com/yermilov/spock-talk[at GitHub, window="_blank"].
+
+== About Me
+
+I have 5 year experience working in the Java world starting from Intern in EPAM Systems to Senior Software Engineer today in the same company.
+Most of this time I've worked in Big Data area, developing various extensions for Hadoop-family tools. Almost accidentally, 2 years ago I became responsible for automated testing on my project.
+Out of work, I'm inspired by Groovy ecosystem and data science.
+
+== Agenda
+
+In this article I will cover following questions:
+
+* What’s about modern unit testing?
+* Why try Spock?
+* How to start with Spock?
+* Advanced and hidden features
+* What JUnit/TestNG/Mockito offers instead?
+* Why use Spock?
+* Why do not use Spock?
+* When use Spock?
