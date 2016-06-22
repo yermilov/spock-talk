@@ -125,6 +125,20 @@ include::{sourcedir}/test/groovy/N04S_EasyStart.groovy[tags=easySpock]
 
 == Why try Spock?
 
+Why someone should try to use Spock on their project? In the following sections I will demonstrate all benefits that can be gained from Spock usage.
+Additionally, I will should drawbacks of such decision.
+But despite both pros and cons there are two reasons why everyone should try Spock at least for their pet projects and later evaluate if it will be useful for the real ones:
+
+* *Spock is the next generation test framework*. What does it mean? Spock takes all the years of automated testing experience and pain and re-imagine how it should be implemented if we look at it from a different angle.
+_What if_ we do not need to use the same language for testing as we use for production code?
+_What if_ it can be language designed for testing specifically?
+_What if_ test context can be moved from comments to code?
+_What if_ there are different testing approaches and we should offer convenient features for all of them?
+Spock asks plenty of _What if?_ questions and the main answer is that most of test features are already well-known, but if we forget their current implementations, they can be re-implemented in a better way.
+
+* *Spock is enterprise ready*. Spock is more than 6 years old. Spock is already released 1.0 version and has stable API.
+It's completely mature framework that can be safely used without any fears.
+
 == How to start with Spock?
 
 == Advanced and hidden features
