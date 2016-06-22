@@ -9,6 +9,10 @@ Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov] https://
 
 This is a textual version of link:http://jeeconf.com/program/what-mr-spock-would-possibly-say-about-modern-unit-testing-pragmatic-and-emotional-overview/[the talk given at JEEConf 2016, window="_blank"].
 
+Recorded talk:
+
+video::3nSXDEj7sKM[youtube, width=560, height=315, opts="allowfullscreen"]
+
 Slides from the talk:
 
 pass:[<iframe src="http://www.slideshare.net/slideshow/embed_code/key/ehE5vzQ7yu5map" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>]
@@ -23,15 +27,81 @@ I have 5 year experience working in the Java world starting from Intern in EPAM 
 Most of this time I've worked in Big Data area, developing various extensions for Hadoop-family tools. Almost accidentally, 2 years ago I became responsible for automated testing on my project.
 Out of work, I'm inspired by Groovy ecosystem and data science.
 
-== Agenda
+== What's about modern unit testing?
 
-In this article I will cover following questions:
+To my mind, automated testing is one of the most powerful software development concept suggested so far.
+After receiving great attention as part of XP manifesto, it made possible to increase size of projects and complexity of code we are able to maintain by orders of magnitude.
 
-* What’s about modern unit testing?
-* Why try Spock?
-* How to start with Spock?
-* Advanced and hidden features
-* What JUnit/TestNG/Mockito offers instead?
-* Why use Spock?
-* Why do not use Spock?
-* When use Spock?
+link:http://junit.org/[JUnit, window="_blank"], started by Kent Beck and Erich Gamma, played key role in the development of the automated testing idea as it was one of the first ever and surely the most popular and influential automated testing library.
+
+link:http://testng.org/[TestNG, window="_blank"], started by Cédric Beust, was inspired by JUnit and initiated to offer wider and more powerful range of functionalities than JUnit originally does, keeping the same general concept. Later, most of the TestNG initiatives were implemented by JUnit.
+
+As link:http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/[recent study, window="_blank"] shows, JUnit is used in about amazingly 60% of Java projects and TestNG shows quite strong result of about 6%.
+
+image::images\spock-11ca2.png[]
+
+Both JUnit and TestNG shares the same framework architecture often called xUnit (surprisingly after SUnit and JUnit itself).
+It's described best by two concepts: test structure and assertions. As test structure obviously is set of features to describe tests organization, assertion is a function that verifies the behavior (or the state) of the unit under test.
+If we look at the most simple JUnit and TestNG tests we will found them quite similarly implementing both concepts:
+
+[source,java]
+.Easy JUnit start
+----
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
+@Test // <1>
+public void arrayList_length_ind() {
+    ArrayList<String> list = new ArrayList<>();
+    list.add("we");
+    list.add("all");
+    list.add("love");
+    list.add("junit");
+    assertEquals(list.size(), 4); // <2>
+}
+----
+<1> Test structure
+<2> Assertion
+
+[source,java]
+.Easy TestNG start
+----
+import org.testng.annotations.Test;
+import static org.testng.Assert.assertEquals;
+
+@Test // <1>
+public void arrayList_length_ind() {
+    ArrayList<String> list = new ArrayList<>();
+    list.add("we");
+    list.add("all");
+    list.add("love");
+    list.add("junit");
+    assertEquals(list.size(), 4); <2>
+}
+----
+<1> Test structure
+<2> Assertion
+
+Actually, except for import statements, these code snippets are the same.
+My feel is that, not arguing with all benefits of JUnit and TestNG, they both were frozen long time ago and no longer evolving.
+Since 2013, there were 0 (zero!) major releases of traditional test frameworks. All we have for the last 3 years is one JUnit 4.12 release and several TestNG 6.9 release. Actually, Spock is the only one, having epochal 1.0 release recently.
+
+image::images\spock-10799.png[]
+
+Offering great functionality in this moment, JUnit and TestNG are at risk of missing latest software engineering requests and trends. However, JUnit is ready to overcome this problem with 5.0 release, scheduled for this year.
+
+Anyway, there are several possibilities for steady evolving:
+
+== Why try Spock?
+
+== How to start with Spock?
+
+== Advanced and hidden features
+
+== What JUnit/TestNG/Mockito offers instead?
+
+== Why use Spock?
+
+== Why do not use Spock?
+
+== When use Spock?
