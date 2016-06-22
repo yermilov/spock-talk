@@ -4,6 +4,8 @@ Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov] https://
 :toc:
 :icons: font
 :linkattrs:
+:source-highlighter: coderay
+:sourcedir: ../../
 
 == Original Talk
 
@@ -48,18 +50,7 @@ If we look at the most simple JUnit and TestNG tests we will found them quite si
 [source,java]
 .Easy JUnit start
 ----
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-
-@Test // <1>
-public void arrayList_length_ind() {
-    ArrayList<String> list = new ArrayList<>();
-    list.add("we");
-    list.add("all");
-    list.add("love");
-    list.add("junit");
-    assertEquals(list.size(), 4); // <2>
-}
+include::{sourcedir}/test/java/N01J_EasyStart.java[tags=easyJUnit]
 ----
 <1> Test structure
 <2> Assertion
@@ -67,18 +58,7 @@ public void arrayList_length_ind() {
 [source,java]
 .Easy TestNG start
 ----
-import org.testng.annotations.Test;
-import static org.testng.Assert.assertEquals;
-
-@Test // <1>
-public void arrayList_length_ind() {
-    ArrayList<String> list = new ArrayList<>();
-    list.add("we");
-    list.add("all");
-    list.add("love");
-    list.add("testng");
-    assertEquals(list.size(), 4); <2>
-}
+include::{sourcedir}/test/java/N02T_EasyStart.java[tags=easyTestNG]
 ----
 <1> Test structure
 <2> Assertion
@@ -105,26 +85,14 @@ Let's check how the simpliest JUnit 5 test looks like. How many changes you can 
 [source,java]
 .Easy JUnit 5 start
 ----
-import org.junit.gen5.api.Test; // <1>
-import static org.junit.gen5.api.Assertions.assertEquals;
-
-@Test // <2>
-public void arrayList_length_idm() {
-    ArrayList<String> list = new ArrayList<>();
-    list.add("we");
-    list.add("all");
-    list.add("love");
-    list.add("junit");
-    list.add("5");
-    assertEquals(5, list.size()); // <3> <4>
-}
+include::{sourcedir}/test/java/N03_J5_EasyStartTest.java[tags=easyJUnit5]
 ----
 <1> Worked in May 2016. It's alpha, so I bet it's now working already.
 <2> Test structure
 <3> Assertion
 <4> Changes!
 
-=== Steroids
+=== Testing steroids
 
 We can use one of plenty libraries that boost test code quality: link:http://hamcrest.org/JavaHamcrest/[Hamcrest, window="_blank"] (used by ~4% Java projects), link:http://joel-costigliola.github.io/assertj/[AssertJ, window="_blank"] (used by ~3% Java projects), link:http://google.github.io/truth/[Google Truth, window="_blank"] for assertions; link:http://mockito.org/[Mockito, window="_blank"] (used by ~10% Java projects), link:https://github.com/jayway/powermock[PowerMock, window="_blank"] (used by ~1.5% Java projects), link:http://jmockit.org/[JMockit, window="_blank"], link:http://easymock.org/[EasyMock, window="_blank"] (used by ~3% Java projects) for mocking and stubbing and probably some others like link:https://github.com/spring-projects/spring-framework/tree/master/spring-test[Spring Test, window="_blank"] (used by ~6% Java projects).
 
@@ -134,20 +102,7 @@ As a base rule, they should be at least two steps forward: test should have clea
 [source,java]
 .Easy, but idiomatic JUnit start
 ----
-@Test // <1>
-public void arrayList_length_idm() {
-    // setup // <2>
-    ArrayList<String> list = new ArrayList<>();
-
-    // run // <2>
-    list.add("we");
-    list.add("all");
-    list.add("love");
-    list.add("junit");
-
-    // verify // <2>
-    assertThat(list, hasSize(4)); // <3>
-}
+include::{sourcedir}/test/java/N01J_EasyStart.java[tags=idiomaticJUnit]
 ----
 <1> Outer test structure
 <2> Inner test structure
@@ -162,22 +117,7 @@ If you write tests that looks like the last example, it will be very simple for 
 [source,groovy]
 .Easy Spock start
 ----
-class N04S_EasyStart extends Specification { // <1>
-
-    def arrayList_length() { // <1>
-        setup: // <2>
-        ArrayList<String> list = new ArrayList<>();
-
-        when: // <2>
-        list.add("we");
-        list.add("will");
-        list.add("love");
-        list.add("spock");
-
-        then: // <2>
-        assertThat(list, hasSize(4)); // <3>
-    }
-}
+include::{sourcedir}/test/groovy/N04S_EasyStart.groovy[tags=easySpock]
 ----
 <1> Outer test structure
 <2> Inner test structure

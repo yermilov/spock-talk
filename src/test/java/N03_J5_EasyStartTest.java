@@ -1,21 +1,29 @@
-import org.junit.gen5.api.Test;
+// tag::easyJUnit5[]
+import org.junit.gen5.api.Test; // <1>
+// end::easyJUnit5[]
 import org.junit.gen5.junit4.runner.JUnit5;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 
+// tag::easyJUnit5[]
 import static org.junit.gen5.api.Assertions.assertEquals;
+// end::easyJUnit5[]
 
 @RunWith(JUnit5.class)
 public class N03_J5_EasyStartTest {
 
-    @Test
+    // tag::easyJUnit5[]
+
+    @Test // <2>
     public void arrayList_length_idm() {
         ArrayList<String> list = new ArrayList<>();
         list.add("we");
         list.add("all");
         list.add("love");
         list.add("junit");
-        assertEquals(4, list.size());
+        list.add("5");
+        assertEquals(5, list.size()); // <3> <4>
     }
+    // end::easyJUnit5[]
 }
