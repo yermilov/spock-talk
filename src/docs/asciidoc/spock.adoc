@@ -351,6 +351,64 @@ testCompile('com.athaydes:spock-reports:1.2.10') {
 }
 ----
 
+== Data Driven Tests
+
+To my mind, while the previous feature is greatest and the most unappreciated Spock feature, this one is the most overvalued one.
+Surely, it's very powerful, but it's needed only for some specific cases, while inner test structure is generally applicable.
+I'm talking about data driven tests. Let's look at quick example:
+
+[source,groovy]
+.Complex data driven test
+----
+include::{sourcedir}/test/groovy/N15S_DataProviders.groovy[tags=complexTest]
+----
+<1> `where` is new test block used for defining variables that work as multiple test parameters for same test scenario
+<2> Test parameter can be defined as collection of values
+<3> Or just as assignment rule
+<4> Defined test parameters can be used as regular variables inside other test blocks
+
+This example shows _complex_ test case, when the same scenario is run against multiple test parameters within same equivalence class.
+Test is considered as passed if and only if test scenario passes all test parameters.
+Here is how test report looks for this case:
+
+image::images\spock-1dd56.png[]
+
+Another use case supported by Spock is reusing same test code for test cases from different equivalence class.
+Here is example that demonstrate this and some other concepts:
+
+[source,groovy]
+.Dividual data driven test
+----
+include::{sourcedir}/test/groovy/N15S_DataProviders.groovy[tags=dividualTests]
+----
+<1> `@Unroll` annotation turns complex test case into dividual one
+<2> test parameters can be used inside test name with `#` mark
+<3> test parameters can be organized into fancy tables
+
+This example shows _dividual_ test cases, when test representation is separated from test code.
+Each test parameter generate individual test case, that is shares the same code, but not test result, with others.
+Here is how test report looks for this case:
+
+image::images\spock-997c6.png[]
+
+Traditional test frameworks mix up both concepts, and moreover provide very poor language support for data-driven test:
+
+[source,java]
+.JUnit data driven test
+----
+include::{sourcedir}/test/java/N16J_DataProviders.java[tags=dataDriven]
+----
+image::images\spock-b408e.png[]
+
+[source,java]
+.TestNG data driven test
+----
+include::{sourcedir}/test/java/N17T_DataProviders.java[tags=dataDriven]
+----
+image::images\spock-25dc5.png[]
+
+Pay attention that using `Object[][]` is very unsafe and unclear for test parameters set up, and even more, that TestNG does not supports test naming easily.
+
 == Other Features
 
 == Why Use Spock?

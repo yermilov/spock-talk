@@ -5,6 +5,7 @@ import static org.testng.Assert.assertEquals;
 
 public class N17T_DataProviders {
 
+    // tag::dataDriven[]
     @DataProvider(name = "data")
     public static Object[][] data() {
         return new Object[][] {
@@ -19,6 +20,7 @@ public class N17T_DataProviders {
         double speed = initialSpeed + acceleration * time;
         assertEquals(speed, expectedSpeed);
     }
+    // end::dataDriven[]
 
     @Test(dataProvider = "data")
     public void location(double initialLocation, double initialSpeed, double acceleration, double time, double expectedLocation, double expectedSpeed) {

@@ -9,10 +9,11 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 
+// tag::dataDriven[]
 @RunWith(Parameterized.class)
 public class N16J_DataProviders {
 
-    @Parameterized.Parameters(name = "calculate runner speed and location after some time for {6}")
+    @Parameterized.Parameters(name = "calc runner speed and location after some time for {6}")
     public static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
             { 0.0,   6.0,  0.0,  10.0, 60.0, 6.0, "steady run from starting point" },
@@ -47,6 +48,8 @@ public class N16J_DataProviders {
         double speed = initialSpeed + acceleration * time;
         assertThat(speed, is(equalTo(expectedSpeed)));
     }
+
+// end::dataDriven[]
 
     @Test
     public void location() {
