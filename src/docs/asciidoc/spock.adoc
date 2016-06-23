@@ -110,8 +110,8 @@ include::{sourcedir}/test/java/N01J_EasyStart.java[tags=idiomaticJUnit]
 
 === Spock
 
-Finally, we can make really big step forward and try completely new testing approach - link:http://docs.spockframework.org/[Spock, window="_blank"].
-As big steps are much more effective when they are done immediatelly, here is a very simple Spock test (Spock developers call them *specifications*).
+Finally, we can make really big step forward and try completely new testing approach - link:http://docs.spockframework.org/[Spock, window="_blank"] - test framework developed by Peter Niederwleser and Luke Daley.
+As big steps are much more effective when they are done immediately, here is a very simple Spock test.
 If you write tests that looks like the last example, it will be very simple for you to get what is going on there:
 
 [source,groovy]
@@ -217,6 +217,101 @@ include::{sourcedir}/test/groovy/N06J_PowerAsserts.groovy[tags=assertGroovy]
 ----
 
 == Test structure
+
+As it was already mentioned, the second main part of every testing framework is test structure toolset.
+Traditional approach is pretty much the same:
+
+[source,groovy]
+.JUnit test structure toolset
+----
+include::{sourcedir}/test/groovy/N08J_SetupTeardown.groovy[tags=structureJUnit]
+----
+<1> Shared resource
+<2> Executed once before all test cases
+<3> Executed before each test case
+<4> Test case
+<5> Executed after each test case
+<6> Executed once after all test cases
+
+[source,groovy]
+.TestNG test structure toolset
+----
+include::{sourcedir}/test/groovy/N09T_SetupTeardown.groovy[tags=structureTestNG]
+----
+<1> Shared resource
+<2> Executed once before all test cases
+<3> Executed before each test case
+<4> Test case
+<5> Executed after each test case
+<6> Executed once after all test cases
+
+[source,groovy]
+.JUnit 5 test structure toolset
+----
+include::{sourcedir}/test/groovy/N10J5_SetupTeardown.groovy[tags=structureJUnit5]
+----
+<1> Shared resource
+<2> Executed once before all test cases
+<3> Executed before each test case
+<4> Test case
+<5> Executed after each test case
+<6> Executed once after all test cases
+
+Here is one important thing about Spock philosophy as project. *If you do like traditional approach you can continue using it. Spock will just add some fancy Groovy magic to make it better*. In this concrete case, you can use link:http://docs.groovy-lang.org/next/html/documentation/core-traits.html[Groovy traits, window="_blank"] to extract repeatable setup/cleanup behavior and reuse it easily across your test classes:
+
+[source,groovy]
+.Spock reusable test structure via traits
+----
+include::{sourcedir}/test/groovy/DatabaseSpec.groovy[]
+----
+<1> Shared resource
+<2> Executed once before all test cases
+<3> Executed before each test case
+<4> Executed after each test case
+<5> Executed once after all test cases
+
+To inject this behavior to your test specification, just implement all traits you need:
+
+[source,groovy]
+.Spock test structure toolset
+----
+include::{sourcedir}/test/groovy/N11S_SetupTeardown_AsYouLike.groovy[tags=structureSpock]
+----
+
+And here is one more important thing about Spock philosophy as project. *Spock always offers more!* Let's examine the following:
+
+[source,groovy]
+.Spock more test structure toolset
+----
+include::{sourcedir}/test/groovy/N12S_SetupTeardown_AndMore.groovy[tags=structureSpock]
+----
+<1> Instead of using `static` keyword for shared resources use `@Shared` annotation
+<2> `@AutoCleanup` annotation invokes close method of the shared resource after each test case
+<3> Tests can have individual setup blocks
+<4> Tests can have individual cleanup blocks
+
+Let's look at `@Shared` annotation closely. It will demonstrate why it's so important to use test-specific language for your tests instead of general purpose language like Java.
+When you develop your test (but not only test) code, each time you try to find language feature that suites best your need.
+For example, if you need to share some resource within test class and you use Java, natural choice will be `static`.
+But, what if you want to do the same in several test classes? You can extract this behavior to superclass like following:
+
+[source,groovy]
+.`static` field for resource sharing
+----
+include::{sourcedir}/test/groovy/N14S_SharedExplained.groovy[tags=staticForSharing]
+----
+
+If you look carefully, you will find that some of these tests will fail.
+Single resource will be shared between all three test cases and you have no control over it.
+
+Spock, as test-specific language, can keep in mind needs of test code developers and offer features that gives you more control on test code behavior.
+In this example `@Shared` annotation clearly will share resource only within single specification. Our example is fixed:
+
+[source,groovy]
+.`@Shared` field for resource sharing
+----
+include::{sourcedir}/test/groovy/N14S_SharedExplained.groovy[tags=sharedForSharing]
+----
 
 == Other Features
 

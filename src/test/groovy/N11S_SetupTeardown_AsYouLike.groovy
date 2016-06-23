@@ -9,6 +9,7 @@ As JEEConf speaker
 I want to show that Spock can be very similar to JUnit
 When we talk about setup/cleanup
 ''')
+// tag::structureSpock[]
 class N11S_SetupTeardown_AsYouLike extends Specification implements DatabaseSpec {
 
     def 'tool count'() {
@@ -18,6 +19,7 @@ class N11S_SetupTeardown_AsYouLike extends Specification implements DatabaseSpec
         then: 'it should be 3'
         actual.toolCount == 3
     }
+// end::structureSpock[]
 
     def 'JUnit5 is in game!'() {
         given: 'JUnit 5 in the list of unit testing tools'

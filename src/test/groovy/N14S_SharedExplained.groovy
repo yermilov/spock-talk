@@ -2,6 +2,8 @@ import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Stepwise
 
+// tag::sharedForSharing[]
+
 class N14S_SharedExplained_BasicShared extends Specification {
 
     @Shared arrayList = new ArrayList<String>()
@@ -38,6 +40,9 @@ class N14S_SharedExplained_Shared_2 extends N14S_SharedExplained_BasicShared {
     }
 }
 
+// end::sharedForSharing[]
+
+// tag::staticForSharing[]
 
 class N14S_SharedExplained_BasicStatic extends Specification {
 
@@ -74,3 +79,5 @@ class N14S_SharedExplained_Static_2 extends N14S_SharedExplained_BasicStatic {
         arrayList.size() == 1
     }
 }
+
+// end::staticForSharing[]
