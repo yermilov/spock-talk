@@ -1,6 +1,6 @@
 = What Mr. Spock would possibly say about modern unit testing: pragmatic and emotional overview
 Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov] https://twitter.com/yermilov17[icon:twitter[] @yermilov17] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov]>
-2016 May 20
+2016 June 23
 :toc:
 :icons: font
 :linkattrs:
@@ -125,8 +125,8 @@ include::{sourcedir}/test/groovy/N04S_EasyStart.groovy[tags=easySpock]
 
 == Why Try Spock?
 
-Why someone should try to use Spock on their project? In the following sections I will demonstrate all benefits that can be gained from Spock usage.
-Additionally, I will should drawbacks of such decision.
+Why someone should try to use Spock on their projects? In the following sections I will demonstrate all benefits that can be gained from Spock usage.
+Additionally, I will show drawbacks of such decision.
 But despite both pros and cons there are two reasons why everyone should try Spock at least for their pet projects and later evaluate if it will be useful for the real ones:
 
 * *Spock is the next generation test framework*. What does it mean? Spock takes all the years of automated testing experience and pain and re-imagine how it should be implemented if we look at it from a different angle.
@@ -142,7 +142,7 @@ It's completely mature framework that can be safely used without any fears.
 == How To Start With Spock?
 
 As you can already see, it's more than easy to start using Spock.
-Start with adding these three dependencies to your project:
+Begin with adding these three dependencies to your project:
 
 [source,groovy]
 ----
@@ -151,7 +151,7 @@ Start with adding these three dependencies to your project:
 'org.objenesis:objenesis:2.1'
 ----
 
-If you already have test code you want to migrate to Spock either from JUnit of TestNG take there <> easy steps:
+If you already have test code you want to migrate to Spock either from JUnit of TestNG take there five easy steps:
 
 . Rename your test files from `\*.java` to `*.groovy` and move them to `src/test/groovy` directory.
 . Extend your test class form `spock.lang.Specification` class.
@@ -159,10 +159,64 @@ If you already have test code you want to migrate to Spock either from JUnit of 
 . Enforce inner test structure by using following labels: `setup` for test object setting up, `when` for test actions and `then` for assertions.
 . Enjoy becoming a Spock developer in less than 15 minutes.
 
+== Spock Assertions
+
 However, if you are starting from scratch, you will probably want to write more idiomatic Spock code.
 The first step towards this goal is start using Spock assertions.
 
-== Spock Assertions
+In the first place, each test framework offers two simple assertion constructions: `assertEquals` checks for equality of two objects and `assertTrue` checks if specified expression is true. However, using such constructions has two critical drawbacks:
+
+* when test fails, it's hard to understand why it has failed;
+* test code is not maintainable, as it's not obvious what was the intent behind each assertion.
+
+Just try to look at following test failure logs and guess what is tested and why tests have failed:
+
+[source,groovy]
+----
+include::{sourcedir}/test/groovy/N05S_Asserts.groovy[tags=assertEqualsTrue]
+----
+
+That's why it is so important to use external assertion library.
+The most popular one, Hamcrest, clearly shows intent behind assertion both in the test code and in the failure message:
+
+[source,groovy]
+----
+include::{sourcedir}/test/groovy/N05S_Asserts.groovy[tags=assertHamcrest]
+----
+
+Two libraries that are less popular, AssertJ and Google Truth, shows not only the assertion intent but also describe some part of the test context that lead to the failure:
+
+[source,groovy]
+----
+include::{sourcedir}/test/groovy/N05S_Asserts.groovy[tags=assertjTruth]
+----
+
+Original Spock assertions show a little intent behind their code, but they are not less than perfect in demonstrating test context that lead to the failure. Moreover, all you need to start using them is to place boolean expression inside `then` block:
+
+[source,groovy]
+----
+include::{sourcedir}/test/groovy/N05S_Asserts.groovy[tags=assertSpock]
+----
+
+Just look how useful they are when we need to examine some complex data flow:
+
+image::images\spock-4f14e.png[]
+
+But in combination with well-known Hamcrest matchers, Spock assertions provide 100% needed information from both test code and test failure reports:
+
+[source,groovy]
+----
+include::{sourcedir}/test/groovy/N05S_Asserts.groovy[tags=expectSpock]
+----
+
+Spock assertions were so successful that they were ported to plain Groovy, which means that if you use JUnit or TestNG you can write you code in Groovy, immediatelly getting Spock assertions in your old-fashioned tests:
+
+[source,groovy]
+----
+include::{sourcedir}/test/groovy/N06J_PowerAsserts.groovy[tags=assertGroovy]
+----
+
+== Test structure
 
 == Other Features
 
