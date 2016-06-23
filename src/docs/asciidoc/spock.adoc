@@ -29,7 +29,7 @@ I have 5 year experience working in the Java world starting from Intern in EPAM 
 Most of this time I've worked in Big Data area, developing various extensions for Hadoop-family tools. Almost accidentally, 2 years ago I became responsible for automated testing on my project.
 Out of work, I'm inspired by Groovy ecosystem and data science.
 
-== What's about modern unit testing?
+== What's About Modern Unit Testing?
 
 To my mind, automated testing is one of the most powerful software development concept suggested so far.
 After receiving great attention as part of XP manifesto, it made possible to increase size of projects and complexity of code we are able to maintain by orders of magnitude.
@@ -92,7 +92,7 @@ include::{sourcedir}/test/java/N03_J5_EasyStartTest.java[tags=easyJUnit5]
 <3> Assertion
 <4> Changes!
 
-=== Testing steroids
+=== Testing on Steroids
 
 We can use one of plenty libraries that boost test code quality: link:http://hamcrest.org/JavaHamcrest/[Hamcrest, window="_blank"] (used by ~4% Java projects), link:http://joel-costigliola.github.io/assertj/[AssertJ, window="_blank"] (used by ~3% Java projects), link:http://google.github.io/truth/[Google Truth, window="_blank"] for assertions; link:http://mockito.org/[Mockito, window="_blank"] (used by ~10% Java projects), link:https://github.com/jayway/powermock[PowerMock, window="_blank"] (used by ~1.5% Java projects), link:http://jmockit.org/[JMockit, window="_blank"], link:http://easymock.org/[EasyMock, window="_blank"] (used by ~3% Java projects) for mocking and stubbing and probably some others like link:https://github.com/spring-projects/spring-framework/tree/master/spring-test[Spring Test, window="_blank"] (used by ~6% Java projects).
 
@@ -123,7 +123,7 @@ include::{sourcedir}/test/groovy/N04S_EasyStart.groovy[tags=easySpock]
 <2> Inner test structure
 <3> Assertion
 
-== Why try Spock?
+== Why Try Spock?
 
 Why someone should try to use Spock on their project? In the following sections I will demonstrate all benefits that can be gained from Spock usage.
 Additionally, I will should drawbacks of such decision.
@@ -139,14 +139,35 @@ Spock asks plenty of _What if?_ questions and the main answer is that most of te
 * *Spock is enterprise ready*. Spock is more than 6 years old. Spock is already released 1.0 version and has stable API.
 It's completely mature framework that can be safely used without any fears.
 
-== How to start with Spock?
+== How To Start With Spock?
 
-== Advanced and hidden features
+As you can already see, it's more than easy to start using Spock.
+Start with adding these three dependencies to your project:
 
-== What JUnit/TestNG/Mockito offers instead?
+[source,groovy]
+----
+'org.spockframework:spock-core:1.0-groovy-2.4'
+'cglib:cglib-nodep:3.1'
+'org.objenesis:objenesis:2.1'
+----
 
-== Why use Spock?
+If you already have test code you want to migrate to Spock either from JUnit of TestNG take there <> easy steps:
 
-== Why do not use Spock?
+. Rename your test files from `\*.java` to `*.groovy` and move them to `src/test/groovy` directory.
+. Extend your test class form `spock.lang.Specification` class.
+. Remove all `@Test` annotations and change return type for all test methods to `def`.
+. Enforce inner test structure by using following labels: `setup` for test object setting up, `when` for test actions and `then` for assertions.
+. Enjoy becoming a Spock developer in less than 15 minutes.
 
-== When use Spock?
+However, if you are starting from scratch, you will probably want to write more idiomatic Spock code.
+The first step towards this goal is start using Spock assertions.
+
+== Spock Assertions
+
+== Other Features
+
+== Why Use Spock?
+
+== Why Do Not Use Spock?
+
+== When Use Spock?
