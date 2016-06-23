@@ -216,7 +216,7 @@ Spock assertions were so successful that they were ported to plain Groovy, which
 include::{sourcedir}/test/groovy/N06J_PowerAsserts.groovy[tags=assertGroovy]
 ----
 
-== Test structure
+== Test Structure
 
 As it was already mentioned, the second main part of every testing framework is test structure toolset.
 Traditional approach is pretty much the same:
@@ -311,6 +311,44 @@ In this example `@Shared` annotation clearly will share resource only within sin
 .`@Shared` field for resource sharing
 ----
 include::{sourcedir}/test/groovy/N14S_SharedExplained.groovy[tags=sharedForSharing]
+----
+
+== Inner Test Structure
+
+To my mind, the most important Spock feature comparing to other test framework (that do not have anything similar) is *enforcing inner test structure*.
+While it's generally a good practice to set up inner test structure using comments, Spock provides language features that make you do it.
+It's really great design decision, because comments, as they are not natural part of the code, becomes outdated very quickly.
+When something is part of the code, it is always up to date.
+Let's look at the example:
+
+[source,groovy]
+.Spock inner test structure
+----
+include::{sourcedir}/test/groovy/N07S_IdiomaticSpock.groovy[]
+----
+<1> Title gives short name of what is going on within this test suite
+<2> Narrative is the text describing specification
+<3> Subject points on object under test
+<4> Issue describes issues connected with the test case
+<5> You are already familiar with `setup` block, but pay attention on string (not comment!) that follows each test block describing what is going on inside it
+<6> `expect` block contains set of conditions that all should evaluate to `true`
+<7> `when` block contains set of actions on object under test
+<8> `and` block helps to split sets under `when` or `then` blocks
+<9> `then` block contains set of conditions that all should evaluate to `true` after previous `when` block
+
+Great follow-up from the fact that test structure becomes part of the test code is that this information becomes available at runtime.
+Projects like link:https://github.com/renatoathaydes/spock-reports[Spock reports, window="_blank"] leverage this information and, for example, generate very detailed reports based on it.
+Just look at test report that is ready to publish for your team non-development folks:
+
+image::images\spock-f353a.png[]
+
+All you need to do is add following code to your build file:
+
+[source,groovy]
+----
+testCompile('com.athaydes:spock-reports:1.2.10') {
+    transitive = false // this avoids affecting your version of Groovy/Spock
+}
 ----
 
 == Other Features

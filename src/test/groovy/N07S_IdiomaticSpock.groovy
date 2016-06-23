@@ -4,33 +4,33 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Title
 
-@Title('ArrayList tests')
+@Title('ArrayList tests') // <1>
 @Narrative('''
 As Java developer
 (that trust nothing)
 I want to be sure ArrayList works
-''')
+''') // <2>
 @Report
 class N07S_IdiomaticSpock extends Specification {
 
-    @Subject
+    @Subject // <3>
     ArrayList<String> list
 
-    @Issue('https://github.com/yermilov/spock-talk/issues/1')
+    @Issue('https://github.com/yermilov/spock-talk/issues/1') // <4>
     def 'ArrayList.size()'() {
-        setup: 'new ArrayList instance'
+        setup: 'new ArrayList instance' // <5>
         list = new ArrayList<>()
 
-        expect: 'that newly created ArrayList instance is empty'
+        expect: 'that newly created ArrayList instance is empty' // <6>
         list.empty
 
-        when: 'add value to list'
+        when: 'add value to list' // <7>
         list.add 'we'
 
-        and: 'add one more value to list'
+        and: 'add one more value to list' // <8>
         list.add 'will'
 
-        then: 'array list size should be 2'
+        then: 'array list size should be 2' // <9>
         list.size() == 2
 
         when: 'add two more values into list'
