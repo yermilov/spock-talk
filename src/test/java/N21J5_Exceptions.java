@@ -51,6 +51,8 @@ public class N21J5_Exceptions {
         }
     }
 
+    // tag::expectException[]
+
     @Test
     public void exception() {
         // setup
@@ -60,4 +62,6 @@ public class N21J5_Exceptions {
         Throwable thrown = expectThrows(IndexOutOfBoundsException.class, () -> { arrayList.get(17); });
         assertEquals("Index: 17, Size: 0", thrown.getMessage());
     }
+
+    // end::expectException[]
 }

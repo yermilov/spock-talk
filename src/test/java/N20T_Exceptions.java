@@ -7,6 +7,8 @@ import static org.testng.Assert.fail;
 
 public class N20T_Exceptions {
 
+    // tag::expectException[]
+
     @Test(expectedExceptions = IndexOutOfBoundsException.class, expectedExceptionsMessageRegExp = "Index: 17, Size: 0")
     public void exception_oldWay() {
         // setup
@@ -15,6 +17,8 @@ public class N20T_Exceptions {
         // run
         arrayList.get(17);
     }
+
+    // end::expectException[]
 
     @Test
     public void noException_oldWay() {

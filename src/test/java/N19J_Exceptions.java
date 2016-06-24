@@ -10,8 +10,14 @@ import static org.junit.Assert.fail;
 
 public class N19J_Exceptions {
 
+    // tag::ruleException[]
+
     @Rule
     public ExpectedException thrown = ExpectedException.none();
+
+    // end::ruleException[]
+
+    // tag::simpleExpectException[]
 
     @Test(expected = IndexOutOfBoundsException.class)
     public void exception_oldWay() {
@@ -21,6 +27,10 @@ public class N19J_Exceptions {
         // run
         arrayList.get(17);
     }
+
+    // end::simpleExpectException[]
+
+    // tag::simpleNotExpectException[]
 
     @Test
     public void noException_oldWay() {
@@ -32,6 +42,10 @@ public class N19J_Exceptions {
 
         // verify no exception is thrown
     }
+
+    // end::simpleNotExpectException[]
+
+    // tag::uglyNotExpectException[]
 
     @Test
     public void noException_uglyWay() {
@@ -46,6 +60,10 @@ public class N19J_Exceptions {
             fail("Expected no exception to be thrown");
         }
     }
+
+    // end::uglyNotExpectException[]
+
+    // tag::simpleExceptionMessage[]
 
     @Test
     public void exceptionAndMessage_oldWay() {
@@ -62,6 +80,10 @@ public class N19J_Exceptions {
         }
     }
 
+    // end::simpleExceptionMessage[]
+
+    // tag::ruleException[]
+
     @Test
     public void exception_modernWay() {
         // setup
@@ -74,4 +96,6 @@ public class N19J_Exceptions {
         // run
         arrayList.get(17);
     }
+
+    // end::ruleException[]
 }

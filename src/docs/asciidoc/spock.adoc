@@ -409,6 +409,84 @@ image::images\spock-25dc5.png[]
 
 Pay attention that using `Object[][]` is very unsafe and unclear for test parameters set up, and even more, that TestNG does not supports test naming easily.
 
+== Exceptions Handling
+
+When you want to have a test case checking that exception is thrown for some particular test case in your JUnit test suite, it is as easy as defining simple `@Test` parameter:
+
+[source,java]
+.JUnit simple thrown exception check
+----
+include::{sourcedir}/test/java/N19J_Exceptions.java[tags=simpleExpectException]
+----
+
+Thing become a little harder when you need to perform some additional checks, like exception message or stack trace:
+
+[source,java]
+.JUnit simple thrown exception message check
+----
+include::{sourcedir}/test/java/N19J_Exceptions.java[tags=simpleExceptionMessage]
+----
+
+For both cases, Spock comes for a very convenient way to catch thrown exception and do whatever you want to do with and check whatever you want to check:
+
+[source,groovy]
+.Spock thrown exception check
+----
+include::{sourcedir}/test/groovy/N18S_Exceptions.groovy[tags=expectException]
+----
+
+But what if you want to check that after some action exception was _not_ thrown?
+The most simple way is just do nothing, as unexpected exception will cause test to fail:
+
+[source,java]
+.JUnit simple not-thrown exception check
+----
+include::{sourcedir}/test/java/N19J_Exceptions.java[tags=simpleNotExpectException]
+----
+
+The problem with such approach is that it exception is _do_ thrown test will be marked not as _failed_ but as _error_.
+If you do not like it, you should do something like:
+
+[source,java]
+.JUnit ugly not-thrown exception check
+----
+include::{sourcedir}/test/java/N19J_Exceptions.java[tags=uglyNotExpectException]
+----
+
+What Spock do is, again, come up with very convenient way to declare that test intent is that exception should not be thrown.
+Pay attention that it's done not through comment, but rather with language construction:
+
+[source,groovy]
+.Spock not-thrown exception check
+----
+include::{sourcedir}/test/groovy/N18S_Exceptions.groovy[tags=notExpectException]
+----
+
+If you are familiar with link:https://github.com/junit-team/junit4/wiki/Rules[JUnit Rules API, window="_blank"], you surely can come up with much better solution:
+
+[source,java]
+.JUnit thrown exception check via Rules API
+----
+include::{sourcedir}/test/java/N19J_Exceptions.java[tags=ruleException]
+----
+
+JUnit 5 can do the same natively:
+
+[source,java]
+.JUnit 5 thrown exception check
+----
+include::{sourcedir}/test/java/N21J5_Exceptions.java[tags=expectException]
+----
+
+What is very disappointing is that TestNG has a very limited, closed and ugly solution for the same problem.
+If you want to check exception error message, you should supply expected regexp to `@Test` annotation:
+
+[source,java]
+.TestNG thrown exception check
+----
+include::{sourcedir}/test/java/N20T_Exceptions.java[tags=expectException]
+----
+
 == Other Features
 
 == Why Use Spock?
