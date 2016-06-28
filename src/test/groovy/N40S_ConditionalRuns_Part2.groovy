@@ -12,12 +12,15 @@ I want to show how great Spock conditional runs are
 ''')
 class N40S_ConditionalRuns_Part2 extends Specification {
 
+    // tag::ignoreRest[]
     @IgnoreRest
     def 'this test makes all other test ignored'() {
         expect: 'a miracle'
         2 + 2 == 5
     }
+    // end::ignoreRest[]
 
+    // tag::conditionalIgnore[]
     @Requires({ N40S_ConditionalRuns_Part2.isGoogleSearchAvaiable() })
     def 'this test runs only if Google Search is avaiable'() {
         setup: 'http connection service'
@@ -38,4 +41,5 @@ class N40S_ConditionalRuns_Part2 extends Specification {
             return false
         }
     }
+    // end::conditionalIgnore[]
 }

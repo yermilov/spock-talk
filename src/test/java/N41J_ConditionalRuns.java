@@ -9,16 +9,20 @@ import static org.junit.Assume.assumeThat;
 
 public class N41J_ConditionalRuns {
 
+    // tag::ignore[]
     @Ignore("will fix it before commit")
     @Test
     public void alwaysIgnored() {
         // TODO FIXME test is failing
         assertThat(2+2, is(5));
     }
+    // end::ignore[]
 
+    // tag::conditionalIgnore[]
     @Test
     public void ignoredOnWindows() {
         assumeThat(System.getProperty("os.name").toLowerCase(), is(not(containsString("windows"))));
+    // end::conditionalIgnore[]
 
         // ...
     }

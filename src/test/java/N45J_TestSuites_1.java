@@ -8,16 +8,18 @@ import static org.junit.Assert.assertThat;
 
 public class N45J_TestSuites_1 {
 
-    @Category(Fast.class)
+    // tag::testSuite[]
+    @Category(Fast.class) // <1>
     @Test
     public void passedFast() {
         assertThat(2+2, is(4));
     }
 
-    @Category(Slow.class)
+    @Category(Slow.class) // <1>
     @Test
     public void failingIn20Seconds() throws InterruptedException {
         Thread.sleep(TimeUnit.SECONDS.toMillis(20));
         assertThat(2+2, is(4));
     }
+    // end::testSuite[]
 }

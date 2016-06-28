@@ -11,13 +11,14 @@ I want to show how great Spock test suites are
 ''')
 class N44S_TestSuites extends Specification {
 
-    @Fast
+    // tag::testSuite[]
+    @Fast // <1>
     def passedFast() {
         expect: 'that everything is ok'
         2 + 2 == 4
     }
 
-    @Slow
+    @Slow // <1>
     def failingIn20Seconds() {
         setup: 'some resource'
         Thread.sleep(TimeUnit.SECONDS.toMillis(20))
@@ -25,6 +26,7 @@ class N44S_TestSuites extends Specification {
         expect: 'that everything is not ok'
         2 + 2 == 5
     }
+    // end::testSuite[]
 
     @Slow
     def failingIn10Seconds() {

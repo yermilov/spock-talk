@@ -737,10 +737,130 @@ Assertion will be evaluated ones as usual when async call finishes or it will be
 include::{sourcedir}/test/groovy/N37S_AsyncCondition.groovy[tags=asyncConditions]
 ----
 
-== Other Features
+== Test execution control
+
+=== Disabling tests
+
+The most simple test execution control feature is possibility to disable some of test cases.
+It's implemented pretty similar in our traditional test frameworks:
+
+[source,java]
+.Disabling tests via JUnit
+----
+include::{sourcedir}/test/java/N41J_ConditionalRuns.java[tags=ignore]
+----
+
+[source,java]
+.Disabling tests via TestNG
+----
+include::{sourcedir}/test/java/N42T_ConditionalRuns.java[tags=ignore]
+----
+
+[source,java]
+.Disabling tests via JUnit 5
+----
+include::{sourcedir}/test/java/N43J5_ConditionalRuns.java[tags=ignore]
+----
+
+There is no surprise that Spock can do the same:
+
+[source,groovy]
+.Disabling tests via Spock
+----
+include::{sourcedir}/test/groovy/N39S_ConditionalRuns_Part1.groovy[tags=ignore]
+----
+
+What is more interesting is conditional disabling.
+In JUnit it is implemented with Assumptions API.
+Assumptions are very similar to assertions, but when they fail, it causes test to be skipped, not failed:
+
+[source,java]
+.Conditional disabling tests via JUnit
+----
+include::{sourcedir}/test/java/N41J_ConditionalRuns.java[tags=conditionalIgnore]
+----
+
+In Spock, the same feature is implemented as part of Ignore API.
+Moreover, it has more various features like disabling and enabling conditions and predefined conditions (environment operating system, installed java version, system properties and environment variables):
+
+[source,groovy]
+.Conditional disabling tests via Spock
+----
+include::{sourcedir}/test/groovy/N39S_ConditionalRuns_Part1.groovy[tags=conditionalIgnore]
+
+include::{sourcedir}/test/groovy/N40S_ConditionalRuns_Part2.groovy[tags=conditionalIgnore]
+----
+
+Besides that, Spock has one more small and very useful feature, especially for functional testing.
+If you need to re-run just one single test from the full suite, you no longer need to mark all the rest with `@Ignore`.
+Please welcome self-describing `@IgnoreRest` annotation:
+
+[source,groovy]
+.Disabling tests via Spock
+----
+include::{sourcedir}/test/groovy/N40S_ConditionalRuns_Part2.groovy[tags=ignoreRest]
+----
+
+=== Test suites
+
+Following usual pattern for this article let's look how we can organize test suites in traditional test frameworks:
+
+[source,java]
+.Test suites via JUnit
+----
+include::{sourcedir}/test/java/N45J_TestSuites_1.java[tags=testSuite]
+
+include::{sourcedir}/test/java/N45J_TestSuites_2.java[tags=testSuite]
+----
+<1> Suites tagging
+<2> Suites selection
+
+[source,java]
+.Test suites via TestNG
+----
+include::{sourcedir}/test/java/N46T_TestSuites.java[tags=testSuite]
+----
+<1> Suites tagging
+
+[source,xml]
+.src/test/resources/testng.xml
+----
+include::{sourcedir}/test/resources/testng.xml[]
+----
+<1> Suites selection
+
+[source,java]
+.Test suites via JUnit 5
+----
+include::{sourcedir}/test/java/N47J5_TestSuites.java[tags=testSuite]
+----
+<1> Suites tagging
+
+Spock (no surprises) does the same, but again and again preferring code over strings or XMLs:
+
+[source,groovy]
+.Test suites via Spock
+----
+include::{sourcedir}/test/groovy/N44S_TestSuites.groovy[tags=testSuite]
+----
+<1> Suites tagging
+
+[source,groovy]
+.src/test/resources/SpockConfig.groovy
+----
+include::{sourcedir}/test/resources/SpockConfig.groovy[]
+----
+<1> Suites selection
+<2> And one more! This key reorders tests to run all failed first, starting from the most fast ones to the most slow.
+
+== Miscellanea
 
 == Why Use Spock?
 
 == Why Do Not Use Spock?
 
 == When Use Spock?
+
+== Looking further
+
+== Summary

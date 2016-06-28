@@ -7,13 +7,16 @@ I want to show how great Spock conditional runs are
 ''')
 class N39S_ConditionalRuns_Part1 extends Specification {
 
+    // tag::ignore[]
     @Ignore('will fix it before commit')
     def 'this test is always ignored'() {
         // TODO FIXME test is failing
         expect: 'that 2+2=5'
         2 + 2 == 5
     }
+    // end::ignore[]
 
+    // tag::conditionalIgnore[]
     @IgnoreIf({ os.windows || sys['pretend.os'] == 'windows' })
     def 'this test is ignored on Windows'() {
         expect: 'that we are not on Windows'
@@ -36,4 +39,5 @@ class N39S_ConditionalRuns_Part1 extends Specification {
         then: 'i can make them pay'
         2 + 2 == 5
     }
+    // end::conditionalIgnore[]
 }

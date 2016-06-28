@@ -1,6 +1,6 @@
 runner {
-//    include Fast
-//    exclude Slow
+    include Fast // <1>
+    exclude Slow // <1>
 
-    optimizeRunOrder true
+    optimizeRunOrder true // <2>
 }
