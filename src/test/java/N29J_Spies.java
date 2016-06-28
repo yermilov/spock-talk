@@ -33,9 +33,11 @@ public class N29J_Spies {
         passwordGenerator.generate();
 
         // verify
+        // tag::checkArgumentValue[]
         ArgumentCaptor<Integer> argument = ArgumentCaptor.forClass(Integer.class);
         verify(passwordGenerator).generate(argument.capture());
         assertThat(argument.getValue(), is(greaterThanOrEqualTo(8)));
         assertThat(argument.getValue(), is(lessThan(18)));
+        // end::checkArgumentValue[]
     }
 }

@@ -31,8 +31,10 @@ class N27S_Mocks_byMockito extends Specification {
         when: 'we ask password generator to generate password of length 5'
         passwordGenerator.generate(5)
 
+        // tag::simpleVerify[]
         then: 'random generator is invoked 5 times'
         mockito verify(random, times(5)).nextInt(anyInt())
+        // end::simpleVerify[]
     }
 
     def 'generating random password of random length'() {
@@ -43,18 +45,19 @@ class N27S_Mocks_byMockito extends Specification {
         when: 'we ask password generator to generate password of random length'
         passwordGenerator.generate()
 
-        then: 'first random generator is invoked once to generate password length'
+        // tag::complexVerify[]
+        then: '''first random generator is invoked once to generate password length,
+                 then at least 8 times more and it is never invoked for anything else'''
         InOrder inOrder = inOrder(random)
         mockito inOrder.verify(random, times(1)).nextInt(10)
-
-        and: 'then random generator is invoked at least 8 times more'
         mockito inOrder.verify(random, atLeast(8)).nextInt(26)
-
-        and: 'random generator is never invoked for anything else'
         mockito inOrder.verifyNoMoreInteractions()
+        // end::complexVerify[]
     }
 
+    // tag::mockitoSpock[]
     static def mockito(def verify) {
         true
     }
+    // end::mockitoSpock[]
 }

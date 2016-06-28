@@ -21,9 +21,11 @@ class N24S_Stubs_byMockito extends Specification {
     PasswordGenerator passwordGenerator
 
     def 'generating password when random generator return constant value'() {
+        // tag::returnValue[]
         given: 'random generator that always return 0'
         Random random = mock(Random)
         doReturn(0).when(random).nextInt(26)
+        // end::returnValue[]
 
         and: 'password generator based on this random generator'
         passwordGenerator.random = random
@@ -33,9 +35,11 @@ class N24S_Stubs_byMockito extends Specification {
     }
 
     def 'generating password when random generator return predefined values'() {
+        // tag::returnMultipleValues[]
         given: 'random generator that always return predefined values'
         Random random = mock(Random)
         doReturn(0).doReturn(1).doReturn(2).doReturn(3).doReturn(4).when(random).nextInt(26)
+        // end::returnMultipleValues[]
 
         and: 'password generator based on this random generator'
         passwordGenerator.random = random
@@ -45,9 +49,11 @@ class N24S_Stubs_byMockito extends Specification {
     }
 
     def 'generating password when random generator fails'() {
+        // tag::throwException[]
         given: 'random generator that always throw exception'
         Random random = mock(Random)
         doThrow(new RuntimeException()).when(random).nextInt(26)
+        // end::throwException[]
 
         and: 'password generator based on this random generator'
         passwordGenerator.random = random
@@ -60,9 +66,11 @@ class N24S_Stubs_byMockito extends Specification {
     }
 
     def 'generating password when random generator return biggest possible value'() {
+        // tag::customBehavior[]
         given: 'random generator that always return biggest possible value'
         Random random = mock(Random)
         doAnswer({ inv -> (int) inv.getArguments()[0] - 1}).when(random).nextInt(26)
+        // end::customBehavior[]
 
         and: 'password generator based on this random generator'
         passwordGenerator.random = random

@@ -40,7 +40,7 @@ link:http://testng.org/[TestNG, window="_blank"], started by Cédric Beust, was 
 
 As link:http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/[recent study, window="_blank"] shows, JUnit is used by about amazingly 60% of Java projects and TestNG shows quite strong result of about 6%.
 
-.Source: http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/
+.Source: link:http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/[http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/, window="_blank"]
 image::images\spock-11ca2.png[]
 
 Both JUnit and TestNG shares the same framework architecture often called xUnit (surprisingly after SUnit and JUnit itself).
@@ -159,10 +159,10 @@ If you already have test code you want to migrate to Spock either from JUnit of 
 . Enforce inner test structure by using following labels: `setup` for test object setting up, `when` for test actions and `then` for assertions.
 . Enjoy becoming a Spock developer in less than 15 minutes.
 
-== Spock Assertions
-
 However, if you are starting from scratch, you will probably want to write more idiomatic Spock code.
 The first step towards this goal is start using Spock assertions.
+
+== Spock Assertions
 
 In the first place, each test framework offers two simple assertion constructions: `assertEquals` checks for equality of two objects and `assertTrue` checks if specified expression is true. However, using such constructions has two critical drawbacks:
 
@@ -315,7 +315,7 @@ include::{sourcedir}/test/groovy/N14S_SharedExplained.groovy[tags=sharedForShari
 
 == Inner Test Structure
 
-To my mind, the most important Spock feature comparing to other test framework (that do not have anything similar) is *enforcing inner test structure*.
+To my mind, the most important Spock feature comparing to other test frameworks (that do not have anything similar) is *enforcing inner test structure*.
 While it's generally a good practice to set up inner test structure using comments, Spock provides language features that make you do it.
 It's really great design decision, because comments, as they are not natural part of the code, becomes outdated very quickly.
 When something is part of the code, it is always up to date.
@@ -386,7 +386,7 @@ include::{sourcedir}/test/groovy/N15S_DataProviders.groovy[tags=dividualTests]
 <3> test parameters can be organized into fancy tables
 
 This example shows _dividual_ test cases, when test representation is separated from test code.
-Each test parameter generate individual test case, that is shares the same code, but not test result, with others.
+Each test parameter generate individual test case, that shares the same code, but not test result, with others.
 Here is how test report looks for this case:
 
 image::images\spock-997c6.png[]
@@ -411,7 +411,7 @@ Pay attention that using `Object[][]` is very unsafe and unclear for test parame
 
 == Exceptions Handling
 
-When you want to have a test case checking that exception is thrown for some particular test case in your JUnit test suite, it is as easy as defining simple `@Test` parameter:
+When you want to have a test case checking that exception is thrown for some particular scenario in your JUnit test suite, it is as easy as defining simple `@Test` parameter:
 
 [source,java]
 .JUnit simple thrown exception check
@@ -462,7 +462,7 @@ Pay attention that it's done not through comment, but rather with language const
 include::{sourcedir}/test/groovy/N18S_Exceptions.groovy[tags=notExpectException]
 ----
 
-If you are familiar with link:https://github.com/junit-team/junit4/wiki/Rules[JUnit Rules API, window="_blank"], you surely can come up with much better solution:
+Of course, if you are familiar with link:https://github.com/junit-team/junit4/wiki/Rules[JUnit Rules API, window="_blank"], you surely can greatly improve JUnit solution:
 
 [source,java]
 .JUnit thrown exception check via Rules API
@@ -485,6 +485,158 @@ If you want to check exception error message, you should supply expected regexp 
 .TestNG thrown exception check
 ----
 include::{sourcedir}/test/java/N20T_Exceptions.java[tags=expectException]
+----
+
+== Mocking
+
+As you probably already notice from the study shown at the beginning, industry standard de facto for all mocking activities is Mockito library.
+As usual, if you like it (and probably you do), you can continue using it with Spock.
+And again Spock offers you its own solution which uses fancy Groovy magic to make mocking more pleasant for developers.
+
+By the way, providing all needed functionality for any kind of testing approach is a great part of Spock philosophy, which is clearly shown by this example.
+
+Let's now exam and compare Mockito and Spock solutions for various mocking tasks one by one:
+
+=== Stubs
+
+Stubs are used when you need to replace some complex behavior of units you depends on by simple one, like returning constant value or throwing exception.
+
+[source,groovy]
+.Make stub to return value via Mockito
+----
+include::{sourcedir}/test/groovy/N24S_Stubs_byMockito.groovy[tags=returnValue]
+----
+
+[source,groovy]
+.Make stub to return value via Spock
+----
+include::{sourcedir}/test/groovy/N22S_Stubs.groovy[tags=returnValue]
+----
+
+[source,groovy]
+.Make stub to return consequent values via Mockito
+----
+include::{sourcedir}/test/groovy/N24S_Stubs_byMockito.groovy[tags=returnMultipleValues]
+----
+
+[source,groovy]
+.Make stub to return consequent values via Spock
+----
+include::{sourcedir}/test/groovy/N22S_Stubs.groovy[tags=returnMultipleValues]
+----
+
+[source,groovy]
+.Make stub to throw exception via Mockito
+----
+include::{sourcedir}/test/groovy/N24S_Stubs_byMockito.groovy[tags=throwException]
+----
+
+[source,groovy]
+.Make stub to throw exception via Spock
+----
+include::{sourcedir}/test/groovy/N22S_Stubs.groovy[tags=throwException]
+----
+
+[source,groovy]
+.Make stub to perform some custom action via Mockito
+----
+include::{sourcedir}/test/groovy/N24S_Stubs_byMockito.groovy[tags=customBehavior]
+----
+
+[source,groovy]
+.Make stub to perform some custom action via Spock
+----
+include::{sourcedir}/test/groovy/N22S_Stubs.groovy[tags=customBehavior]
+----
+
+=== Mocks
+
+Mocks are used when you need to monitor and verify interactions with units you depends on.
+
+[source,groovy]
+.Simple check how many times specified method was invoked via Mockito
+----
+include::{sourcedir}/test/groovy/N27S_Mocks_byMockito.groovy[tags=simpleVerify]
+----
+
+[source,groovy]
+.Simple check how many times specified method was invoked via Spock
+----
+include::{sourcedir}/test/groovy/N25S_Mocks.groovy[tags=simpleVerify]
+----
+
+[source,groovy]
+.More complex mocks verifications and order check via Mockito
+----
+include::{sourcedir}/test/groovy/N27S_Mocks_byMockito.groovy[tags=complexVerify]
+----
+
+[source,groovy]
+.More complex mocks verifications and order check via Spock
+----
+include::{sourcedir}/test/groovy/N25S_Mocks.groovy[tags=complexVerify]
+----
+
+One small detail is that for using Mockito invocations inside `then` block you need to make them always return true, because as failure is signaled by throwing exceptions, Spock can misinterpret value returned by Mockito.
+This issue is simply fixed by adding following method to your specifications:
+
+[source,groovy]
+.Just use `mockito {mockitoMethod}` for all Mockito interactions
+----
+include::{sourcedir}/test/groovy/N27S_Mocks_byMockito.groovy[tags=mockitoSpock]
+----
+
+=== Spies
+
+Spies are used when you need to monitor and verify interactions with unit you are testing.
+The difference is that mocks are used to fake unit behavior and monitor its usage, while spies monitors without changing original behavior.
+
+[source,java]
+.Check method arguments values via Mockito
+----
+include::{sourcedir}/test/java/N29J_Spies.java[tags=checkArgumentValue]
+----
+
+[source,groovy]
+.Check method arguments values via Spock
+----
+include::{sourcedir}/test/groovy/N28S_Spies.groovy[tags=checkArgumentValue]
+----
+
+As Spock is used for testing Groovy code, which is dynamic, some available checks have a little sense for Java and Mockito:
+
+[source,groovy]
+.Check that method argument is not `null` via Spock
+----
+include::{sourcedir}/test/groovy/N28S_Spies.groovy[tags=checkArgumentNotNull]
+----
+
+[source,groovy]
+.Check method argument type via Spock
+----
+include::{sourcedir}/test/groovy/N28S_Spies.groovy[tags=checkArgumentType]
+----
+
+=== Static and final methods
+
+Besides traditional and best-practice features, Spock offers more.
+Yes, they are bad practices, but who lives in ideal world?
+If needed you can stub, mock or spy on `static` and/or `final` methods:
+
+[source,groovy]
+.Spying on `static final` method via Spock
+----
+include::{sourcedir}/test/groovy/N30S_WithGreatPowerComesGreatResponsibility.groovy[tags=staticFinal]
+----
+
+_With great power comes great responsibility_ is a very good citation for this case.
+
+Given a very concise mocking syntax in Spock, another citation is also very good to remember:
+
+[source,groovy]
+.Valid Spock code, ladies and gentlemen!
+----
+include::{sourcedir}/test/groovy/N30S_WithGreatPowerComesGreatResponsibility.groovy[tags=syntaxBomb]
 ----
 
 == Other Features

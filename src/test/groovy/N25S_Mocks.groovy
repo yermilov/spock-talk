@@ -21,8 +21,10 @@ class N25S_Mocks extends Specification {
         when: 'we ask password generator to generate password of length 5'
         passwordGenerator.generate(5)
 
+        // tag::simpleVerify[]
         then: 'random generator is invoked 5 times'
         5 * random.nextInt(_)
+        // end::simpleVerify[]
     }
 
     def 'generating random password of random length'() {
@@ -33,6 +35,7 @@ class N25S_Mocks extends Specification {
         when: 'we ask password generator to generate password of random length'
         passwordGenerator.generate()
 
+        // tag::complexVerify[]
         then: 'first random generator is invoked once to generate password length'
         1 * random.nextInt(10)
 
@@ -41,5 +44,6 @@ class N25S_Mocks extends Specification {
 
         then: 'random generator is never invoked for anything else'
         0 * random._
+        // end::complexVerify[]
     }
 }
