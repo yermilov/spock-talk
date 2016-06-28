@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class N34J_Timeout {
 
+    // tag::timeout[]
     @Test(timeout = 2000)
     public void infiniteLoop() {
         // setup
@@ -12,4 +13,5 @@ public class N34J_Timeout {
         // run
         while (true) { arrayList.add("junit forever!"); }
     }
+    // end::timeout[]
 }

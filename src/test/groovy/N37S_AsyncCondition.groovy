@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit
 As JEEConf speaker
 I want to show that Spock is way much better at async assertions
 ''')
+// tag::asyncConditions[]
 class N37S_AsyncCondition extends Specification {
 
     def conditions = new AsyncConditions()
@@ -24,6 +25,7 @@ class N37S_AsyncCondition extends Specification {
         then: 'within 3 seconds answer will be found'
         conditions.await(3)
     }
+// end::asyncConditions[]
 
     def asyncNextPrime(int number, Closure callback) {
         new Thread() {
@@ -34,4 +36,6 @@ class N37S_AsyncCondition extends Specification {
             }
         }.start()
     }
+// tag::asyncConditions[]
 }
+// end::asyncConditions[]

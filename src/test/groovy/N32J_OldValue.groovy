@@ -35,6 +35,7 @@ class N32J_OldValue {
         sql.execute("delete from testing_tool")
     }
 
+    // tag::old[]
     @Test
     public void 'modifying data in table'() {
         // run
@@ -45,4 +46,5 @@ class N32J_OldValue {
         // verify
         assertThat(actual, is(old + 1))
     }
+    // end::old[]
 }

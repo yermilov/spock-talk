@@ -639,6 +639,104 @@ Given a very concise mocking syntax in Spock, another citation is also very good
 include::{sourcedir}/test/groovy/N30S_WithGreatPowerComesGreatResponsibility.groovy[tags=syntaxBomb]
 ----
 
+== Timing features
+
+=== Asserting changes
+
+If you need to check how some value has changed after execution of test scenario, traditional and reasonable approach is to save it before and after execution to compare afterwards:
+
+[source,groovy]
+.Asserting changes without Spock
+----
+include::{sourcedir}/test/groovy/N32J_OldValue.groovy[tags=old]
+----
+
+For this case, Spock has introduced small but very useful feature. You can wrap any variable or method invocation by `old()` inside `then` block and it will be replaced by the corresponding value *before execution of previous `when` block*:
+
+[source,groovy]
+.Asserting changes with Spock
+----
+include::{sourcedir}/test/groovy/N31S_OldValue.groovy[tags=old]
+----
+
+=== Timeouts
+
+Test timeouts are implemented very similarly in both JUnit and TestNG:
+
+[source,java]
+.Test timeouts via JUnit
+----
+include::{sourcedir}/test/java/N34J_Timeout.java[tags=timeout]
+----
+
+[source,java]
+.Test timeouts via TestNG
+----
+include::{sourcedir}/test/java/N35T_Timeout.java[tags=timeout]
+----
+
+Really, it's hard to improve something there besides arguing is it 'timeout' or 'time out'.
+But as test code readability is one of main Spock goals, there is an obvious improvement for it:
+
+[source,groovy]
+.Test timeouts via Spock
+----
+include::{sourcedir}/test/groovy/N33S_Timeout.groovy[tags=timeout]
+----
+
+=== Testing async code
+
+While two previous features were so small and minor, the next one is really important.
+How can we test async code? Let's forget for now that is should be turned to synchronous before testing.
+Sometime it's impossible, sometimes it's not reasonable.
+The most simple and the most strange approach is just ignoring that code is async:
+
+[source,groovy]
+.Testing async code using ignorance
+----
+include::{sourcedir}/test/groovy/N38J_Sometimes.groovy[tags=ignoreAsync]
+----
+
+Of course, such approach will not work in slightly more than 100% cases.
+The most obvious improvement is to add some reasonable delay before asserting async result:
+
+[source,groovy]
+.Testing async code using sleeping
+----
+include::{sourcedir}/test/groovy/N38J_Sometimes.groovy[tags=sleeping]
+----
+
+While it will work sometimes, such approach has two problems: sometimes async call will finish long time before delay does and this time will be wasted, and sometimes async call will last a little longer than delay does and the test will fail.
+The more intelligent approach is to add some logic to check if async call is finished:
+
+[source,groovy]
+.Testing async code using sleeping
+----
+include::{sourcedir}/test/groovy/N38J_Sometimes.groovy[tags=logic]
+----
+
+The problem of this approach is that, actually, it's a very clear test code anti-pattern. For many reasons, keeping non-linear logic in test code reduces tests reliability a lot.
+
+Spock suggests two native features for testing async code.
+
+First one is called 'polling conditions' and it evaluates assertions regularly until they become `true` or timeout is reached.
+Assertion is considered as failed if it does not become `true` within specified time limit:
+
+[source,groovy]
+.Testing async code using polling conditions
+----
+include::{sourcedir}/test/groovy/N36S_PollingConditions.groovy[tags=pollingConditions]
+----
+
+Second feature is called 'async conditions' and it is used to pass assertion expressions as callback for async code.
+Assertion will be evaluated ones as usual when async call finishes or it will be considered as failed if it will be not reached within time limit:
+
+[source,groovy]
+.Testing async code using async conditions
+----
+include::{sourcedir}/test/groovy/N37S_AsyncCondition.groovy[tags=asyncConditions]
+----
+
 == Other Features
 
 == Why Use Spock?

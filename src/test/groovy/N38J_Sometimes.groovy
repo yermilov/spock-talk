@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit
 
 class N38J_Sometimes {
 
+    // tag::ignoreAsync[]
     @Test
     void iWantToBelieve() {
         // setup
@@ -16,7 +17,9 @@ class N38J_Sometimes {
         // verify
         assert actual == 1733
     }
+    // end::ignoreAsync[]
 
+    // tag::sleeping[]
     @Test
     void hm() {
         // setup
@@ -31,7 +34,9 @@ class N38J_Sometimes {
         // verify
         assert actual == 1733
     }
+    // end::sleeping[]
 
+    // tag::logic[]
     @Test(timeout = 3000L)
     void complicatedHm() {
         // setup
@@ -48,6 +53,7 @@ class N38J_Sometimes {
             }
         }
     }
+    // end::logic[]
 
     def asyncNextPrime(int number, Closure callback) {
         new Thread() {

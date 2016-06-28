@@ -9,6 +9,7 @@ I want to show that Spock is slightly better at time limitations
 ''')
 class N33S_Timeout extends Specification {
 
+    // tag::timeout[]
     @Timeout(value = 2, unit = TimeUnit.SECONDS)
     def 'infinite loop'() {
         setup: 'array list'
@@ -17,4 +18,5 @@ class N33S_Timeout extends Specification {
         expect: 'we will add to it values forever'
         while (true) { arrayList.add('spock forever!') }
     }
+    // end::timeout[]
 }

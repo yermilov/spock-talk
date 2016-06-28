@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class N35T_Timeout {
 
+    // tag::timeout[]
     @Test(timeOut = 2000)
     public void infiniteLoop() {
         // setup
@@ -12,4 +13,5 @@ public class N35T_Timeout {
         // run
         while (true) { arrayList.add("testng forever!"); }
     }
+    // end::timeout[]
 }

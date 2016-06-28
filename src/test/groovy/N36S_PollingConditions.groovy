@@ -9,7 +9,8 @@ import java.util.concurrent.TimeUnit
 As JEEConf speaker
 I want to show that Spock is way much better at eventual assertions
 ''')
-class N36S_Sometimes extends Specification {
+// tag::pollingConditions[]
+class N36S_PollingConditions extends Specification {
 
     def conditions = new PollingConditions(timeout: 30)
 
@@ -25,6 +26,7 @@ class N36S_Sometimes extends Specification {
             assert actual == 1733
         }
     }
+// end::pollingConditions[]
 
     def 'find next prime after 2817 within 3 seconds'() {
         setup: 'holder for answer'
@@ -48,4 +50,6 @@ class N36S_Sometimes extends Specification {
             }
         }.start()
     }
+// tag::pollingConditions[]
 }
+// end::pollingConditions[]

@@ -20,6 +20,7 @@ class N31S_OldValue extends Specification {
         sql.execute("drop table testing_tool")
     }
 
+    // tag::old[]
     def 'modifying data in table'() {
         when: 'add JUnit 5 to the list of unit testing tools'
         sql.execute("insert into testing_tool values (4, 'junit', '5')")
@@ -27,11 +28,14 @@ class N31S_OldValue extends Specification {
         then: 'number of tools should be incremented'
         sql.firstRow("select count(*) as toolCount from testing_tool").toolCount ==
                 old(sql.firstRow("select count(*) as toolCount from testing_tool").toolCount) + 1
+    // end::old[]
 
         when: 'remove JUnit 5 from the list of unit testing tools'
         sql.execute("delete from testing_tool where id = 4")
 
         then: 'number of tools should be decremented'
         sql.firstRow("select count(*) as toolCount from testing_tool").toolCount == old(sql.firstRow("select count(*) as toolCount from testing_tool").toolCount) - 1
+    // tag::old[]
     }
+    // end::old[]
 }
