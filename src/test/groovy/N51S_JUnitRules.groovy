@@ -8,6 +8,7 @@ import spock.lang.Title
 As JEEConf speaker
 I want to show that Spock works great with JUnit Rules API
 ''')
+// tag::rules[]
 class N51S_JUnitRules extends Specification {
 
     @org.junit.Rule OutputCapture capture = new OutputCapture()
@@ -20,3 +21,4 @@ class N51S_JUnitRules extends Specification {
         capture.toString() == '2 + 2 = 4'
     }
 }
+// end::rules[]

@@ -6,6 +6,7 @@ import spock.util.environment.RestoreSystemProperties
 As JEEConf speaker
 I want to show that Spock is careful with system properties
 ''')
+// tag::sysPropStepwise[]
 @Stepwise
 class N48S_SystemProperties extends Specification {
 
@@ -26,3 +27,4 @@ class N48S_SystemProperties extends Specification {
         System.getProperty('spock.version') == null
     }
 }
+// end::sysPropStepwise[]

@@ -7,11 +7,13 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock stubs are
 ''')
+// tag::spring[]
 @ContextConfiguration(classes = Config)
 class N22S_Stubs extends Specification {
 
     @Autowired
     PasswordGenerator passwordGenerator
+// end::spring[]
 
     def 'generating password when random generator return constant value'() {
         // tag::returnValue[]

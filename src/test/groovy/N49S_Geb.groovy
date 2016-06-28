@@ -3,10 +3,6 @@ import spock.lang.Narrative
 import spock.lang.Title
 
 @Title('Geb example')
-@Narrative('''
-As JEEConf speaker
-I want to show you Geb
-''')
 class N49S_Geb extends GebSpec {
 
     def 'search for wikipedia in google'() {
@@ -21,7 +17,7 @@ class N49S_Geb extends GebSpec {
         $('input', name: 'btnG').click()
 
         then: 'title is wikipedia'
-        waitFor { title == 'wikipedia - Поиск в Google' }
+        waitFor { title.startsWith 'wikipedia - ' }
 
         expect: 'that search result contains link to ru.wikipedia.org'
         $('*', 0).text().contains('ru.wikipedia.org')

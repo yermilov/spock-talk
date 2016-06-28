@@ -855,6 +855,86 @@ include::{sourcedir}/test/resources/SpockConfig.groovy[]
 
 == Miscellanea
 
+There are a number of Spock feature worth mentioning as well.
+
+Being a good topic for separate article, there is a very simple and convenient mechanism of creating Spock extensions.
+Just as quick example, to print test inner structure to console all you need is:
+
+[source,groovy]
+.Spock extensions example
+----
+include::{sourcedir}/main/groovy/ReportExtension.groovy[]
+----
+<1> Extensions is enabled by `@Report` annotation
+<2> Attaching listener to Spock specification processor
+<3> For each test block
+<4> For each text string describing test block
+<5> Print it to console
+
+If you need your test to change system properties there is always a challenge to restore them back after test execution.
+Spock introduces annotation `@RestoreSystemProperties`, which does exactly the thing.
+For the sake of example, another Spock annotation is used: `@Stepwise`, which makes Spock to execute tests in the order they are specified in the code.
+Being damned in the unit testing worlds, it is more than useful for integration and functional tests:
+
+[source,groovy]
+.`@RestoreSystemProperties` and `@Stepwise` example
+----
+include::{sourcedir}/test/groovy/N48S_SystemProperties.groovy[tags=sysPropStepwise]
+----
+
+Sometimes, when a complex object needs to be checked, it can be useful to group all assertions within `with` group as follows:
+
+[source,groovy]
+.`with` example
+----
+include::{sourcedir}/test/groovy/N50S_ComplexAssertions.groovy[tags=with]
+----
+
+As a rule, Spock does not ignore previously implemented traditional features.
+This is great, as JUnit Rules still work with Spock:
+
+[source,groovy]
+.JUnit Rules example
+----
+include::{sourcedir}/test/groovy/N51S_JUnitRules.groovy[tags=rules]
+----
+
+Spock does not forget Groovy-specific features.
+For example, it supports metaprogramming testing.
+`@ConfineMetaClassChanges` confine all metaprogramming tricks within test where they are declared:
+
+[source,groovy]
+.Metaprogramming testing example
+----
+include::{sourcedir}/test/groovy/N52S_Metatesting.groovy[tags=meta]
+----
+
+Also, Spock has plenty of integrations, among which Spring and Grails are the most important:
+
+[source,groovy]
+.Spock-Spring integration example
+----
+include::{sourcedir}/test/groovy/N22S_Stubs.groovy[tags=spring]
+----
+
+== Geb
+
+And the last thing, that worth special mention is link:http://www.gebish.org/[Geb, window="_blank"].
+Geb is a browser automation solution, developed by one of Spock main contributor Luke Daley.
+It brings together the power of WebDriver, the elegance of jQuery content selection, the robustness of Page Object modelling and the expressiveness of the Groovy language.
+It can be used for scripting, scraping and general automation — or equally as a functional/web/acceptance testing solution.
+And preferable Geb testing approach is greatly inspired by Spock framework.
+Just look at simple example:
+
+[source,groovy]
+.Geb example
+----
+include::{sourcedir}/test/groovy/N49S_Geb.groovy[]
+----
+
+Even if you like JUnit or TestNG so much that you don't want to migrate them, you can introduce Spock into your project via Geb.
+Geb is obviously the best in his role and if you need web functionally testing it is more than worth trying.
+
 == Why Use Spock?
 
 == Why Do Not Use Spock?

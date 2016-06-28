@@ -19,6 +19,7 @@ class N50S_ComplexAssertions extends Specification {
         list.add('love')
         list.add('spock')
 
+        // tag::with[]
         then: 'list is not empty, is of size 4, and contains all added values'
         with(list) {
             empty == false
@@ -28,6 +29,7 @@ class N50S_ComplexAssertions extends Specification {
             get(2) == 'love'
             get(3) == 'spock'
         }
+        // end::with[]
     }
 
 }

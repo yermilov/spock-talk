@@ -12,6 +12,7 @@ I want to show that Spock works great for MetaProgramming testing
 @Stepwise
 class N52S_Metatesting extends Specification {
 
+    // tag::meta[]
     @ConfineMetaClassChanges([Integer])
     def 'sometimes 2 + 2 = 5'() {
         setup: 'very special Integer + Integer operation'
@@ -27,4 +28,5 @@ class N52S_Metatesting extends Specification {
         expect: '2 + 2 == 4'
         2 + 2 == 4
     }
+    // end::meta[]
 }
