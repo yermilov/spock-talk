@@ -111,6 +111,9 @@ include::{sourcedir}/test/java/N01J_EasyStart.java[tags=idiomaticJUnit]
 === Spock
 
 Finally, we can make really big step forward and try completely new testing approach - link:http://docs.spockframework.org/[Spock, window="_blank"] - test framework developed by Peter Niederwleser and Luke Daley.
+Spock is greatly inspired by Groovy language philosophy and used Groovy dynamic nature a lot.
+But the same as with Gradle, where you do not need to no Groovy to develop build scripts, here you need to know almost nothing about Groovy to use Spock.
+If you treat Spock like separate test-specific language and learn its main concepts, you can easily use them in conjunction with plain old Java code.
 As big steps are much more effective when they are done immediately, here is a very simple Spock test.
 If you write tests that looks like the last example, it will be very simple for you to get what is going on there:
 
@@ -125,7 +128,8 @@ include::{sourcedir}/test/groovy/N04S_EasyStart.groovy[tags=easySpock]
 
 == Why Try Spock?
 
-Why someone should try to use Spock on their projects? In the following sections I will demonstrate all benefits that can be gained from Spock usage.
+Why someone should try to use Spock on their projects?
+In the following sections I will demonstrate all benefits that can be gained from Spock usage.
 Additionally, I will show drawbacks of such decision.
 But despite both pros and cons there are two reasons why everyone should try Spock at least for their pet projects and later evaluate if it will be useful for the real ones:
 
@@ -134,7 +138,7 @@ _What if_ we do not need to use the same language for testing as we use for prod
 _What if_ it can be language designed for testing specifically?
 _What if_ test context can be moved from comments to code?
 _What if_ there are different testing approaches and we should offer convenient features for all of them?
-Spock asks plenty of _What if?_ questions and the main answer is that most of test features are already well-known, but if we forget their current implementations, they can be re-implemented in a better way.
+Spock asks plenty of _What if?_ questions and based on them re-implement well-known testing approach in another (arguably better) way.
 
 * *Spock is enterprise ready*. Spock is more than 6 years old. Spock is already released 1.0 version and has stable API.
 It's completely mature framework that can be safely used without any fears.
@@ -937,10 +941,48 @@ Geb is obviously the best in his role and if you need web functionally testing i
 
 == Why Use Spock?
 
+- *Concise syntax*
+If you are tired with verbosity and ceremonies of Java, which are multiplied several times for test code, Spock is a great choice.
+It uses Groovy magic and own features to make your test code short but still understandable.
+
+- *Language for testing instead of testing struggling language*
+Naturally, you use language features to express your intent in test (and not only test) code.
+If you use language designed specially for testing, you will obviously always can find constructions that were designed specially for your case.
+And when you use general-purpose language like Java for testing you just try to make it fit your needs, which is not working well in all cases.
+
+- *Clear test structure*
+Spock enforce inner test structure.
+Being a generally good practice to do it via comments or method separation in traditional test frameworks, Spock makes it true in 100% test cases.
+
+- *Code and reports readable for everyone*
+While Spock code is by design and by Spock philosophy can be read even by non-development folks like QA engineers or managers, it's also possible to immediately share Spock reports with anyone interested without any additional post-processing.
+
+- *Powerful built-in features*
+Spock has plenty of small and huge built-in features ready to cover any of your need immediately.
+It always a change that for your 1% chance test requirement there is a Spock feature that makes it easier and more pleasant to develop.
+
+- *Extensions*
+Even if Spock does not have a good feature for your case, it has simple and powerful extension mechanism which you can use to make it better fit your needs.
+
+- *Integrations*
+Spock seamlessly integrates with Spring, Grails, Guice, Tapestry, Unitils; JUnit, Mockito, Hamcrest, AssertJ, Google Truth and others.
+
+- *One framework for any testing approach*
+Spock philosophy states that you should be able to use single Spock library for any possible testing approach.
+So, Spock is useful for unit, integration and functional testing.
+Spock has powerful native support of assertions and mocking.
+Spock is good for TDD, BDD and chaotic testing.
+
+- *Behaves as one more JUnit runner*
+Inside, besides tons of pure magic, Spock is just one more JUnit runner.
+It means that is integrates easily with build tools, CI/CD tools, reporting libraries and actually everything that accepts JUnit.
+
+- *Works for both Groovy and Java*
+Being great part of Groovy world, just like many other Groovy projects, there is no great need to dig into Groovy to understand Spock.
+After understanding its main concepts, you can test both Groovy and Java code, using either Groovy or pure Java expressions inside test blocks.
+
 == Why Do Not Use Spock?
 
 == When Use Spock?
 
-== Looking further
-
-== Summary
+== Looking Further
