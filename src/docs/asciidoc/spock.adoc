@@ -983,6 +983,50 @@ After understanding its main concepts, you can test both Groovy and Java code, u
 
 == Why Do Not Use Spock?
 
+The first thing you should keep in mind about Spock, is that usually you can find corresponding features in JUnit or TestNG.
+If no, Hamcrest/AssertJ/Mockito/someone can probably help you.
+If still no, you can try to imitate some of Spock features even within JUnit/TestNG limitations.
+Being not so beautiful, it will work in 90% of the cases, when Spock is just a fresh look on the traditional approaches or when it introduces features that can be repeated.
+
+Another thing is that Spock is now in the process of finding new development model.
+Luke Daley has left the project long time ago.
+Peter Niederwleser has stopped Spock contribution more than a year ago after joining Apple.
+Now Spock is public link:https://github.com/spockframework/spock[Github project, window="_blank"], developing very slowly after the last 1.0 release.
+
 == When Use Spock?
 
+The main precondition before start using Spock, is your team being ready to accept it.
+There is no other limitation or significant expected problems for it.
+Spock integrates well with all your other solutions, can be easily migrated from existing JUnit/TestNG code, does not require great additional  knowledge or efforts to maintain.
+Obviously, the simplest case is when you are about to start new project.
+In this case, just use Spock from the very beginning and enjoy it.
+If you have legacy code without unit testing coverage, the case is pretty similar.
+It's not a problem to start using Spock for it immediately.
+If you already have JUnit tests in your code, the good strategy for Spock migration is start developing new test cases via Spock.
+As Spock is in some one just a JUnit runner both test suites are integrated into one view without any efforts.
+In the following process, you can start continuous migration from JUnit to Spock, which is very easy as renaming test classes and changing ten files of code for each.
+For the TestNG, things are little bit harder, so good strategy will be keeping two separate test suites and quick migration from TestNG to Spock.
+And the last great entrance point for Spock into your project is Geb.
+If you are about to introduce functional testing into your web project, Geb will be the best choise, that besides all other benefits, will introduce Spock to your project.
+
 == Looking Further
+
+If you do like or don't like this article, please share your opinion.
+I will appreciate your feedback (especially negative one) in any form available for me attention (like social media, direct e-mail, or etc.).
+If you are interested in this topic I can recommend you following resources:
+
+- link:http://spockframework.github.io/spock/docs/1.0/index.html[Spock documentation, window="_blank"]
+- link:https://github.com/spockframework[Spock Github organization, window="_blank"]
+- link:https://github.com/spockframework/spock[Spock sources, window="_blank"]
+- link:https://github.com/spockframework/spock-example[Spock examples, window="_blank"]
+- link:https://github.com/spockframework/spock/tree/master/spock-specs/src/test/groovy/org/spockframework/smoke[Spock self smoke tests, window="_blank"]
+- link:http://meetspock.appspot.com/[Spock web console, window="_blank"]
+- link:https://github.com/renatoathaydes/spock-reports[Spock reports project, window="_blank"]
+- link:http://mrhaki.blogspot.com/search/label/Spock[mrhaki block filtered on Spock, window="_blank"]
+- link:http://codepipes.com/presentations/spock-vs-junit.pdf[Spock vs JUnit by Kostis Kapelonis and Athens Greece, window="_blank"]
+- link:https://speakerdeck.com/szpak/smarter-testing-java-code-with-spock-framework[Smarter testing Java code with Spock Framework by Marcin Zajączkowski, window="_blank"]
+- link:https://www.youtube.com/watch?v=RuTupC0I59M[Idiomatic Spock by Rob Fletcher, window="_blank"]
+- link:https://www.youtube.com/watch?v=i28F13zZwlg[Spock: A Logical Framework for Enterprise Testing by Ken Kousen, window="_blank"]
+- link:https://www.manning.com/books/java-testing-with-spock[Java Testing with Spock by Konstantinos Kapelonis, window="_blank"]
+- link:http://www.gebish.org/manual/current/[Geb documentation, window="_blank"]
+- link:http://www.slideshare.net/JacobAaeMikkelsen/geb-for-browser-automation[Geb for browser automation by Jacob Aae Mikkelsen, window="_blank"]
