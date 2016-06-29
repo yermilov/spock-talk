@@ -1,33 +1,23 @@
 = What Mr. Spock would possibly say about modern unit testing: pragmatic and emotional overview
-Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov] https://twitter.com/yermilov17[icon:twitter[] @yermilov17] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov]>
-2016 June 23
+Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov, window="_blank"] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov, window="_blank"] https://twitter.com/yermilov17[icon:twitter[] @yermilov17, window="_blank"]>
+2016 June 29
 :toc:
 :icons: font
 :linkattrs:
 :source-highlighter: coderay
 :sourcedir: ../../
 
-== Original Talk
+== Introduction
+
+In this article we will try to examine current state of the automated testing concept in the Java world.
+As a reference, we will go through basic and advanced spock-framework features and compare them with what JUnit4/JUnit5/TestNG/Hamcrest/AssertJ/Mockito/whatever can offer instead.
+We will try to understand Spock philosophy and find out both pragmatic and emotional answer to the questions:
+should I use spock-framework in the year of 2016?
+how to convince my manager that "yes, we should"?
+how to convince my teammates that "no, we shouldn't"?
 
 This is a textual version of link:http://jeeconf.com/program/what-mr-spock-would-possibly-say-about-modern-unit-testing-pragmatic-and-emotional-overview/[the talk given at JEEConf 2016, window="_blank"].
-
-Recorded talk:
-
-video::3nSXDEj7sKM[youtube, width=560, height=315, opts="allowfullscreen"]
-
-Slides from the talk:
-
-pass:[<iframe src="http://www.slideshare.net/slideshow/embed_code/key/ehE5vzQ7yu5map" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>]
-
-== Code Examples
-
 All code examples can be found link:https://github.com/yermilov/spock-talk[at GitHub, window="_blank"].
-
-== About Me
-
-I have 5 year experience working in the Java world starting from Intern in EPAM Systems to Senior Software Engineer today in the same company.
-Most of this time I've worked in Big Data area, developing various extensions for Hadoop-family tools. Almost accidentally, 2 years ago I became responsible for automated testing on my project.
-Out of work, I'm inspired by Groovy ecosystem and data science.
 
 == What's About Modern Unit Testing?
 
@@ -44,7 +34,8 @@ As link:http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzin
 image::images\spock-11ca2.png[]
 
 Both JUnit and TestNG shares the same framework architecture often called xUnit (surprisingly after SUnit and JUnit itself).
-It's described best by two concepts: test structure and assertions. As test structure obviously is set of features to describe tests organization, and assertion is a function that verifies the behavior (or the state) of the unit under test.
+It's described best by two concepts: test structure and assertions.
+As test structure obviously is set of features to describe tests organization, and assertion is a function that verifies the behavior (or the state) of the unit under test.
 If we look at the most simple JUnit and TestNG tests we will found them quite similarly implementing both concepts:
 
 [source,java]
@@ -65,7 +56,8 @@ include::{sourcedir}/test/java/N02T_EasyStart.java[tags=easyTestNG]
 
 Actually, except for import statements, these code snippets are the same.
 My feel is that, not arguing with all benefits of JUnit and TestNG, they both were frozen long time ago and no longer evolving.
-Since 2013, there were 0 (zero!) major releases of traditional test frameworks. All we have for the last 3 years is one JUnit 4.12 release and several TestNG 6.9 releases. Actually, Spock is the only one, having epochal 1.0 release recently.
+Since 2013, there were 0 (zero!) major releases of traditional test frameworks.
+All we have for the last 3 years is one JUnit 4.12 release and several TestNG 6.9 releases. Actually, Spock is the only one, having epochal 1.0 release recently.
 
 image::images\spock-10799.png[]
 
@@ -80,17 +72,17 @@ We can just wait until traditional tools will attempt to make revolutionary chan
 
 For now we can only examine alpha releases, but we already can see that after a great work of JUnit team we will get a fresh new look at how JUnit should be implemented.
 The most significant change is introduction of solid testing backend model, but it's not a main topic of this article.
-Let's check how the simpliest JUnit 5 test looks like. How many changes you can see?
+Let's better check how the simplest JUnit 5 test looks like.
+How many changes you can see?
 
 [source,java]
 .Easy JUnit 5 start
 ----
 include::{sourcedir}/test/java/N03_J5_EasyStartTest.java[tags=easyJUnit5]
 ----
-<1> Worked in May 2016. It's alpha, so I bet it's now working already.
-<2> Test structure
-<3> Assertion
-<4> Changes!
+<1> Test structure
+<2> Assertion
+<3> Changes!
 
 === Testing on Steroids
 
@@ -112,8 +104,9 @@ include::{sourcedir}/test/java/N01J_EasyStart.java[tags=idiomaticJUnit]
 
 Finally, we can make really big step forward and try completely new testing approach - link:http://docs.spockframework.org/[Spock, window="_blank"] - test framework developed by Peter Niederwleser and Luke Daley.
 Spock is greatly inspired by Groovy language philosophy and used Groovy dynamic nature a lot.
-But the same as with Gradle, where you do not need to no Groovy to develop build scripts, here you need to know almost nothing about Groovy to use Spock.
+But the same as with Gradle, where you do not need to know Groovy to develop build scripts, here you need to know almost nothing about Groovy to use Spock.
 If you treat Spock like separate test-specific language and learn its main concepts, you can easily use them in conjunction with plain old Java code.
+
 As big steps are much more effective when they are done immediately, here is a very simple Spock test.
 If you write tests that looks like the last example, it will be very simple for you to get what is going on there:
 
@@ -145,6 +138,8 @@ It's completely mature framework that can be safely used without any fears.
 
 == How To Start With Spock?
 
+image::images\spock-8eb85.png[]
+
 As you can already see, it's more than easy to start using Spock.
 Begin with adding these three dependencies to your project:
 
@@ -167,6 +162,8 @@ However, if you are starting from scratch, you will probably want to write more 
 The first step towards this goal is start using Spock assertions.
 
 == Spock Assertions
+
+image::images\spock-f1523.png[]
 
 In the first place, each test framework offers two simple assertion constructions: `assertEquals` checks for equality of two objects and `assertTrue` checks if specified expression is true. However, using such constructions has two critical drawbacks:
 
@@ -222,6 +219,8 @@ include::{sourcedir}/test/groovy/N06J_PowerAsserts.groovy[tags=assertGroovy]
 
 == Test Structure
 
+image::images\spock-f032e.png[]
+
 As it was already mentioned, the second main part of every testing framework is test structure toolset.
 Traditional approach is pretty much the same:
 
@@ -261,7 +260,9 @@ include::{sourcedir}/test/groovy/N10J5_SetupTeardown.groovy[tags=structureJUnit5
 <5> Executed after each test case
 <6> Executed once after all test cases
 
-Here is one important thing about Spock philosophy as project. *If you do like traditional approach you can continue using it. Spock will just add some fancy Groovy magic to make it better*. In this concrete case, you can use link:http://docs.groovy-lang.org/next/html/documentation/core-traits.html[Groovy traits, window="_blank"] to extract repeatable setup/cleanup behavior and reuse it easily across your test classes:
+Here is one important thing about Spock philosophy as project.
+*If you do like traditional approach you can continue using it. Spock will just add some fancy Groovy magic to make it better*.
+In this concrete case, you can use link:http://docs.groovy-lang.org/next/html/documentation/core-traits.html[Groovy traits, window="_blank"] to extract repeatable setup/cleanup behavior and reuse it easily across your test classes:
 
 [source,groovy]
 .Spock reusable test structure via traits
@@ -282,7 +283,9 @@ To inject this behavior to your test specification, just implement all traits yo
 include::{sourcedir}/test/groovy/N11S_SetupTeardown_AsYouLike.groovy[tags=structureSpock]
 ----
 
-And here is one more important thing about Spock philosophy as project. *Spock always offers more!* Let's examine the following:
+And here is one more important thing about Spock philosophy as project.
+*Spock always offers more!*
+Let's examine the following:
 
 [source,groovy]
 .Spock more test structure toolset
@@ -294,7 +297,8 @@ include::{sourcedir}/test/groovy/N12S_SetupTeardown_AndMore.groovy[tags=structur
 <3> Tests can have individual setup blocks
 <4> Tests can have individual cleanup blocks
 
-Let's look at `@Shared` annotation closely. It will demonstrate why it's so important to use test-specific language for your tests instead of general purpose language like Java.
+Let's look at `@Shared` annotation closely.
+It will demonstrate why it's so important to use test-specific language for your tests instead of general-purpose language like Java.
 When you develop your test (but not only test) code, each time you try to find language feature that suites best your need.
 For example, if you need to share some resource within test class and you use Java, natural choice will be `static`.
 But, what if you want to do the same in several test classes? You can extract this behavior to superclass like following:
@@ -357,7 +361,9 @@ testCompile('com.athaydes:spock-reports:1.2.10') {
 
 == Data Driven Tests
 
-To my mind, while the previous feature is greatest and the most unappreciated Spock feature, this one is the most overvalued one.
+image::images\spock-b7d45.png[]
+
+To my mind, while the previous feature is greatest and the most unappreciated Spock feature, this one is the most famed one.
 Surely, it's very powerful, but it's needed only for some specific cases, while inner test structure is generally applicable.
 I'm talking about data driven tests. Let's look at quick example:
 
@@ -415,6 +421,8 @@ Pay attention that using `Object[][]` is very unsafe and unclear for test parame
 
 == Exceptions Handling
 
+image::images\spock-aafec.png[]
+
 When you want to have a test case checking that exception is thrown for some particular scenario in your JUnit test suite, it is as easy as defining simple `@Test` parameter:
 
 [source,java]
@@ -431,7 +439,7 @@ Thing become a little harder when you need to perform some additional checks, li
 include::{sourcedir}/test/java/N19J_Exceptions.java[tags=simpleExceptionMessage]
 ----
 
-For both cases, Spock comes for a very convenient way to catch thrown exception and do whatever you want to do with and check whatever you want to check:
+For both cases, Spock comes up with a very convenient way to catch thrown exception and do whatever you want to do with and check whatever you want to check:
 
 [source,groovy]
 .Spock thrown exception check
@@ -448,7 +456,7 @@ The most simple way is just do nothing, as unexpected exception will cause test 
 include::{sourcedir}/test/java/N19J_Exceptions.java[tags=simpleNotExpectException]
 ----
 
-The problem with such approach is that it exception is _do_ thrown test will be marked not as _failed_ but as _error_.
+The problem with such approach is that if exception is _do_ thrown test will be marked not as _failed_ but as _error_.
 If you do not like it, you should do something like:
 
 [source,java]
@@ -492,6 +500,8 @@ include::{sourcedir}/test/java/N20T_Exceptions.java[tags=expectException]
 ----
 
 == Mocking
+
+image::images\spock-1abd2.png[]
 
 As you probably already notice from the study shown at the beginning, industry standard de facto for all mocking activities is Mockito library.
 As usual, if you like it (and probably you do), you can continue using it with Spock.
@@ -645,6 +655,8 @@ include::{sourcedir}/test/groovy/N30S_WithGreatPowerComesGreatResponsibility.gro
 
 == Timing features
 
+image::images\spock-4bf7a.png[]
+
 === Asserting changes
 
 If you need to check how some value has changed after execution of test scenario, traditional and reasonable approach is to save it before and after execution to compare afterwards:
@@ -714,7 +726,7 @@ While it will work sometimes, such approach has two problems: sometimes async ca
 The more intelligent approach is to add some logic to check if async call is finished:
 
 [source,groovy]
-.Testing async code using sleeping
+.Testing async code using more intelligent approach
 ----
 include::{sourcedir}/test/groovy/N38J_Sometimes.groovy[tags=logic]
 ----
@@ -742,6 +754,8 @@ include::{sourcedir}/test/groovy/N37S_AsyncCondition.groovy[tags=asyncConditions
 ----
 
 == Test execution control
+
+image::images\spock-a8dfe.png[]
 
 === Disabling tests
 
@@ -859,6 +873,8 @@ include::{sourcedir}/test/resources/SpockConfig.groovy[]
 
 == Miscellanea
 
+image::images\spock-52d3a.png[]
+
 There are a number of Spock feature worth mentioning as well.
 
 Being a good topic for separate article, there is a very simple and convenient mechanism of creating Spock extensions.
@@ -959,7 +975,7 @@ While Spock code is by design and by Spock philosophy can be read even by non-de
 
 - *Powerful built-in features*
 Spock has plenty of small and huge built-in features ready to cover any of your need immediately.
-It always a change that for your 1% chance test requirement there is a Spock feature that makes it easier and more pleasant to develop.
+Even for your 1% chance test requirement there probably is a Spock feature that makes it easier and more pleasant to develop.
 
 - *Extensions*
 Even if Spock does not have a good feature for your case, it has simple and powerful extension mechanism which you can use to make it better fit your needs.
@@ -972,6 +988,7 @@ Spock philosophy states that you should be able to use single Spock library for 
 So, Spock is useful for unit, integration and functional testing.
 Spock has powerful native support of assertions and mocking.
 Spock is good for TDD, BDD and chaotic testing.
+And anyway, Spock can be greatly integrated with helper testing libraries like Hamcrest, Mockito or others, if you want to.
 
 - *Behaves as one more JUnit runner*
 Inside, besides tons of pure magic, Spock is just one more JUnit runner.
@@ -979,54 +996,70 @@ It means that is integrates easily with build tools, CI/CD tools, reporting libr
 
 - *Works for both Groovy and Java*
 Being great part of Groovy world, just like many other Groovy projects, there is no great need to dig into Groovy to understand Spock.
-After understanding its main concepts, you can test both Groovy and Java code, using either Groovy or pure Java expressions inside test blocks.
+After getting its main concepts, you can test both Groovy and Java code, using either Groovy or pure Java expressions inside test blocks.
 
 == Why Do Not Use Spock?
 
 The first thing you should keep in mind about Spock, is that usually you can find corresponding features in JUnit or TestNG.
 If no, Hamcrest/AssertJ/Mockito/someone can probably help you.
 If still no, you can try to imitate some of Spock features even within JUnit/TestNG limitations.
-Being not so beautiful, it will work in 90% of the cases, when Spock is just a fresh look on the traditional approaches or when it introduces features that can be repeated.
+Being not so beautiful, it will work in 90% of the cases, while Spock is just a fresh look on the traditional approaches or even when it introduces new features that can be reproduced.
 
 Another thing is that Spock is now in the process of finding new development model.
 Luke Daley has left the project long time ago.
 Peter Niederwleser has stopped Spock contribution more than a year ago after joining Apple.
 Now Spock is public link:https://github.com/spockframework/spock[Github project, window="_blank"], developing very slowly after the last 1.0 release.
 
+image::images\spock-271ea.png[]
+
 == When Use Spock?
 
 The main precondition before start using Spock, is your team being ready to accept it.
 There is no other limitation or significant expected problems for it.
 Spock integrates well with all your other solutions, can be easily migrated from existing JUnit/TestNG code, does not require great additional  knowledge or efforts to maintain.
-Obviously, the simplest case is when you are about to start new project.
-In this case, just use Spock from the very beginning and enjoy it.
-If you have legacy code without unit testing coverage, the case is pretty similar.
-It's not a problem to start using Spock for it immediately.
+
+Obviously, the simplest case is when you are about to start new project: just use Spock from the very beginning and enjoy it, nothing more.
+If you have legacy code without unit testing coverage, the case is pretty similar: it's not a problem to start using Spock for it immediately.
+
 If you already have JUnit tests in your code, the good strategy for Spock migration is start developing new test cases via Spock.
-As Spock is in some one just a JUnit runner both test suites are integrated into one view without any efforts.
-In the following process, you can start continuous migration from JUnit to Spock, which is very easy as renaming test classes and changing ten files of code for each.
+As Spock is in some way just a JUnit runner both test suites are integrated into one view without any efforts.
+During the further process, you can start continuous migration from JUnit to Spock one test class by one, which is very easy as renaming files and changing five lines of code for each test case.
 For the TestNG, things are little bit harder, so good strategy will be keeping two separate test suites and quick migration from TestNG to Spock.
+
 And the last great entrance point for Spock into your project is Geb.
-If you are about to introduce functional testing into your web project, Geb will be the best choise, that besides all other benefits, will introduce Spock to your project.
+If you are about to introduce functional testing into your web project, Geb will be the best choise, that besides all other benefits, will introduce Spock to your team.
 
 == Looking Further
 
+Thanks for your attention!
 If you do like or don't like this article, please share your opinion.
-I will appreciate your feedback (especially negative one) in any form available for me attention (like social media, direct e-mail, or etc.).
+I will appreciate your feedback (including surely negative one) in any form available for my attention (like social media, direct e-mail, or etc.).
+
 If you are interested in this topic I can recommend you following resources:
 
+To read:
+
 - link:http://spockframework.github.io/spock/docs/1.0/index.html[Spock documentation, window="_blank"]
+- link:http://mrhaki.blogspot.com/search/label/Spock[mrhaki block filtered on Spock, window="_blank"]
+- link:http://codepipes.com/presentations/spock-vs-junit.pdf[Spock vs JUnit by Kostis Kapelonis, window="_blank"]
+- link:https://speakerdeck.com/szpak/smarter-testing-java-code-with-spock-framework[Smarter testing Java code with Spock Framework by Marcin Zajączkowski, window="_blank"]
+- link:https://www.manning.com/books/java-testing-with-spock[Java Testing with Spock by Konstantinos Kapelonis, window="_blank"]
+- link:http://www.gebish.org/manual/current/[Geb documentation, window="_blank"]
+- link:http://www.slideshare.net/JacobAaeMikkelsen/geb-for-browser-automation[Geb for browser automation by Jacob Aae Mikkelsen, window="_blank"]
+
+To examine:
+
 - link:https://github.com/spockframework[Spock Github organization, window="_blank"]
 - link:https://github.com/spockframework/spock[Spock sources, window="_blank"]
 - link:https://github.com/spockframework/spock-example[Spock examples, window="_blank"]
 - link:https://github.com/spockframework/spock/tree/master/spock-specs/src/test/groovy/org/spockframework/smoke[Spock self smoke tests, window="_blank"]
-- link:http://meetspock.appspot.com/[Spock web console, window="_blank"]
 - link:https://github.com/renatoathaydes/spock-reports[Spock reports project, window="_blank"]
-- link:http://mrhaki.blogspot.com/search/label/Spock[mrhaki block filtered on Spock, window="_blank"]
-- link:http://codepipes.com/presentations/spock-vs-junit.pdf[Spock vs JUnit by Kostis Kapelonis and Athens Greece, window="_blank"]
-- link:https://speakerdeck.com/szpak/smarter-testing-java-code-with-spock-framework[Smarter testing Java code with Spock Framework by Marcin Zajączkowski, window="_blank"]
+
+To try:
+
+- link:http://meetspock.appspot.com/[Spock web console, window="_blank"]
+
+To watch:
+
 - link:https://www.youtube.com/watch?v=RuTupC0I59M[Idiomatic Spock by Rob Fletcher, window="_blank"]
 - link:https://www.youtube.com/watch?v=i28F13zZwlg[Spock: A Logical Framework for Enterprise Testing by Ken Kousen, window="_blank"]
-- link:https://www.manning.com/books/java-testing-with-spock[Java Testing with Spock by Konstantinos Kapelonis, window="_blank"]
-- link:http://www.gebish.org/manual/current/[Geb documentation, window="_blank"]
-- link:http://www.slideshare.net/JacobAaeMikkelsen/geb-for-browser-automation[Geb for browser automation by Jacob Aae Mikkelsen, window="_blank"]

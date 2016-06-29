@@ -1,5 +1,4 @@
 import geb.spock.GebSpec
-import spock.lang.Narrative
 import spock.lang.Title
 
 @Title('Geb example')
