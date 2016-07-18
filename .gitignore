@@ -9,21 +9,11 @@
 out/
 *.iml
 *.iws
+*.ipr
 
 # Mac
 .DS_Store
 
 # Gradle
-gradle/
+build/
 .gradle/
-gradlew
-gradlew.bat
-
-# Java
-*.class
-*.jar
-*.war
-*.ear
-
-# Grails
-buildPlugins/

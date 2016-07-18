@@ -1,7 +1,7 @@
 class PasswordGenerator {
 
-    def alphabet = ('a'..'z').join()
-    Random random = new Random()
+    String alphabet
+    Random random
 
     String generate(int length) {
         (1..length).collect({ nextSymbol() }).join()
