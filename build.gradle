@@ -5,12 +5,33 @@ buildscript {
 
     dependencies {
         classpath 'org.asciidoctor:asciidoctor-gradle-plugin:1.5.3'
+        classpath 'org.ysb33r.gradle:vfs-gradle-plugin:1.0-beta1'
+        classpath 'commons-httpclient:commons-httpclient:3.1'
     }
+}
+
+plugins {
+    id 'org.asciidoctor.convert' version '1.5.3'
+    id 'com.github.jruby-gradle.base' version '1.2.1'
 }
 
 apply plugin: 'idea'
 
 apply plugin: 'groovy'
+
+apply plugin: 'com.github.jruby-gradle.base'
+
+apply plugin: 'org.ysb33r.vfs'
+
+apply plugin: 'org.asciidoctor.convert'
+
+ext {
+    deckjsVersion = 'master'
+    asciidoctorBackendVersion = 'master'
+    downloadDir = new File(buildDir, 'download')
+    templateDir = new File(downloadDir, 'templates')
+    deckjsDir   = new File(downloadDir, 'deck.js')
+}
 
 repositories {
     jcenter()
@@ -22,6 +43,8 @@ repositories {
 task testNg(type: Test) { useTestNG() }
 
 dependencies {
+    gems 'rubygems:haml:4.0.6'
+
     compile 'org.codehaus.groovy:groovy-all:2.4.5'
 
     compile 'org.springframework.boot:spring-boot:1.3.5.RELEASE'
@@ -64,14 +87,55 @@ dependencies {
     testCompile 'org.seleniumhq.selenium:selenium-support:2.52.0'
 }
 
-apply plugin: 'org.asciidoctor.convert'
+task download << {
+    mkdir downloadDir
+    vfs {
+        cp "zip:https://github.com/asciidoctor/asciidoctor-deck.js/archive/${asciidoctorBackendVersion}.zip!asciidoctor-deck.js-${asciidoctorBackendVersion}/templates",
+                templateDir, recursive:true, overwrite:true
+        cp "zip:https://github.com/imakewebthings/deck.js/archive/${deckjsVersion}.zip!deck.js-${deckjsVersion}",
+                deckjsDir, recursive:true, overwrite:true
+    }
+}
+
+download {
+    description 'downloads extra deckjs resources'
+    outputs.dir templateDir
+    outputs.dir deckjsDir
+}
+
+asciidoctorj {
+    version = '1.5.4'
+}
 
 asciidoctor {
+    dependsOn jrubyPrepare
+
+    sources {
+        include 'spock.adoc'
+    }
+
+    resources {
+        from (sourceDir) {
+            include 'images/**'
+        }
+        from (downloadDir) {
+            include 'deck.js/**'
+        }
+    }
+
     backends = ['html5']
 
-    attributes  toc                 : 'left',
-                'source-highlighter': 'coderay',
-                icons               : 'font',
-                numbered            : '',
-                idprefix            : ''
+    attributes  'build-gradle'       : file('build.gradle'),
+                'source-highlighter' : 'coderay',
+                'toc'                : 'left',
+                'icons'              : 'font',
+                'setanchors'         : '',
+                'idprefix'           : '',
+                'idseparator'        : '-',
+                'numbered'           : '',
+                'docinfo1'           : ''
+
+    options template_dirs : [ new File(templateDir, 'haml').absolutePath ]
+
+    dependsOn download
 }
