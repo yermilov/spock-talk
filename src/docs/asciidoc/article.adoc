@@ -1,11 +1,12 @@
 = What Mr. Spock would possibly say about modern unit testing: pragmatic and emotional overview
 Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov, window="_blank"] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov, window="_blank"] https://twitter.com/yermilov17[icon:twitter[] @yermilov17, window="_blank"]>
-2016 June 29
+2016-06-29
+:revnumber: {project-version}
+ifndef::sourcedir[:sourcedir: ../../]
 :toc:
 :icons: font
 :linkattrs:
 :source-highlighter: coderay
-:sourcedir: ../../
 
 == Introduction
 
@@ -39,7 +40,7 @@ link:http://testng.org/[TestNG, window="_blank"], started by Cédric Beust, was 
 As link:http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/[recent study, window="_blank"] shows, JUnit is used by about amazingly 60% of Java projects and TestNG shows quite strong result of about 6%.
 
 .Source: link:http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/[http://blog.takipi.com/the-top-100-java-libraries-in-2016-after-analyzing-47251-dependencies/, window="_blank"]
-image::images\spock-11ca2.png[]
+image::images/spock-11ca2.png[]
 
 Both JUnit and TestNG shares the same framework architecture often called xUnit (surprisingly after SUnit and JUnit itself).
 It's described best by two concepts: test structure and assertions.
@@ -67,7 +68,7 @@ My feel is that, not arguing with all benefits of JUnit and TestNG, they both we
 Since 2013, there were 0 (zero!) major releases of traditional test frameworks.
 All we have for the last 3 years is one JUnit 4.12 release and several TestNG 6.9 releases. Actually, Spock is the only one, having epochal 1.0 release recently.
 
-image::images\spock-10799.png[]
+image::images/spock-10799.png[]
 
 Offering great functionality in this moment, JUnit and TestNG are at risk of missing latest software engineering requests and trends.
 However, JUnit is ready to overcome this problem with 5.0 release, scheduled for this year.
@@ -146,7 +147,7 @@ It's completely mature framework that can be safely used without any fears.
 
 == How To Start With Spock?
 
-image::images\spock-8eb85.png[]
+image::images/spock-8eb85.png[]
 
 As you can already see, it's more than easy to start using Spock.
 Begin with adding these three dependencies to your project:
@@ -171,7 +172,7 @@ The first step towards this goal is start using Spock assertions.
 
 == Spock Assertions
 
-image::images\spock-f1523.png[]
+image::images/spock-f1523.png[]
 
 In the first place, each test framework offers two simple assertion constructions: `assertEquals` checks for equality of two objects and `assertTrue` checks if specified expression is true. However, using such constructions has two critical drawbacks:
 
@@ -209,7 +210,7 @@ include::{sourcedir}/test/groovy/N05S_Asserts.groovy[tags=assertSpock]
 
 Just look how useful they are when we need to examine some complex data flow:
 
-image::images\spock-4f14e.png[]
+image::images/spock-4f14e.png[]
 
 But in combination with well-known Hamcrest matchers, Spock assertions provide 100% needed information from both test code and test failure reports:
 
@@ -227,7 +228,7 @@ include::{sourcedir}/test/groovy/N06J_PowerAsserts.groovy[tags=assertGroovy]
 
 == Test Structure
 
-image::images\spock-f032e.png[]
+image::images/spock-f032e.png[]
 
 As it was already mentioned, the second main part of every testing framework is test structure toolset.
 Traditional approach is pretty much the same:
@@ -356,7 +357,7 @@ Great follow-up from the fact that test structure becomes part of the test code 
 Projects like link:https://github.com/renatoathaydes/spock-reports[Spock reports, window="_blank"] leverage this information and, for example, generate very detailed reports based on it.
 Just look at test report that is ready to publish for your team non-development folks:
 
-image::images\spock-f353a.png[]
+image::images/spock-f353a.png[]
 
 All you need to do is add following code to your build file:
 
@@ -369,7 +370,7 @@ testCompile('com.athaydes:spock-reports:1.2.10') {
 
 == Data Driven Tests
 
-image::images\spock-b7d45.png[]
+image::images/spock-b7d45.png[]
 
 To my mind, while the previous feature is greatest and the most unappreciated Spock feature, this one is the most famed one.
 Surely, it's very powerful, but it's needed only for some specific cases, while inner test structure is generally applicable.
@@ -389,7 +390,7 @@ This example shows _complex_ test case, when the same scenario is run against mu
 Test is considered as passed if and only if test scenario passes all test parameters.
 Here is how test report looks for this case:
 
-image::images\spock-1dd56.png[]
+image::images/spock-1dd56.png[]
 
 Another use case supported by Spock is reusing same test code for test cases from different equivalence class.
 Here is example that demonstrate this and some other concepts:
@@ -407,7 +408,7 @@ This example shows _dividual_ test cases, when test representation is separated 
 Each test parameter generate individual test case, that shares the same code, but not test result, with others.
 Here is how test report looks for this case:
 
-image::images\spock-997c6.png[]
+image::images/spock-997c6.png[]
 
 Traditional test frameworks mix up both concepts, and moreover provide very poor language support for data-driven test:
 
@@ -416,20 +417,20 @@ Traditional test frameworks mix up both concepts, and moreover provide very poor
 ----
 include::{sourcedir}/test/java/N16J_DataProviders.java[tags=dataDriven]
 ----
-image::images\spock-b408e.png[]
+image::images/spock-b408e.png[]
 
 [source,java]
 .TestNG data driven test
 ----
 include::{sourcedir}/test/java/N17T_DataProviders.java[tags=dataDriven]
 ----
-image::images\spock-25dc5.png[]
+image::images/spock-25dc5.png[]
 
 Pay attention that using `Object[][]` is very unsafe and unclear for test parameters set up, and even more, that TestNG does not supports test naming easily.
 
 == Exceptions Handling
 
-image::images\spock-aafec.png[]
+image::images/spock-aafec.png[]
 
 When you want to have a test case checking that exception is thrown for some particular scenario in your JUnit test suite, it is as easy as defining simple `@Test` parameter:
 
@@ -509,7 +510,7 @@ include::{sourcedir}/test/java/N20T_Exceptions.java[tags=expectException]
 
 == Mocking
 
-image::images\spock-1abd2.png[]
+image::images/spock-1abd2.png[]
 
 As you probably already notice from the study shown at the beginning, industry standard de facto for all mocking activities is Mockito library.
 As usual, if you like it (and probably you do), you can continue using it with Spock.
@@ -663,7 +664,7 @@ include::{sourcedir}/test/groovy/N30S_WithGreatPowerComesGreatResponsibility.gro
 
 == Timing features
 
-image::images\spock-4bf7a.png[]
+image::images/spock-4bf7a.png[]
 
 === Asserting changes
 
@@ -763,7 +764,7 @@ include::{sourcedir}/test/groovy/N37S_AsyncCondition.groovy[tags=asyncConditions
 
 == Test execution control
 
-image::images\spock-a8dfe.png[]
+image::images/spock-a8dfe.png[]
 
 === Disabling tests
 
@@ -881,7 +882,7 @@ include::{sourcedir}/test/resources/SpockConfig.groovy[]
 
 == Miscellanea
 
-image::images\spock-52d3a.png[]
+image::images/spock-52d3a.png[]
 
 There are a number of Spock feature worth mentioning as well.
 
@@ -1018,7 +1019,7 @@ Luke Daley has left the project long time ago.
 Peter Niederwleser has stopped Spock contribution more than a year ago after joining Apple.
 Now Spock is public link:https://github.com/spockframework/spock[Github project, window="_blank"], developing very slowly after the last 1.0 release.
 
-image::images\spock-271ea.png[]
+image::images/spock-271ea.png[]
 
 == When Use Spock?
 

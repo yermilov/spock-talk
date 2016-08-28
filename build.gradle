@@ -111,7 +111,7 @@ asciidoctor {
     dependsOn jrubyPrepare
 
     sources {
-        include 'spock.adoc'
+        include 'slides.adoc'
     }
 
     resources {
@@ -125,15 +125,14 @@ asciidoctor {
 
     backends = ['html5']
 
-    attributes  'build-gradle'       : file('build.gradle'),
+    attributes  'sourcedir'          : file('src'),
                 'source-highlighter' : 'coderay',
                 'toc'                : 'left',
                 'icons'              : 'font',
                 'setanchors'         : '',
                 'idprefix'           : '',
                 'idseparator'        : '-',
-                'numbered'           : '',
-                'docinfo1'           : ''
+                'numbered'           : ''
 
     options template_dirs : [ new File(templateDir, 'haml').absolutePath ]
 
