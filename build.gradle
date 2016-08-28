@@ -107,25 +107,45 @@ asciidoctorj {
     version = '1.5.4'
 }
 
-asciidoctor {
-    dependsOn jrubyPrepare
+boolean buildArticle = System.getProperty('buildArticle') != null
 
-    sources {
-        include 'slides.adoc'
+if (buildArticle) {
+
+    asciidoctor {
+        backends = ['html5']
+
+        sources {
+            include 'article.adoc'
+        }
+
+        attributes  toc                 : 'left',
+                'source-highlighter': 'coderay',
+                icons               : 'font',
+                numbered            : '',
+                idprefix            : ''
     }
 
-    resources {
-        from (sourceDir) {
-            include 'images/**'
-        }
-        from (downloadDir) {
-            include 'deck.js/**'
-        }
-    }
+} else {
 
-    backends = ['html5']
+    asciidoctor {
+        dependsOn jrubyPrepare
 
-    attributes  'sourcedir'          : file('src'),
+        sources {
+            include 'slides.adoc'
+        }
+
+        resources {
+            from (sourceDir) {
+                include 'images/**'
+            }
+            from (downloadDir) {
+                include 'deck.js/**'
+            }
+        }
+
+        backends = ['html5']
+
+        attributes  'sourcedir'          : file('src'),
                 'source-highlighter' : 'coderay',
                 'toc'                : 'left',
                 'icons'              : 'font',
@@ -134,7 +154,9 @@ asciidoctor {
                 'idseparator'        : '-',
                 'numbered'           : ''
 
-    options template_dirs : [ new File(templateDir, 'haml').absolutePath ]
+        options template_dirs : [ new File(templateDir, 'haml').absolutePath ]
 
-    dependsOn download
+        dependsOn download
+    }
+
 }
