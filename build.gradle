@@ -118,11 +118,11 @@ if (buildArticle) {
             include 'article.adoc'
         }
 
-        attributes  toc                 : 'left',
-                'source-highlighter': 'coderay',
-                icons               : 'font',
-                numbered            : '',
-                idprefix            : ''
+        attributes  'toc'                 : 'left',
+                    'source-highlighter': 'coderay',
+                    'icons'               : 'font',
+                    'numbered'            : '',
+                    'idprefix'            : ''
     }
 
 } else {
@@ -141,18 +141,20 @@ if (buildArticle) {
             from (downloadDir) {
                 include 'deck.js/**'
             }
+            include 'docinfo.html'
         }
 
         backends = ['html5']
 
         attributes  'sourcedir'          : file('src'),
-                'source-highlighter' : 'coderay',
-                'toc'                : 'left',
-                'icons'              : 'font',
-                'setanchors'         : '',
-                'idprefix'           : '',
-                'idseparator'        : '-',
-                'numbered'           : ''
+                    'source-highlighter' : 'coderay',
+                    'toc'                : 'left',
+                    'icons'              : 'font',
+                    'setanchors'         : '',
+                    'idprefix'           : '',
+                    'idseparator'        : '-',
+                    'numbered'           : '',
+                    'docinfo1'            : ''
 
         options template_dirs : [ new File(templateDir, 'haml').absolutePath ]
 
