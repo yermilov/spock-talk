@@ -1,6 +1,6 @@
 = What Mr. Spock would possibly say about modern unit testing: pragmatic and emotional overview
 Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov, window="_blank"] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov, window="_blank"] https://twitter.com/yermilov17[icon:twitter[] @yermilov17, window="_blank"]>
-2016-09-12
+2016-09-13
 ifndef::sourcedir[:sourcedir: ../../]
 :toc:
 :icons: font
@@ -835,6 +835,17 @@ Please welcome self-describing `@IgnoreRest` annotation:
 include::{sourcedir}/test/groovy/N40S_ConditionalRuns_Part2.groovy[tags=ignoreRest]
 ----
 
+Moreover, Spock 1.1 introduces one more interesting way to disable test case called Pending Feature.
+If you mark test case with a `@PendingFeature` annotation, it will have following behavior:
+if it fails, it will be reported as skipped (ignored) test case, as test case for unimplemented feature is not important for overall test result;
+if it passed, it will be reported as failed (sic!) test case, as it's strange that test case for unimplemented features succeeded, so it should be explicitly reported:
+
+[source,groovy]
+.Pending Feature in Spock
+----
+include::{sourcedir}/test/groovy/N39S_ConditionalRuns_Part1.groovy[tags=pendingFeature]
+----
+
 === Test suites
 
 Following usual pattern for this article let's look how we can organize test suites in traditional test frameworks:
@@ -924,6 +935,15 @@ Sometimes, when a complex object needs to be checked, it can be useful to group 
 .`with` example
 ----
 include::{sourcedir}/test/groovy/N50S_ComplexAssertions.groovy[tags=with]
+----
+
+Moreover, complex assertions can be grouped inside `verifyAll` block.
+It will assert multiple expressions without short-circuiting those after a failure, so all failures will be reported:
+
+[source,groovy]
+.`verifyAll` example
+----
+include::{sourcedir}/test/groovy/N50S_ComplexAssertions.groovy[tags=verifyAll]
 ----
 
 As a rule, Spock does not ignore previously implemented traditional features.
@@ -1024,9 +1044,9 @@ Being not so beautiful, it will work in 90% of the cases, while Spock is just a 
 Another thing is that Spock is now in the process of finding new development model.
 Luke Daley has left the project long time ago.
 Peter Niederwleser has stopped Spock contribution more than a year ago after joining Apple.
-Now Spock is public link:https://github.com/spockframework/spock[Github project, window="_blank"], developing very slowly after the last 1.0 release.
+Now Spock is public link:https://github.com/spockframework/spock[Github project, window="_blank"], and after some standstill after 1.0 release seems that now it is on the way to stable wide community development model, as 1.1 release is almost ready for GA.
 
-image::images/spock-271ea.png[]
+image::images\article-27c07.png[]
 
 == When Use Spock?
 
