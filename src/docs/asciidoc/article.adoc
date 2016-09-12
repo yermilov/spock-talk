@@ -1,6 +1,6 @@
 = What Mr. Spock would possibly say about modern unit testing: pragmatic and emotional overview
 Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov, window="_blank"] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov, window="_blank"] https://twitter.com/yermilov17[icon:twitter[] @yermilov17, window="_blank"]>
-2016-06-29
+2016-09-12
 ifndef::sourcedir[:sourcedir: ../../]
 :toc:
 :icons: font
@@ -64,21 +64,19 @@ include::{sourcedir}/test/java/N02T_EasyStart.java[tags=easyTestNG]
 
 Actually, except for import statements, these code snippets are the same.
 My feel is that, not arguing with all benefits of JUnit and TestNG, they both were frozen long time ago and no longer evolving.
-Since 2013, there were 0 (zero!) major releases of traditional test frameworks.
-All we have for the last 3 years is one JUnit 4.12 release and several TestNG 6.9 releases. Actually, Spock is the only one, having epochal 1.0 release recently.
+JUnit is ready to overcome this problem with 5.0.0 release, scheduled for the end of 2016.
+Spock recently has epochal 1.0 release and 1.1 is on the way (1.1-rc2 version is already out).
+TestNG has only several 6.9.x releases with no significant changes in them.
 
-image::images/spock-10799.png[]
+image::images\article-034d5.png[]
 
-Offering great functionality in this moment, JUnit and TestNG are at risk of missing latest software engineering requests and trends.
-However, JUnit is ready to overcome this problem with 5.0 release, scheduled for this year.
-
-Anyway, there are several possibilities for passionate developers to continue evolving their test automation instruments. Let's examine them shortly.
+So, there are several possibilities for passionate developers to continue evolving their test automation instruments. Let's examine them shortly.
 
 === JUnit 5
 
 We can just wait until traditional tools will attempt to make revolutionary changes. Sounds not very promising, but sometimes miracles happen. link:http://junit.org/junit5/[JUnit 5, window="_blank"] is on the way to final release after link:https://www.indiegogo.com/projects/junit-lambda#/[very successful crowdfunding campaign on Indiegogo, window="_blank"].
 
-For now we can only examine alpha releases, but we already can see that after a great work of JUnit team we will get a fresh new look at how JUnit should be implemented.
+For now we can already examine second milestone release, and we can see that after a great work of JUnit team we will get a fresh new look at how JUnit should be implemented.
 The most significant change is introduction of solid testing backend model, but it's not a main topic of this article.
 Let's better check how the simplest JUnit 5 test looks like.
 How many changes you can see?

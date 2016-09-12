@@ -1,16 +1,16 @@
 // tag::easyJUnit5[]
-import org.junit.gen5.api.Test;
+import org.junit.jupiter.api.Test;
 // end::easyJUnit5[]
-import org.junit.gen5.junit4.runner.JUnit5;
+import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 
 // tag::easyJUnit5[]
-import static org.junit.gen5.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 // end::easyJUnit5[]
 
-@RunWith(JUnit5.class)
+@RunWith(JUnitPlatform.class)
 public class N03_J5_EasyStartTest {
 
     // tag::easyJUnit5[]

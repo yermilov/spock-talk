@@ -1,17 +1,17 @@
 import groovy.sql.Sql
 // tag::structureJUnit5[]
-import org.junit.gen5.api.AfterAll
-import org.junit.gen5.api.AfterEach
-import org.junit.gen5.api.BeforeAll
-import org.junit.gen5.api.BeforeEach
-import org.junit.gen5.api.Test
+import org.junit.jupiter.api.AfterAll
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeAll
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 // end::structureJUnit5[]
-import org.junit.gen5.junit4.runner.JUnit5
+import org.junit.platform.runner.JUnitPlatform
 import org.junit.runner.RunWith
 
-import static org.junit.gen5.api.Assertions.assertEquals
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(JUnit5.class)
+@RunWith(JUnitPlatform.class)
 class N10J5_SetupTeardown {
 
     // tag::structureJUnit5[]
