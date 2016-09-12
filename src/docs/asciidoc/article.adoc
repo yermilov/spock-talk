@@ -151,9 +151,9 @@ Begin with adding these three dependencies to your project:
 
 [source,groovy]
 ----
-'org.spockframework:spock-core:1.0-groovy-2.4'
-'cglib:cglib-nodep:3.1'
-'org.objenesis:objenesis:2.1'
+'org.spockframework:spock-core:1.1-groovy-2.4-rc-2'
+'cglib:cglib-nodep:3.2.2'
+'org.objenesis:objenesis:2.4'
 ----
 
 If you already have test code you want to migrate to Spock either from JUnit of TestNG take there five easy steps:
@@ -424,6 +424,16 @@ include::{sourcedir}/test/java/N17T_DataProviders.java[tags=dataDriven]
 image::images/spock-25dc5.png[]
 
 Pay attention that using `Object[][]` is very unsafe and unclear for test parameters set up, and even more, that TestNG does not supports test naming easily.
+
+What is interesting, JUnit 5 instead of having concept of data-driven tests, has more general and very powerful concept of dynamic tests.
+It means that test cases can be generated at runtime, based on provided data and any other source:
+
+[source,java]
+.JUnit 5 dynamic test
+----
+include::{sourcedir}/test/java/N18_J5_DynamicTests.java[tags=dynamicTest]
+----
+image::images\article-549aa.png[]
 
 == Exceptions Handling
 
