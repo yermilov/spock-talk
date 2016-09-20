@@ -516,7 +516,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="details">
 <span id="author" class="author">Yaroslav Yermilov</span><br>
 <span id="email" class="email"><a href="https://github.com/yermilov" target="_blank"><span class="icon"><i class="fa fa-github"></i></span> @yermilov</a> <a href="https://www.facebook.com/yaroslav.yermilov" target="_blank"><span class="icon"><i class="fa fa-facebook"></i></span> @yaroslav.yermilov</a> <a href="https://twitter.com/yermilov17" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span> @yermilov17</a></span><br>
-<span id="revdate">2016 June 29</span>
+<span id="revdate">2016-09-21</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -577,24 +577,6 @@ We will try to understand Spock philosophy and find out both pragmatic and emoti
 should I use spock-framework in the year of 2016?
 how to convince my manager that "yes, we should"?
 how to convince my teammates that "no, we shouldn&#8217;t"?</p>
-</div>
-<div class="paragraph">
-<p>This is a textual version of <a href="http://jeeconf.com/program/what-mr-spock-would-possibly-say-about-modern-unit-testing-pragmatic-and-emotional-overview/" target="_blank">the talk given at JEEConf 2016</a>.
-All code examples can be found <a href="https://github.com/yermilov/spock-talk" target="_blank">at GitHub</a>.</p>
-</div>
-<div class="paragraph">
-<p>Talk was recorded:</p>
-</div>
-<div class="videoblock">
-<div class="content">
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3nSXDEj7sKM?rel=0" frameborder="0" allowfullscreen></iframe>
-</div>
-</div>
-<div class="paragraph">
-<p>Slides from the talk:</p>
-</div>
-<div class="paragraph">
-<p><iframe src="http://www.slideshare.net/slideshow/embed_code/key/ehE5vzQ7yu5map" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe></p>
 </div>
 </div>
 </div>
@@ -687,20 +669,17 @@ If we look at the most simple JUnit and TestNG tests we will found them quite si
 <div class="paragraph">
 <p>Actually, except for import statements, these code snippets are the same.
 My feel is that, not arguing with all benefits of JUnit and TestNG, they both were frozen long time ago and no longer evolving.
-Since 2013, there were 0 (zero!) major releases of traditional test frameworks.
-All we have for the last 3 years is one JUnit 4.12 release and several TestNG 6.9 releases. Actually, Spock is the only one, having epochal 1.0 release recently.</p>
+JUnit is ready to overcome this problem with 5.0.0 release, scheduled for the end of 2016.
+Spock recently has epochal 1.0 release and 1.1 is on the way (1.1-rc2 version is already out).
+TestNG has only several 6.9.x releases with no significant changes in them.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/spock-10799.png" alt="spock 10799">
+<img src="images/article-034d5.png" alt="article 034d5">
 </div>
 </div>
 <div class="paragraph">
-<p>Offering great functionality in this moment, JUnit and TestNG are at risk of missing latest software engineering requests and trends.
-However, JUnit is ready to overcome this problem with 5.0 release, scheduled for this year.</p>
-</div>
-<div class="paragraph">
-<p>Anyway, there are several possibilities for passionate developers to continue evolving their test automation instruments. Let&#8217;s examine them shortly.</p>
+<p>So, there are several possibilities for passionate developers to continue evolving their test automation instruments. Let&#8217;s examine them shortly.</p>
 </div>
 <div class="sect2">
 <h3 id="junit_5">2.1. JUnit 5</h3>
@@ -708,7 +687,7 @@ However, JUnit is ready to overcome this problem with 5.0 release, scheduled for
 <p>We can just wait until traditional tools will attempt to make revolutionary changes. Sounds not very promising, but sometimes miracles happen. <a href="http://junit.org/junit5/" target="_blank">JUnit 5</a> is on the way to final release after <a href="https://www.indiegogo.com/projects/junit-lambda#/" target="_blank">very successful crowdfunding campaign on Indiegogo</a>.</p>
 </div>
 <div class="paragraph">
-<p>For now we can only examine alpha releases, but we already can see that after a great work of JUnit team we will get a fresh new look at how JUnit should be implemented.
+<p>For now we can already examine second milestone release, and we can see that after a great work of JUnit team we will get a fresh new look at how JUnit should be implemented.
 The most significant change is introduction of solid testing backend model, but it&#8217;s not a main topic of this article.
 Let&#8217;s better check how the simplest JUnit 5 test looks like.
 How many changes you can see?</p>
@@ -716,8 +695,8 @@ How many changes you can see?</p>
 <div class="listingblock">
 <div class="title">Easy JUnit 5 start</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">org.junit.gen5.api.Test</span>;
-<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.junit.gen5.api.Assertions.assertEquals</span>;
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">org.junit.jupiter.api.Test</span>;
+<span class="keyword">import</span> <span class="include">static</span> <span class="include">org.junit.jupiter.api.Assertions.assertEquals</span>;
 
     <span class="annotation">@Test</span> <i class="conum" data-value="1"></i><b>(1)</b>
     <span class="directive">public</span> <span class="type">void</span> arrayList_length_idm() {
@@ -888,9 +867,9 @@ Begin with adding these three dependencies to your project:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.0-groovy-2.4</span><span class="delimiter">'</span></span>
-<span class="string"><span class="delimiter">'</span><span class="content">cglib:cglib-nodep:3.1</span><span class="delimiter">'</span></span>
-<span class="string"><span class="delimiter">'</span><span class="content">org.objenesis:objenesis:2.1</span><span class="delimiter">'</span></span></code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="string"><span class="delimiter">'</span><span class="content">org.spockframework:spock-core:1.1-groovy-2.4-rc-2</span><span class="delimiter">'</span></span>
+<span class="string"><span class="delimiter">'</span><span class="content">cglib:cglib-nodep:3.2.2</span><span class="delimiter">'</span></span>
+<span class="string"><span class="delimiter">'</span><span class="content">org.objenesis:objenesis:2.4</span><span class="delimiter">'</span></span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1220,11 +1199,11 @@ Traditional approach is pretty much the same:</p>
 <div class="listingblock">
 <div class="title">JUnit 5 test structure toolset</div>
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">org.junit.gen5.api.AfterAll</span>
-<span class="keyword">import</span> <span class="include">org.junit.gen5.api.AfterEach</span>
-<span class="keyword">import</span> <span class="include">org.junit.gen5.api.BeforeAll</span>
-<span class="keyword">import</span> <span class="include">org.junit.gen5.api.BeforeEach</span>
-<span class="keyword">import</span> <span class="include">org.junit.gen5.api.Test</span>
+<pre class="CodeRay highlight"><code data-lang="groovy"><span class="keyword">import</span> <span class="include">org.junit.jupiter.api.AfterAll</span>
+<span class="keyword">import</span> <span class="include">org.junit.jupiter.api.AfterEach</span>
+<span class="keyword">import</span> <span class="include">org.junit.jupiter.api.BeforeAll</span>
+<span class="keyword">import</span> <span class="include">org.junit.jupiter.api.BeforeEach</span>
+<span class="keyword">import</span> <span class="include">org.junit.jupiter.api.Test</span>
 
     <span class="directive">static</span> Sql sql
 
@@ -1813,6 +1792,38 @@ Here is how test report looks for this case:</p>
 </div>
 <div class="paragraph">
 <p>Pay attention that using <code>Object[][]</code> is very unsafe and unclear for test parameters set up, and even more, that TestNG does not supports test naming easily.</p>
+</div>
+<div class="paragraph">
+<p>What is interesting, JUnit 5 instead of having concept of data-driven tests, has more general and very powerful concept of dynamic tests.
+It means that test cases can be generated at runtime, based on provided data and any other source:</p>
+</div>
+<div class="listingblock">
+<div class="title">JUnit 5 dynamic test</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">    <span class="directive">private</span> <span class="directive">static</span> <span class="directive">final</span> <span class="predefined-type">Object</span><span class="type">[]</span><span class="type">[]</span> DATA = <span class="keyword">new</span> <span class="predefined-type">Object</span><span class="type">[]</span><span class="type">[]</span> {
+            { <span class="float">0.0</span>,   <span class="float">6.0</span>,  <span class="float">0.0</span>,  <span class="float">10.0</span>, <span class="float">60.0</span>, <span class="float">6.0</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">steady run from starting point</span><span class="delimiter">&quot;</span></span> },
+            { <span class="float">5.0</span>,   <span class="float">0.0</span>,  <span class="float">3.0</span>,  <span class="float">3.0</span>,  <span class="float">17.0</span>, <span class="float">9.0</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">starting from standing with acceleration</span><span class="delimiter">&quot;</span></span> },
+            { -<span class="float">50.0</span>, <span class="float">10.0</span>, -<span class="float">1.0</span>, <span class="float">10.0</span>, <span class="float">0.0</span>,  <span class="float">0.0</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">constant deceleration</span><span class="delimiter">&quot;</span></span>}
+    };
+
+    <span class="annotation">@TestFactory</span>
+    <span class="directive">public</span> Stream&lt;DynamicTest&gt; speedTests() {
+        <span class="keyword">return</span> <span class="predefined-type">Arrays</span>.stream(DATA).map(data -&gt; dynamicTest(data[<span class="integer">6</span>].toString(), () -&gt; {
+            <span class="type">double</span> initialSpeed = (<span class="type">double</span>) data[<span class="integer">1</span>];
+            <span class="type">double</span> acceleration = (<span class="type">double</span>) data[<span class="integer">2</span>];
+            <span class="type">double</span> time = (<span class="type">double</span>) data[<span class="integer">3</span>];
+            <span class="type">double</span> expectedSpeed = (<span class="type">double</span>) data[<span class="integer">5</span>];
+
+            <span class="type">double</span> speed = initialSpeed + acceleration * time;
+            assertEquals(expectedSpeed, speed);
+        }));
+    }</code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/article-549aa.png" alt="article 549aa">
+</div>
 </div>
 </div>
 </div>
@@ -2594,6 +2605,28 @@ Please welcome self-describing <code>@IgnoreRest</code> annotation:</p>
     }</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Moreover, Spock 1.1 introduces one more interesting way to disable test case called Pending Feature.
+If you mark test case with a <code>@PendingFeature</code> annotation, it will have following behavior:
+if it fails, it will be reported as skipped (ignored) test case, as test case for unimplemented feature is not important for overall test result;
+if it passed, it will be reported as failed (sic!) test case, as it&#8217;s strange that test case for unimplemented features succeeded, so it should be explicitly reported:</p>
+</div>
+<div class="listingblock">
+<div class="title">Pending Feature in Spock</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">    <span class="annotation">@PendingFeature</span>
+    <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">this test is passing</span><span class="delimiter">'</span></span>() {
+        <span class="key">expect</span>: <span class="string"><span class="delimiter">'</span><span class="content">that 2*2=4</span><span class="delimiter">'</span></span>
+        <span class="integer">2</span> * <span class="integer">2</span> == <span class="integer">4</span>
+    }
+
+    <span class="annotation">@PendingFeature</span>
+    <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">this test is failing</span><span class="delimiter">'</span></span>() {
+        <span class="key">expect</span>: <span class="string"><span class="delimiter">'</span><span class="content">that 2*2=5</span><span class="delimiter">'</span></span>
+        <span class="integer">2</span> * <span class="integer">2</span> == <span class="integer">5</span>
+    }</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
 <h3 id="test_suites">12.2. Test suites</h3>
@@ -2880,6 +2913,23 @@ Being damned in the unit testing worlds, it is more than useful for integration 
 </div>
 </div>
 <div class="paragraph">
+<p>Moreover, complex assertions can be grouped inside <code>verifyAll</code> block.
+It will assert multiple expressions without short-circuiting those after a failure, so all failures will be reported:</p>
+</div>
+<div class="listingblock">
+<div class="title"><code>verifyAll</code> example</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">        <span class="key">then</span>: <span class="string"><span class="delimiter">'</span><span class="content">list is not empty, is of size 3, and contains all added values</span><span class="delimiter">'</span></span>
+        verifyAll {
+            list.empty == <span class="predefined-constant">false</span>
+            list.size() == <span class="integer">3</span>
+            list.get(<span class="integer">0</span>) == <span class="string"><span class="delimiter">'</span><span class="content">we</span><span class="delimiter">'</span></span>
+            list.get(<span class="integer">1</span>) == <span class="string"><span class="delimiter">'</span><span class="content">love</span><span class="delimiter">'</span></span>
+            list.get(<span class="integer">2</span>) == <span class="string"><span class="delimiter">'</span><span class="content">spock</span><span class="delimiter">'</span></span>
+        }</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>As a rule, Spock does not ignore previously implemented traditional features.
 This is great, as JUnit Rules still work with Spock:</p>
 </div>
@@ -3059,11 +3109,11 @@ Being not so beautiful, it will work in 90% of the cases, while Spock is just a 
 <p>Another thing is that Spock is now in the process of finding new development model.
 Luke Daley has left the project long time ago.
 Peter Niederwleser has stopped Spock contribution more than a year ago after joining Apple.
-Now Spock is public <a href="https://github.com/spockframework/spock" target="_blank">Github project</a>, developing very slowly after the last 1.0 release.</p>
+Now Spock is public <a href="https://github.com/spockframework/spock" target="_blank">Github project</a>, and after some standstill after 1.0 release seems that now it is on the way to stable wide community development model, as 1.1 release is almost ready for GA.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="images/spock-271ea.png" alt="spock 271ea">
+<img src="images/article-27c07.png" alt="article 27c07">
 </div>
 </div>
 </div>
@@ -3181,7 +3231,7 @@ I will appreciate your feedback (including surely negative one) in any form avai
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-07-18 16:26:46 +03:00
+Last updated 2016-09-21 03:37:06 +03:00
 </div>
 </div>
 </body>
