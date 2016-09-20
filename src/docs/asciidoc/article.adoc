@@ -1,6 +1,6 @@
 = What Mr. Spock would possibly say about modern unit testing: pragmatic and emotional overview
 Yaroslav Yermilov <https://github.com/yermilov[icon:github[] @yermilov, window="_blank"] https://www.facebook.com/yaroslav.yermilov[icon:facebook[] @yaroslav.yermilov, window="_blank"] https://twitter.com/yermilov17[icon:twitter[] @yermilov17, window="_blank"]>
-2016-09-13
+2016-09-21
 ifndef::sourcedir[:sourcedir: ../../]
 :toc:
 :icons: font
@@ -15,17 +15,6 @@ We will try to understand Spock philosophy and find out both pragmatic and emoti
 should I use spock-framework in the year of 2016?
 how to convince my manager that "yes, we should"?
 how to convince my teammates that "no, we shouldn't"?
-
-This is a textual version of link:http://jeeconf.com/program/what-mr-spock-would-possibly-say-about-modern-unit-testing-pragmatic-and-emotional-overview/[the talk given at JEEConf 2016, window="_blank"].
-All code examples can be found link:https://github.com/yermilov/spock-talk[at GitHub, window="_blank"].
-
-Talk was recorded:
-
-video::3nSXDEj7sKM[youtube, width=560, height=315, opts="allowfullscreen"]
-
-Slides from the talk:
-
-pass:[<iframe src="http://www.slideshare.net/slideshow/embed_code/key/ehE5vzQ7yu5map" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>]
 
 == What's About Modern Unit Testing?
 
