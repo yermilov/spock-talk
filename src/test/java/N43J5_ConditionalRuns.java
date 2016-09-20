@@ -1,12 +1,12 @@
-import org.junit.gen5.api.Disabled;
-import org.junit.gen5.api.Test;
-import org.junit.gen5.junit4.runner.JUnit5;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
-import static org.junit.gen5.api.Assertions.assertEquals;
-import static org.junit.gen5.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
-@RunWith(JUnit5.class)
+@RunWith(JUnitPlatform.class)
 public class N43J5_ConditionalRuns {
 
     // tag::ignore[]

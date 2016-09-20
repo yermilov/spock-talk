@@ -1,14 +1,14 @@
-import org.junit.gen5.api.Test;
-import org.junit.gen5.junit4.runner.JUnit5;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import java.util.ArrayList;
 
-import static org.junit.gen5.api.Assertions.assertEquals;
-import static org.junit.gen5.api.Assertions.expectThrows;
-import static org.junit.gen5.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.expectThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
-@RunWith(JUnit5.class)
+@RunWith(JUnitPlatform.class)
 public class N21J5_Exceptions {
 
     @Test

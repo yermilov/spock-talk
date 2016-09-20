@@ -40,4 +40,18 @@ class N39S_ConditionalRuns_Part1 extends Specification {
         2 + 2 == 5
     }
     // end::conditionalIgnore[]
+
+    // tag::pendingFeature[]
+    @PendingFeature
+    def 'this test is passing'() {
+        expect: 'that 2*2=4'
+        2 * 2 == 4
+    }
+
+    @PendingFeature
+    def 'this test is failing'() {
+        expect: 'that 2*2=5'
+        2 * 2 == 5
+    }
+    // end::pendingFeature[]
 }
