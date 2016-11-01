@@ -29,4 +29,13 @@ class N30S_WithGreatPowerComesGreatResponsibility extends Specification {
         Math.abs(17) == 28
     }
     // end::staticFinal[]
+
+    def 'constructor mocking'() {
+        given: 'we can mock constructor of *final* class java.lang.String'
+        GroovySpy(String, global: true)
+        new String(_) >> new String('boom!')
+
+        expect: 'a miracle happens'
+        new String('WAT') == 'boom!'
+    }
 }

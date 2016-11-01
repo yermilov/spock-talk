@@ -61,9 +61,9 @@ dependencies {
     testCompile 'org.slf4j:slf4j-api:1.7.13'
     testCompile 'org.slf4j:slf4j-simple:1.7.13'
 
-    testCompile 'org.gebish:geb-core:0.13.1'
-    testCompile 'org.gebish:geb-spock:0.13.1'
-    testCompile 'org.seleniumhq.selenium:selenium-firefox-driver:2.52.0'
+    testCompile 'org.gebish:geb-core:1.0'
+    testCompile 'org.gebish:geb-spock:1.0'
+    testCompile 'org.seleniumhq.selenium:selenium-firefox-driver:3.0.1'
     testCompile 'org.seleniumhq.selenium:selenium-support:2.52.0'
 }
 

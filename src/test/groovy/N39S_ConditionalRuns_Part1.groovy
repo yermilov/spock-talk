@@ -26,7 +26,7 @@ class N39S_ConditionalRuns_Part1 extends Specification {
     @Requires({ jvm.java8 && env['JAVA_HOME'] != null })
     def 'this test requires JAVA_HOME set and Java 8 installed'() {
         expect: 'that we are on Java 8'
-        'java -version'.execute().errorStream.text.contains('java version "1.8.0_73"')
+        'java -version'.execute().errorStream.text.contains('java version "1.8.0_101"')
     }
 
     @IgnoreIf({ new Random().nextBoolean() })

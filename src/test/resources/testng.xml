@@ -3,8 +3,8 @@
     <test name="TestSuites">
         <groups>
             <run>
-                <include name="fast"/> // <1>
-                <exclude name="slow"/> // <1>
+                <include name="fast"/> <!-- // <1> -->
+                <exclude name="slow"/> <!-- // <1> -->
             </run>
         </groups>
         <classes>
