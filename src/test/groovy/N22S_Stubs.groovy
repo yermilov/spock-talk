@@ -1,3 +1,5 @@
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.*
 
 @Title('Spock stubbing')
@@ -5,9 +7,13 @@ import spock.lang.*
 As JEEConf speaker
 I want to show how great Spock stubs are
 ''')
+// tag::spring[]
+@ContextConfiguration(classes = Config)
 class N22S_Stubs extends Specification {
 
-    PasswordGenerator passwordGenerator = PasswordGenerator.build()
+    @Autowired
+    PasswordGenerator passwordGenerator
+// end::spring[]
 
     def 'generating password when random generator return constant value'() {
         // tag::returnValue[]

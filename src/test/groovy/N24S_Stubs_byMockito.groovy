@@ -1,3 +1,5 @@
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.test.context.ContextConfiguration
 import spock.lang.Narrative
 import spock.lang.Specification
 import spock.lang.Title
@@ -12,9 +14,11 @@ import static org.mockito.Mockito.mock
 As JEEConf speaker
 I want to show that Mockito still works inside Spock
 ''')
+@ContextConfiguration(classes = Config)
 class N24S_Stubs_byMockito extends Specification {
 
-    PasswordGenerator passwordGenerator = PasswordGenerator.build()
+    @Autowired
+    PasswordGenerator passwordGenerator
 
     def 'generating password when random generator return constant value'() {
         // tag::returnValue[]
