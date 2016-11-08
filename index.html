@@ -516,7 +516,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="details">
 <span id="author" class="author">Yaroslav Yermilov</span><br>
 <span id="email" class="email"><a href="https://github.com/yermilov" target="_blank"><span class="icon"><i class="fa fa-github"></i></span> @yermilov</a> <a href="https://www.facebook.com/yaroslav.yermilov" target="_blank"><span class="icon"><i class="fa fa-facebook"></i></span> @yaroslav.yermilov</a> <a href="https://twitter.com/yermilov17" target="_blank"><span class="icon"><i class="fa fa-twitter"></i></span> @yermilov17</a></span><br>
-<span id="revdate">2016-09-21</span>
+<span id="revdate">2016-11-08</span>
 </div>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
@@ -541,7 +541,7 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#stubs">10.1. Stubs</a></li>
 <li><a href="#mocks">10.2. Mocks</a></li>
 <li><a href="#spies">10.3. Spies</a></li>
-<li><a href="#static_and_final_methods">10.4. Static and final methods</a></li>
+<li><a href="#static_and_final_methods_constructors">10.4. Static and final methods, constructors</a></li>
 </ul>
 </li>
 <li><a href="#timing_features">11. Timing features</a>
@@ -577,6 +577,9 @@ We will try to understand Spock philosophy and find out both pragmatic and emoti
 should I use spock-framework in the year of 2016?
 how to convince my manager that "yes, we should"?
 how to convince my teammates that "no, we shouldn&#8217;t"?</p>
+</div>
+<div class="paragraph">
+<p>All sources from examples can be found <a href="https://github.com/yermilov/spock-talk" target="_blank">here</a>.</p>
 </div>
 </div>
 </div>
@@ -1407,18 +1410,18 @@ But, what if you want to do the same in several test classes? You can extract th
 
     <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">static ArrayList and junit</span><span class="delimiter">'</span></span>() {
         <span class="key">when</span>:
-        arrayList.add(<span class="string"><span class="delimiter">'</span><span class="content">junit</span><span class="delimiter">'</span></span>)
+        N14S_SharedExplained_BasicStatic.arrayList.add(<span class="string"><span class="delimiter">'</span><span class="content">junit</span><span class="delimiter">'</span></span>)
 
         <span class="key">then</span>:
-        arrayList.size() == <span class="integer">1</span>
+        N14S_SharedExplained_BasicStatic.arrayList.size() == <span class="integer">1</span>
     }
 
     <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">static ArrayList and spock</span><span class="delimiter">'</span></span>() {
         <span class="key">when</span>:
-        arrayList.add(<span class="string"><span class="delimiter">'</span><span class="content">spock</span><span class="delimiter">'</span></span>)
+        N14S_SharedExplained_BasicStatic.arrayList.add(<span class="string"><span class="delimiter">'</span><span class="content">spock</span><span class="delimiter">'</span></span>)
 
         <span class="key">then</span>:
-        arrayList.size() == <span class="integer">2</span>
+        N14S_SharedExplained_BasicStatic.arrayList.size() == <span class="integer">2</span>
     }
 }
 
@@ -1426,10 +1429,10 @@ But, what if you want to do the same in several test classes? You can extract th
 
     <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">static ArrayList and testng</span><span class="delimiter">'</span></span>() {
         <span class="key">when</span>:
-        arrayList.add(<span class="string"><span class="delimiter">'</span><span class="content">junit</span><span class="delimiter">'</span></span>)
+        N14S_SharedExplained_BasicStatic.arrayList.add(<span class="string"><span class="delimiter">'</span><span class="content">junit</span><span class="delimiter">'</span></span>)
 
         <span class="key">then</span>:
-        arrayList.size() == <span class="integer">1</span>
+        N14S_SharedExplained_BasicStatic.arrayList.size() == <span class="integer">1</span>
     }
 }</code></pre>
 </div>
@@ -1447,7 +1450,8 @@ In this example <code>@Shared</code> annotation clearly will share resource only
 <div class="content">
 <pre class="CodeRay highlight"><code data-lang="groovy"><span class="type">class</span> <span class="class">N14S_SharedExplained_BasicShared</span> <span class="directive">extends</span> Specification {
 
-    <span class="annotation">@Shared</span> arrayList = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">String</span>&gt;()
+    <span class="annotation">@Shared</span>
+            arrayList = <span class="keyword">new</span> <span class="predefined-type">ArrayList</span>&lt;<span class="predefined-type">String</span>&gt;()
 }
 
 <span class="annotation">@Stepwise</span>
@@ -2199,7 +2203,7 @@ The difference is that mocks are used to fake unit behavior and monitor its usag
 </div>
 </div>
 <div class="sect2">
-<h3 id="static_and_final_methods">10.4. Static and final methods</h3>
+<h3 id="static_and_final_methods_constructors">10.4. Static and final methods, constructors</h3>
 <div class="paragraph">
 <p>Besides traditional and best-practice features, Spock offers more.
 Yes, they are bad practices, but who lives in ideal world?
@@ -2215,6 +2219,22 @@ If needed you can stub, mock or spy on <code>static</code> and/or <code>final</c
 
         <span class="key">expect</span>: <span class="string"><span class="delimiter">'</span><span class="content">a miracle happens</span><span class="delimiter">'</span></span>
         <span class="predefined-type">Math</span>.abs(<span class="integer">17</span>) == <span class="integer">28</span>
+    }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You also can mock constructor call.</p>
+</div>
+<div class="listingblock">
+<div class="title">Mocking <code>new String()</code> via Spock</div>
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="groovy">    <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">constructor mocking</span><span class="delimiter">'</span></span>() {
+        <span class="key">given</span>: <span class="string"><span class="delimiter">'</span><span class="content">we can mock constructor of *final* class java.lang.String</span><span class="delimiter">'</span></span>
+        GroovySpy(<span class="predefined-type">String</span>, <span class="key">global</span>: <span class="predefined-constant">true</span>)
+        <span class="keyword">new</span> <span class="predefined-type">String</span>(_) &gt;&gt; <span class="keyword">new</span> <span class="predefined-type">String</span>(<span class="string"><span class="delimiter">'</span><span class="content">boom!</span><span class="delimiter">'</span></span>)
+
+        <span class="key">expect</span>: <span class="string"><span class="delimiter">'</span><span class="content">a miracle happens</span><span class="delimiter">'</span></span>
+        <span class="keyword">new</span> <span class="predefined-type">String</span>(<span class="string"><span class="delimiter">'</span><span class="content">WAT</span><span class="delimiter">'</span></span>) == <span class="string"><span class="delimiter">'</span><span class="content">boom!</span><span class="delimiter">'</span></span>
     }</code></pre>
 </div>
 </div>
@@ -2554,7 +2574,7 @@ Moreover, it has more various features like disabling and enabling conditions an
     <span class="annotation">@Requires</span>({ jvm.java8 &amp;&amp; env[<span class="string"><span class="delimiter">'</span><span class="content">JAVA_HOME</span><span class="delimiter">'</span></span>] != <span class="predefined-constant">null</span> })
     <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">this test requires JAVA_HOME set and Java 8 installed</span><span class="delimiter">'</span></span>() {
         <span class="key">expect</span>: <span class="string"><span class="delimiter">'</span><span class="content">that we are on Java 8</span><span class="delimiter">'</span></span>
-        <span class="string"><span class="delimiter">'</span><span class="content">java -version</span><span class="delimiter">'</span></span>.execute().errorStream.text.contains(<span class="string"><span class="delimiter">'</span><span class="content">java version &quot;1.8.0_73&quot;</span><span class="delimiter">'</span></span>)
+        <span class="string"><span class="delimiter">'</span><span class="content">java -version</span><span class="delimiter">'</span></span>.execute().errorStream.text.contains(<span class="string"><span class="delimiter">'</span><span class="content">java version &quot;1.8.0_101&quot;</span><span class="delimiter">'</span></span>)
     }
 
     <span class="annotation">@IgnoreIf</span>({ <span class="keyword">new</span> <span class="predefined-type">Random</span>().nextBoolean() })
@@ -2882,10 +2902,10 @@ Being damned in the unit testing worlds, it is more than useful for integration 
         <span class="predefined-type">System</span>.getProperty(<span class="string"><span class="delimiter">'</span><span class="content">spock.version</span><span class="delimiter">'</span></span>) == <span class="predefined-constant">null</span>
 
         <span class="key">when</span>: <span class="string"><span class="delimiter">'</span><span class="content">spock version is set</span><span class="delimiter">'</span></span>
-        <span class="predefined-type">System</span>.setProperty(<span class="string"><span class="delimiter">'</span><span class="content">spock.version</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">1.0</span><span class="delimiter">'</span></span>)
+        <span class="predefined-type">System</span>.setProperty(<span class="string"><span class="delimiter">'</span><span class="content">spock.version</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">1.1</span><span class="delimiter">'</span></span>)
 
         <span class="key">then</span>: <span class="string"><span class="delimiter">'</span><span class="content">we can retrieve its value back</span><span class="delimiter">'</span></span>
-        <span class="predefined-type">System</span>.getProperty(<span class="string"><span class="delimiter">'</span><span class="content">spock.version</span><span class="delimiter">'</span></span>) == <span class="string"><span class="delimiter">'</span><span class="content">1.0</span><span class="delimiter">'</span></span>
+        <span class="predefined-type">System</span>.getProperty(<span class="string"><span class="delimiter">'</span><span class="content">spock.version</span><span class="delimiter">'</span></span>) == <span class="string"><span class="delimiter">'</span><span class="content">1.1</span><span class="delimiter">'</span></span>
     }
 
     <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">check spock version is not set</span><span class="delimiter">'</span></span>() {
@@ -3009,6 +3029,10 @@ Just look at simple example:</p>
 
 <span class="annotation">@Title</span>(<span class="string"><span class="delimiter">'</span><span class="content">Geb example</span><span class="delimiter">'</span></span>)
 <span class="type">class</span> <span class="class">N49S_Geb</span> <span class="directive">extends</span> GebSpec {
+
+    <span class="directive">static</span> {
+        <span class="predefined-type">System</span>.setProperty(<span class="string"><span class="delimiter">'</span><span class="content">webdriver.gecko.driver</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">D:</span><span class="char">\\</span><span class="content">Tools</span><span class="char">\\</span><span class="content">Selenium</span><span class="char">\\</span><span class="content">geckodriver.exe</span><span class="delimiter">'</span></span>)
+    }
 
     <span class="keyword">def</span> <span class="string"><span class="delimiter">'</span><span class="content">search for wikipedia in google</span><span class="delimiter">'</span></span>() {
         <span class="key">when</span>: <span class="string"><span class="delimiter">'</span><span class="content">go to google.com</span><span class="delimiter">'</span></span>
@@ -3231,7 +3255,7 @@ I will appreciate your feedback (including surely negative one) in any form avai
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2016-09-21 03:37:06 +03:00
+Last updated 2016-11-09 02:35:36 +02:00
 </div>
 </div>
 </body>
