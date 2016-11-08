@@ -30,6 +30,7 @@ class N30S_WithGreatPowerComesGreatResponsibility extends Specification {
     }
     // end::staticFinal[]
 
+    // tag::constructor[]
     def 'constructor mocking'() {
         given: 'we can mock constructor of *final* class java.lang.String'
         GroovySpy(String, global: true)
@@ -38,4 +39,5 @@ class N30S_WithGreatPowerComesGreatResponsibility extends Specification {
         expect: 'a miracle happens'
         new String('WAT') == 'boom!'
     }
+    // end::constructor[]
 }

@@ -1,8 +1,7 @@
 package shared
 
-/**
- * Created by yermi on 01.11.2016.
- */
+// tag::sharedForSharing[]
+
 class N14S_SharedExplained_Shared_2 extends N14S_SharedExplained_BasicShared {
 
     def 'shared ArrayList and testng'() {
@@ -13,3 +12,4 @@ class N14S_SharedExplained_Shared_2 extends N14S_SharedExplained_BasicShared {
         arrayList.size() == 1
     }
 }
+// end::sharedForSharing[]

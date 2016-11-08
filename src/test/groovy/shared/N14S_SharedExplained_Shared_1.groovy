@@ -2,9 +2,8 @@ package shared
 
 import spock.lang.Stepwise
 
-/**
- * Created by yermi on 01.11.2016.
- */
+// tag::sharedForSharing[]
+
 @Stepwise
 class N14S_SharedExplained_Shared_1 extends N14S_SharedExplained_BasicShared {
 
@@ -24,3 +23,4 @@ class N14S_SharedExplained_Shared_1 extends N14S_SharedExplained_BasicShared {
         arrayList.size() == 2
     }
 }
+// end::sharedForSharing[]

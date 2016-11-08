@@ -2,9 +2,8 @@ package shared
 
 import spock.lang.Stepwise
 
-/**
- * Created by yermi on 01.11.2016.
- */
+// tag::staticForSharing[]
+
 @Stepwise
 class N14S_SharedExplained_Static_1 extends N14S_SharedExplained_BasicStatic {
 
@@ -24,3 +23,4 @@ class N14S_SharedExplained_Static_1 extends N14S_SharedExplained_BasicStatic {
         N14S_SharedExplained_BasicStatic.arrayList.size() == 2
     }
 }
+// end::staticForSharing[]

@@ -1,5 +1,7 @@
 package shared
 
+// tag::staticForSharing[]
+
 class N14S_SharedExplained_Static_2 extends N14S_SharedExplained_BasicStatic {
 
     def 'static ArrayList and testng'() {
@@ -10,3 +12,4 @@ class N14S_SharedExplained_Static_2 extends N14S_SharedExplained_BasicStatic {
         N14S_SharedExplained_BasicStatic.arrayList.size() == 1
     }
 }
+// end::staticForSharing[]
