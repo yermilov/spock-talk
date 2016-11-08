@@ -4,6 +4,10 @@ import spock.lang.Title
 @Title('Geb example')
 class N49S_Geb extends GebSpec {
 
+    static {
+        System.setProperty('webdriver.gecko.driver', 'D:\\Tools\\Selenium\\geckodriver.exe')
+    }
+
     def 'search for wikipedia in google'() {
         when: 'go to google.com'
         go 'http://www.google.com'

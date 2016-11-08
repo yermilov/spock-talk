@@ -16,10 +16,10 @@ class N48S_SystemProperties extends Specification {
         System.getProperty('spock.version') == null
 
         when: 'spock version is set'
-        System.setProperty('spock.version', '1.0')
+        System.setProperty('spock.version', '1.1')
 
         then: 'we can retrieve its value back'
-        System.getProperty('spock.version') == '1.0'
+        System.getProperty('spock.version') == '1.1'
     }
 
     def 'check spock version is not set'() {

@@ -1,5 +1,9 @@
 class PasswordGenerator {
 
+    static PasswordGenerator build() {
+        new PasswordGenerator(alphabet: ('a'..'z').join(), random: new Random())
+    }
+
     String alphabet
     Random random
 

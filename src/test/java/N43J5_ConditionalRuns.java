@@ -4,6 +4,7 @@ import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assumptions.assumeFalse;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 @RunWith(JUnitPlatform.class)
@@ -20,7 +21,7 @@ public class N43J5_ConditionalRuns {
 
     @Test
     public void ignoredOnWindows() {
-        assumeTrue(System.getProperty("os.name").toLowerCase().contains("windows"));
+        assumeFalse(System.getProperty("os.name").toLowerCase().contains("windows"));
 
         // ...
     }
